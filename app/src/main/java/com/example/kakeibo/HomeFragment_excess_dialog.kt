@@ -1,4 +1,6 @@
 package com.example.kakeibo
 
-class HomeFragment_excess_dialog {
+import androidx.fragment.app.Fragment
+
+class HomeFragment_excess_dialog : Fragment() {
 }
