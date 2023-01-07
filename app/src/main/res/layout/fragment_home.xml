@@ -1,8 +1,279 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="#000000">
 
+    <View
+        android:id="@+id/view_home1"
+        android:layout_width="match_parent"
+        android:layout_height="24dp"
+        android:background="#ffffff"
+        app:layout_constraintBottom_toTopOf="@+id/view_home2"
+        app:layout_constraintTop_toTopOf="parent" />
 
+    <View
+        android:id="@+id/view_home2"
+        android:layout_width="match_parent"
+        android:layout_height="184.4dp"
+        android:background="#2fdb7a"
+        app:layout_constraintTop_toBottomOf="@+id/view_home1" />
+
+    <!--오늘 소비 가능 금액-->
+    <View
+        android:id="@+id/view_today"
+        android:layout_width="159.2dp"
+        android:layout_height="96.6dp"
+        android:background="@drawable/round_corners"
+        android:elevation="8dp"
+        app:layout_constraintBottom_toTopOf="@+id/view_home3"
+        app:layout_constraintEnd_toStartOf="@id/view_tomorrow"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/view_home1" />
+
+    <TextView
+        android:id="@+id/text_today"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="11.4dp"
+        android:text="@string/today"
+        android:textColor="#191919"
+        android:textSize="16sp"
+        android:translationZ="8dp"
+        app:layout_constraintBottom_toTopOf="@id/line_today"
+        app:layout_constraintStart_toStartOf="@+id/view_today"
+        app:layout_constraintTop_toTopOf="@id/view_today" />
+
+    <View
+        android:id="@+id/line_today"
+        android:layout_width="133.5dp"
+        android:layout_height="1dp"
+        android:background="#ededed"
+        android:translationZ="8dp"
+        app:layout_constraintBottom_toTopOf="@id/info_today_spend"
+        app:layout_constraintEnd_toEndOf="@id/view_today"
+        app:layout_constraintStart_toStartOf="@id/view_today"
+        app:layout_constraintTop_toBottomOf="@id/text_today" />
+
+    <TextView
+        android:id="@+id/info_today_spend"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="11.4dp"
+        android:text="@string/info_today_spend"
+        android:textColor="#6d6d6d"
+        android:textSize="11sp"
+        android:translationZ="8dp"
+        app:layout_constraintBottom_toTopOf="@id/today_spend"
+        app:layout_constraintStart_toStartOf="@id/view_today"
+        app:layout_constraintTop_toBottomOf="@id/line_today" />
+
+    <TextView
+        android:id="@+id/today_spend"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="11.7dp"
+        android:text="@string/today_spend"
+        android:textColor="#2fdb7a"
+        android:textSize="19sp"
+        android:translationZ="8dp"
+        app:layout_constraintBottom_toBottomOf="@id/view_today"
+        app:layout_constraintEnd_toEndOf="@id/view_today"
+        app:layout_constraintTop_toBottomOf="@id/info_today_spend" />
+
+    <!--내일 소비 가능 금액-->
+    <View
+        android:id="@+id/view_tomorrow"
+        android:layout_width="159.2dp"
+        android:layout_height="44.2dp"
+        android:background="@drawable/round_corners"
+        android:elevation="8dp"
+        app:layout_constraintBottom_toTopOf="@id/view_nextWeek"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/view_today"
+        app:layout_constraintTop_toTopOf="@id/view_home2" />
+
+    <TextView
+        android:id="@+id/text_tomorrow"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10.5dp"
+        android:text="@string/tomorrow"
+        android:textColor="#353535"
+        android:textSize="11sp"
+        android:translationZ="8dp"
+        app:layout_constraintBottom_toTopOf="@+id/info_tomorrow_spend"
+        app:layout_constraintStart_toStartOf="@+id/view_tomorrow"
+        app:layout_constraintTop_toTopOf="@+id/view_tomorrow" />
+
+    <TextView
+        android:id="@+id/info_tomorrow_spend"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10.5dp"
+        android:text="@string/info_tomorrow_spend"
+        android:textColor="#6d6d6d"
+        android:textSize="8sp"
+        android:translationZ="8dp"
+        app:layout_constraintBottom_toBottomOf="@id/view_tomorrow"
+        app:layout_constraintStart_toStartOf="@id/view_tomorrow"
+        app:layout_constraintTop_toBottomOf="@id/text_tomorrow" />
+
+    <TextView
+        android:id="@+id/tomorrow_spend"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="9.6dp"
+        android:text="@string/tomorrow_spend"
+        android:textColor="#353535"
+        android:textSize="13sp"
+        android:translationZ="8dp"
+        app:layout_constraintBottom_toBottomOf="@id/info_tomorrow_spend"
+        app:layout_constraintEnd_toEndOf="@id/view_tomorrow" />
+
+    <!--다음주 소비 가능 금액-->
+    <View
+        android:id="@+id/view_nextWeek"
+        android:layout_width="160dp"
+        android:layout_height="44.2dp"
+        android:background="@drawable/round_corners"
+        android:elevation="8dp"
+        app:layout_constraintBottom_toTopOf="@id/view_home3"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/view_today"
+        app:layout_constraintTop_toBottomOf="@id/view_tomorrow" />
+
+    <TextView
+        android:id="@+id/text_nextWeek"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10.5dp"
+        android:layout_marginTop="6.1dp"
+        android:text="@string/nextWeek"
+        android:textColor="#353535"
+        android:textSize="11sp"
+        android:translationZ="8dp"
+        app:layout_constraintStart_toStartOf="@+id/view_nextWeek"
+        app:layout_constraintTop_toTopOf="@+id/view_nextWeek" />
+
+    <TextView
+        android:id="@+id/info_nextWeek_spend"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10.5dp"
+        android:text="@string/info_nextWeek_spend"
+        android:textColor="#6d6d6d"
+        android:textSize="8sp"
+        android:translationZ="8dp"
+        app:layout_constraintBottom_toBottomOf="@id/view_nextWeek"
+        app:layout_constraintStart_toStartOf="@id/view_nextWeek"
+        app:layout_constraintTop_toBottomOf="@id/text_nextWeek" />
+
+    <TextView
+        android:id="@+id/nextWeek_spend"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="9.6dp"
+        android:text="@string/nextWeek_spend"
+        android:textColor="#353535"
+        android:textSize="13sp"
+        android:translationZ="8dp"
+        app:layout_constraintBottom_toBottomOf="@id/info_nextWeek_spend"
+        app:layout_constraintEnd_toEndOf="@id/view_nextWeek" />
+
+    <!--소비 내역 부분-->
+    <View
+        android:id="@+id/view_home3"
+        android:layout_width="match_parent"
+        android:layout_height="492.7dp"
+        android:background="@drawable/round_top_left_top_right_corner"
+        android:elevation="8dp"
+        app:layout_constraintBottom_toTopOf="@+id/tapBar_home4" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recycler_spend_list"
+        android:layout_width="271.2dp"
+        android:layout_height="444dp"
+        android:background="@drawable/round_corners"
+        android:elevation="8dp"
+        android:padding="14.1dp"
+        app:layout_constraintBottom_toBottomOf="@id/view_home3"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/view_bar_today"
+        app:layout_constraintTop_toTopOf="@id/view_home3" />
+
+    <!--bar 부분-->
+    <View
+        android:id="@+id/view_bar_today"
+        android:layout_width="48dp"
+        android:layout_height="444dp"
+        android:background="@drawable/round_corners"
+        android:elevation="8dp"
+        app:layout_constraintBottom_toBottomOf="@id/view_home3"
+        app:layout_constraintEnd_toStartOf="@+id/recycler_spend_list"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@id/view_home3" />
+
+    <!--android:progress로 높이 임의 설정해둠-->
+    <ProgressBar
+        android:id="@+id/progressBar_today"
+        style="@android:style/Widget.ProgressBar.Horizontal"
+        android:layout_width="429.2dp"
+        android:layout_height="15.7dp"
+        android:elevation="8dp"
+        android:max="100"
+        android:progress="80"
+        android:progressDrawable="@drawable/gradation_bar"
+        android:rotation="270"
+        android:translationZ="8dp"
+        app:layout_constraintBottom_toBottomOf="@+id/view_bar_today"
+        app:layout_constraintEnd_toEndOf="@+id/view_bar_today"
+        app:layout_constraintStart_toStartOf="@id/view_bar_today"
+        app:layout_constraintTop_toTopOf="@+id/view_bar_today" />
+
+    <!--marginBottom으로 높이 임의 설정해둠-->
+    <ImageView
+        android:contentDescription=""
+        android:id="@+id/img_progressBar_circle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/circle"
+        android:rotation="270"
+        android:src="@drawable/ic_baseline_circle_24"
+        android:translationZ="16dp"
+        android:layout_marginBottom="330dp"
+        app:layout_constraintBottom_toBottomOf="@+id/view_bar_today"
+        app:layout_constraintEnd_toEndOf="@id/view_bar_today"
+        app:layout_constraintStart_toStartOf="@+id/view_bar_today" />
+
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/tapBar_home4"
+        android:layout_width="match_parent"
+        android:layout_height="56dp"
+        android:elevation="8dp"
+        app:layout_constraintBottom_toTopOf="@+id/view_home5" />
+
+    <View
+        android:id="@+id/view_home5"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:background="#ffffff"
+        app:layout_constraintBottom_toBottomOf="parent" />
+
+    <ImageButton
+        android:id="@+id/btn_home_add"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="16sp"
+        android:layout_marginBottom="14.2sp"
+        android:background="@drawable/circle"
+        android:contentDescription="@string/img_btn_home_add"
+        android:elevation="8dp"
+        android:padding="0sp"
+        android:src="@drawable/ic_round_add_circle_24"
+        android:visibility="visible"
+        app:layout_constraintBottom_toTopOf="@+id/tapBar_home4"
+        app:layout_constraintEnd_toEndOf="@+id/view_home3" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
