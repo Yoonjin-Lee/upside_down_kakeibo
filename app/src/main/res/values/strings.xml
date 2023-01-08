@@ -21,10 +21,10 @@
     <string name="nextWeek_spend">12만원</string>
 
     <!--item_spend_list-->
-
     <string name="img_spend_list_icn">img_spend_list_icn</string>
     <string name="tv_spend_list_category">식비</string>
     <string name="tv_spend_list_content">점심에 쌀국수 먹음!</string>
     <string name="tv_spend_list_money">10,000원</string>
     <string name="img_progressBar_circle">img_progressBar_circle</string>
+
 </resources>
