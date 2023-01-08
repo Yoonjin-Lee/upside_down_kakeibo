@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#4c000000">
+
+    <View
+        android:id="@+id/view_dialog"
+        android:layout_width="216dp"
+        android:layout_height="177.3dp"
+        android:background="@drawable/round_corners"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/btn_dialog_아니"
+        android:layout_width="108dp"
+        android:layout_height="48.8dp"
+        android:background="@drawable/round_bottom_left_corner"
+        android:fontFamily="@font/noto_sans_kr_medium"
+        android:text="@string/아니"
+        android:textColor="#6d6d6d"
+        android:textSize="14sp"
+        app:layout_constraintBottom_toBottomOf="@+id/view_dialog"
+        app:layout_constraintEnd_toStartOf="@+id/btn_dialog_땡겨"
+        app:layout_constraintStart_toStartOf="@+id/view_dialog" />
+
+    <Button
+        android:id="@+id/btn_dialog_땡겨"
+        android:layout_width="108dp"
+        android:layout_height="48.8dp"
+        android:background="@drawable/round_bottom_right_corner"
+        android:fontFamily="@font/noto_sans_kr_medium"
+        android:text="@string/땡겨"
+        android:textColor="#ffffff"
+        android:textSize="14sp"
+        app:layout_constraintBottom_toBottomOf="@+id/view_dialog"
+        app:layout_constraintEnd_toEndOf="@+id/view_dialog" />
+
+    <ImageView
+        android:id="@+id/img_dialog_error"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:contentDescription="@string/img_dialog_error"
+        android:src="@drawable/ic_round_error_outline_24"
+        app:layout_constraintBottom_toTopOf="@id/tv_dialog_초과소비"
+        app:layout_constraintEnd_toEndOf="@+id/view_dialog"
+        app:layout_constraintStart_toStartOf="@+id/view_dialog"
+        app:layout_constraintTop_toTopOf="@+id/view_dialog" />
+
+    <!--'tv_dialog_초과소비'에 폰트 noto_sans_kr_medium 적용 시 규격 무너져 사용 못함-->
+    <TextView
+        android:id="@+id/tv_dialog_초과소비"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:text="@string/초과소비"
+        android:textColor="#b50000"
+        android:textSize="19sp"
+        app:layout_constraintBottom_toTopOf="@id/tv_dialog_질문"
+        app:layout_constraintEnd_toEndOf="@+id/view_dialog"
+        app:layout_constraintStart_toStartOf="@+id/view_dialog"
+        app:layout_constraintTop_toBottomOf="@+id/img_dialog_error" />
+
+    <TextView
+        android:id="@+id/tv_dialog_질문"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:fontFamily="@font/noto_sans_kr_regular"
+        android:text="@string/질문"
+        android:textColor="#191919"
+        android:textSize="11sp"
+        app:layout_constraintBottom_toTopOf="@+id/btn_dialog_아니"
+        app:layout_constraintEnd_toEndOf="@+id/view_dialog"
+        app:layout_constraintStart_toStartOf="@+id/view_dialog"
+        app:layout_constraintTop_toBottomOf="@+id/tv_dialog_초과소비" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

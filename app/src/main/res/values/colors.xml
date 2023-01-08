@@ -10,4 +10,7 @@
     <color name="main_green">#2FDB7A</color>
     <color name="light_green">#a9ffce</color>
     <color name="deep_green">#1b3420</color>
+    <color name="main">#2FDA7A</color>
+    <color name="main_mid">#BFF3D5</color>
+    <color name="pink">#E15CA6</color>
 </resources>
