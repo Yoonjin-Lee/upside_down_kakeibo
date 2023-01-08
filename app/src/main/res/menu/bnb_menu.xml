@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/home"
+        android:icon="@drawable/home_icon"
+        android:enabled="true"
+        android:title="@string/bnb_home"/>
+
+    <item
+        android:id="@+id/history"
+        android:icon="@drawable/history_icon"
+        android:enabled="true"
+        android:title="@string/bnb_history"/>
+
+    <item
+        android:id="@+id/mypage"
+        android:icon="@drawable/mypage_icon"
+        android:enabled="true"
+        android:title="@string/bnb_mypage"/>
+
+</menu>
