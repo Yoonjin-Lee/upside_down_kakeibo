@@ -82,7 +82,7 @@
                 android:indeterminate="false"
                 android:layout_gravity="center"
                 android:progressTint="@color/main"
-                android:progressDrawable="@drawable/circle_progressbar"/>
+                android:progressDrawable="@drawable/circle_progressbar_mypage"/>
 
             <LinearLayout
                 android:layout_width="match_parent"
