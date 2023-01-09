@@ -1,0 +1,206 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:baselineAligned="false">
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:orientation="vertical">
+
+
+        <TextView
+            android:id="@+id/step"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="23dp"
+            android:textColor="#2fdb7a"
+            android:textSize="16sp"
+            android:textStyle="normal"
+            android:text="@string/step1" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/goal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="23dp"
+                android:textColor="#191919"
+                android:textSize="22sp"
+                android:textStyle="bold"
+                android:text="@string/goal_info" />
+
+            <TextView
+                android:id="@+id/page"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="166dp"
+                android:textColor="#6d6d6d"
+                android:textSize="12sp"
+                android:textStyle="normal"
+                android:text="@string/half" />
+        </LinearLayout>
+
+
+        <!--상단바-->
+        <!--
+        <include
+            layout="@layout/toolbar"
+            android:id="@+id/toolbar"
+            android:layout_height="71dp"
+            android:layout_width="match_parent" />
+            -->
+
+
+        <TextView
+            android:id="@+id/goal_money"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="15dp"
+            android:layout_marginEnd="19dp"
+            android:textColor="#191919"
+            android:textSize="14sp"
+            android:textStyle="normal"
+            android:text = "@string/goal_money"
+
+            />
+
+
+        <EditText
+            android:id="@+id/ed_much"
+            android:inputType="numberDecimal"
+            android:layout_width="402dp"
+            android:layout_height="89dp"
+            android:layout_margin="5dp"
+            android:background="@drawable/round_border"
+            android:hint="@string/goal_hint"
+            android:paddingStart="30dp"
+            android:paddingEnd="10dp"
+            android:textColor="#000000"
+            tools:ignore="Autofill,HardcodedText" />
+
+        <TextView
+            android:id="@+id/goal_time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="25dp"
+            android:layout_marginEnd="19dp"
+            android:textColor="#191919"
+            android:textSize="14sp"
+            android:textStyle="normal"
+            android:text="@string/goal_period" />
+
+
+        <LinearLayout
+            android:id="@+id/containerLinearLayout"
+            android:layout_width="402dp"
+            android:layout_height="120dp"
+            android:layout_margin="5dp"
+            android:background="@drawable/round_border"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/month"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:gravity="center"
+                android:text="@string/goal_month"
+                android:textColor="#191919"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                tools:ignore="HardcodedText" />
+
+            <SeekBar
+                android:id="@+id/seekBar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:max="12"
+                android:progress="0"
+                android:progressDrawable="@drawable/seekbar_seekbar1"
+                android:thumb="@drawable/seekbar_seekbar1_thumb" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/month1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="start"
+                    android:layout_marginStart="16dp"
+                    android:textColor="#6d6d6d"
+                    android:textSize="11sp"
+                    android:text="@string/goal_1month" />
+
+                <TextView
+                    android:id="@+id/month2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="end"
+                    android:layout_marginStart="290dp"
+                    android:textColor="#6d6d6d"
+                    android:textSize="11sp"
+                    android:text="@string/goal_12month" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/one_memo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="25dp"
+            android:layout_marginEnd="19dp"
+            android:textColor="#191919"
+            android:textSize="14sp"
+            android:textStyle="normal"
+            android:text="@string/goal_memo" />
+
+        <EditText
+            android:id="@+id/ed_memo"
+            android:layout_width="402dp"
+            android:layout_height="170dp"
+            android:layout_margin="5dp"
+            android:background="@drawable/round_border"
+            android:hint="@string/goal_memo_hint"
+            android:textSize="14sp"
+            android:maxLength="100"
+            android:textStyle="normal"
+            android:paddingLeft="30dp"
+            android:paddingRight="30dp"
+            android:paddingTop="10dp"
+            android:paddingBottom="100dp" />
+
+
+        <Button
+            android:id="@+id/btn"
+            android:layout_width="match_parent"
+            android:layout_height="77dp"
+            android:layout_gravity="center"
+            android:text="@string/next"
+            android:textSize="23sp"
+            android:textStyle="bold"
+            android:backgroundTint="#2fdb7a"/>
+
+
+    </LinearLayout>
+
+
+</LinearLayout>
