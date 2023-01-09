@@ -1,0 +1,207 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".Mypage1">
+
+    <!-- TODO: Update blank fragment layout -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:background="@color/main"
+        android:orientation="horizontal"
+        tools:ignore="MissingConstraints">
+        <TextView
+            android:id="@+id/mypage"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="마이페이지"
+            android:textColor="@color/white"
+            android:textSize="25dp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:gravity="right"
+        tools:ignore="MissingConstraints">
+        <ImageButton
+            android:id="@+id/mypage_exit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_baseline_exit_to_app_24"
+            android:backgroundTint="@android:color/transparent"
+            android:layout_gravity="center"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:layout_marginTop="80dp"
+        tools:ignore="NotSibling">
+
+        <TextView
+            android:id="@+id/mypage_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="000님, 잘 하고 있어요!"
+            android:layout_marginTop="20dp"
+            android:layout_marginLeft="10dp"
+            android:textColor="@color/black"
+            android:textSize="25dp"
+            android:textStyle="bold">
+        </TextView>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginTop="20dp"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            android:background="@drawable/rectangle_background">
+
+            <View
+                android:id="@+id/view_gradient"
+                android:layout_width="250dp"
+                android:layout_height="250dp"
+                android:layout_above="@+id/btn_tab"
+                android:layout_centerInParent="true"
+                android:layout_gravity="center"
+                android:background="@drawable/gradient_circle" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center"
+                android:layout_marginTop="10dp"
+                >
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical"
+                    android:layout_weight="1"
+                    android:background="@drawable/rectangle_gray"
+                    android:layout_margin="5dp">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="목표 기간"
+                        android:textSize="13dp"
+                        android:textColor="@color/black">
+                    </TextView>
+                    <TextView
+                        android:id="@+id/mypage_month"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textSize="20dp"
+                        android:text="7개월"
+                        android:textColor="@color/black"
+                        android:gravity="center"
+                        android:textStyle="bold"
+                        android:layout_marginTop="8dp"></TextView>
+                    <TextView
+                        android:id="@+id/mypage_period"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="2022.06.01 ~ 2023.01.01"
+                        android:gravity="center"
+                        android:textSize="11dp"></TextView>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical"
+                    android:layout_weight="1"
+                    android:background="@drawable/rectangle_gray"
+                    android:layout_margin="5dp">
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="목표 금액"
+                        android:textSize="13dp"
+                        android:textColor="@color/black">
+                    </TextView>
+                    <TextView
+                        android:id="@+id/mypage_price"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textSize="20dp"
+                        android:text="100만원"
+                        android:textColor="@color/black"
+                        android:gravity="center"
+                        android:textStyle="bold"
+                        android:layout_marginTop="8dp"></TextView>
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text=""
+                        android:gravity="center"
+                        android:textSize="12dp"></TextView>
+                </LinearLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:background="@drawable/rectangle_gray"
+                android:layout_margin="5dp">
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="한 줄 메모"
+                    android:textSize="13dp"
+                    android:textColor="@color/black">
+                </TextView>
+                <TextView
+                    android:id="@+id/mypage_memo"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textSize="17dp"
+                    android:text="여행 갈 돈 모으기"
+                    android:textColor="@color/black"
+                    android:gravity="center"
+                    android:layout_marginTop="8dp"></TextView>
+            </LinearLayout>
+
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="목표 재설정"
+                android:textSize="17dp"
+                android:textStyle="bold"
+                android:layout_margin="5dp"
+                android:background="@drawable/rectangle_pink"
+                android:textColor="@color/pink">
+            </Button>
+
+
+        </LinearLayout>
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="이전 저축 기록"
+            android:textSize="17dp"
+            android:textStyle="bold"
+            android:layout_margin="10dp"
+            android:background="@drawable/rectangle_green"
+            android:textColor="@color/main">
+        </Button>
+
+    </LinearLayout>
+
+</FrameLayout>
