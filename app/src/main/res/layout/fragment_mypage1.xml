@@ -70,14 +70,19 @@
             android:layout_marginRight="15dp"
             android:background="@drawable/rectangle_background">
 
-            <View
-                android:id="@+id/view_gradient"
+            <ProgressBar
+                android:id="@+id/progressbar"
+                style="@style/Widget.AppCompat.ProgressBar.Horizontal"
                 android:layout_width="250dp"
                 android:layout_height="250dp"
-                android:layout_above="@+id/btn_tab"
-                android:layout_centerInParent="true"
+                android:layout_marginTop="10dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:max="100"
+                android:indeterminate="false"
                 android:layout_gravity="center"
-                android:background="@drawable/gradient_circle" />
+                android:progressTint="@color/main"
+                android:progressDrawable="@drawable/circle_progressbar"/>
 
             <LinearLayout
                 android:layout_width="match_parent"
