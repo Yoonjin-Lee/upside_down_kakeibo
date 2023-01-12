@@ -234,15 +234,15 @@
 
     <!--marginBottom으로 높이 임의 설정해둠-->
     <ImageView
-        android:contentDescription=""
         android:id="@+id/img_progressBar_circle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="330dp"
         android:background="@drawable/circle"
+        android:contentDescription=""
         android:rotation="270"
         android:src="@drawable/ic_baseline_circle_24"
         android:translationZ="16dp"
-        android:layout_marginBottom="330dp"
         app:layout_constraintBottom_toBottomOf="@+id/view_bar_today"
         app:layout_constraintEnd_toEndOf="@id/view_bar_today"
         app:layout_constraintStart_toStartOf="@+id/view_bar_today" />
