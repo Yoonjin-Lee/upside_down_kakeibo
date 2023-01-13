@@ -90,6 +90,8 @@
         android:layout_width="35dp"
         android:layout_height="35dp"
         android:src="@drawable/ic_unselected_living"
+        app:layout_constraintBottom_toTopOf="@id/ic_unselected_health"
+        app:layout_constraintEnd_toStartOf="@id/ic_unselected_food"
         app:layout_constraintStart_toStartOf="@id/view_add_history_icon_box"
         app:layout_constraintTop_toTopOf="@id/view_add_history_icon_box" />
 
@@ -98,6 +100,8 @@
         android:layout_width="35dp"
         android:layout_height="35dp"
         android:src="@drawable/ic_unselected_food"
+        app:layout_constraintBottom_toTopOf="@id/ic_unselected_learn"
+        app:layout_constraintEnd_toStartOf="@id/ic_unselected_cafe"
         app:layout_constraintStart_toEndOf="@id/ic_unselected_living"
         app:layout_constraintTop_toTopOf="@id/view_add_history_icon_box" />
 
@@ -106,6 +110,8 @@
         android:layout_width="35dp"
         android:layout_height="35dp"
         android:src="@drawable/ic_unselected_cafe"
+        app:layout_constraintBottom_toTopOf="@id/ic_unselected_health"
+        app:layout_constraintEnd_toStartOf="@id/ic_unselected_transportation"
         app:layout_constraintStart_toEndOf="@id/ic_unselected_food"
         app:layout_constraintTop_toTopOf="@id/view_add_history_icon_box" />
 
@@ -114,6 +120,8 @@
         android:layout_width="35dp"
         android:layout_height="35dp"
         android:src="@drawable/ic_unselected_transportation"
+        app:layout_constraintBottom_toTopOf="@id/ic_unselected_health"
+        app:layout_constraintEnd_toStartOf="@id/ic_unselected_fashion"
         app:layout_constraintStart_toEndOf="@id/ic_unselected_cafe"
         app:layout_constraintTop_toTopOf="@id/view_add_history_icon_box" />
 
@@ -122,9 +130,80 @@
         android:layout_width="35dp"
         android:layout_height="35dp"
         android:src="@drawable/ic_unselected_fashion"
+        app:layout_constraintBottom_toTopOf="@id/ic_unselected_health"
+        app:layout_constraintEnd_toStartOf="@id/ic_unselected_communication"
         app:layout_constraintStart_toEndOf="@id/ic_unselected_transportation"
         app:layout_constraintTop_toTopOf="@id/view_add_history_icon_box" />
 
+    <ImageButton
+        android:id="@+id/ic_unselected_communication"
+        android:layout_width="35dp"
+        android:layout_height="35dp"
+        android:src="@drawable/ic_unselected_communication"
+        app:layout_constraintBottom_toTopOf="@id/ic_unselected_health"
+        app:layout_constraintEnd_toEndOf="@id/view_add_history_icon_box"
+        app:layout_constraintStart_toEndOf="@id/ic_unselected_fashion"
+        app:layout_constraintTop_toTopOf="@id/view_add_history_icon_box" />
+
+    <ImageButton
+        android:id="@+id/ic_unselected_health"
+        android:layout_width="35dp"
+        android:layout_height="35dp"
+        android:src="@drawable/ic_unselected_health"
+        app:layout_constraintBottom_toBottomOf="@id/view_add_history_icon_box"
+        app:layout_constraintEnd_toStartOf="@id/ic_unselected_learn"
+        app:layout_constraintStart_toStartOf="@id/view_add_history_icon_box"
+        app:layout_constraintTop_toBottomOf="@id/ic_unselected_living" />
+
+    <ImageButton
+        android:id="@+id/ic_unselected_learn"
+        android:layout_width="35dp"
+        android:layout_height="35dp"
+        android:src="@drawable/ic_unselected_learn"
+        app:layout_constraintBottom_toBottomOf="@id/view_add_history_icon_box"
+        app:layout_constraintEnd_toStartOf="@id/ic_unselected_culture"
+        app:layout_constraintStart_toEndOf="@id/ic_unselected_health"
+        app:layout_constraintTop_toBottomOf="@id/ic_unselected_living" />
+
+    <ImageButton
+        android:id="@+id/ic_unselected_culture"
+        android:layout_width="35dp"
+        android:layout_height="35dp"
+        android:src="@drawable/ic_unselected_culture"
+        app:layout_constraintBottom_toBottomOf="@id/view_add_history_icon_box"
+        app:layout_constraintEnd_toStartOf="@id/ic_unselected_beauty"
+        app:layout_constraintStart_toEndOf="@id/ic_unselected_learn"
+        app:layout_constraintTop_toBottomOf="@id/ic_unselected_living" />
+
+    <ImageButton
+        android:id="@+id/ic_unselected_beauty"
+        android:layout_width="35dp"
+        android:layout_height="35dp"
+        android:src="@drawable/ic_unselected_beauty"
+        app:layout_constraintBottom_toBottomOf="@id/view_add_history_icon_box"
+        app:layout_constraintEnd_toStartOf="@id/ic_unselected_pet"
+        app:layout_constraintStart_toEndOf="@id/ic_unselected_culture"
+        app:layout_constraintTop_toBottomOf="@id/ic_unselected_living" />
+
+    <ImageButton
+        android:id="@+id/ic_unselected_pet"
+        android:layout_width="35dp"
+        android:layout_height="35dp"
+        android:src="@drawable/ic_unselected_pet"
+        app:layout_constraintBottom_toBottomOf="@id/view_add_history_icon_box"
+        app:layout_constraintEnd_toStartOf="@id/ic_unselected_gift"
+        app:layout_constraintStart_toEndOf="@id/ic_unselected_beauty"
+        app:layout_constraintTop_toBottomOf="@id/ic_unselected_living" />
+
+    <ImageButton
+        android:id="@+id/ic_unselected_gift"
+        android:layout_width="35dp"
+        android:layout_height="35dp"
+        android:src="@drawable/ic_unselected_gift"
+        app:layout_constraintBottom_toBottomOf="@id/view_add_history_icon_box"
+        app:layout_constraintEnd_toEndOf="@id/view_add_history_icon_box"
+        app:layout_constraintStart_toEndOf="@id/ic_unselected_pet"
+        app:layout_constraintTop_toBottomOf="@id/ic_unselected_living" />
 
     <!--'내용' 부분-->
     <TextView
@@ -187,16 +266,16 @@
     <Button
         android:id="@+id/btn_add_history_big_done"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="32dp"
         android:layout_marginLeft="15dp"
         android:layout_marginRight="15dp"
+        android:layout_marginBottom="24dp"
         android:background="@drawable/rectangle_green"
         android:text="완료"
         android:textColor="#2fdb7a"
         android:textSize="14sp"
         app:layout_constraintBottom_toBottomOf="@+id/view_add_history"
-        app:layout_constraintStart_toStartOf="@id/tv_add_history_money_box"
-        app:layout_constraintTop_toBottomOf="@id/tv_add_history_money_box" />
+        app:layout_constraintStart_toStartOf="@id/tv_add_history_money_box" />
 
     <!--하단 바 부분-->
     <View
