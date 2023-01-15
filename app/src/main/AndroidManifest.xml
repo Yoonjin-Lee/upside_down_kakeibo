@@ -16,6 +16,7 @@
         android:theme="@style/Theme.Kakeibo"
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
+
         <activity
             android:name=".PastRecordActivity"
             android:exported="true">
@@ -47,6 +48,10 @@
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
+        <activity android:name=".LoginActivity"/>
+        <activity android:name=".ResultActivity"/>
+        <activity android:name=".mypage_dialog"/>
+        <activity android:name=".DateresultActivity"/>
         <activity
             android:name=".MainActivity"
             android:exported="true">

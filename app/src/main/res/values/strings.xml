@@ -8,26 +8,13 @@
     <string name="질문">내일 사용할 돈을 미리 땡겨올까요?</string>
     <string name="img_dialog_error">img_dialog_error</string>
 
-    <!--fragment_home-->
-    <string name="img_btn_home_add">img_btn_home_add</string>
-    <string name="today">1월 1일</string>
-    <string name="tomorrow">1월 2일</string>
-    <string name="nextWeek">1월 2주차</string>
-    <string name="info_today_spend">오늘 소비 가능 금액</string>
-    <string name="info_tomorrow_spend">내일 소비 가능 금액</string>
-    <string name="info_nextWeek_spend">다음주 소비 가능 금액</string>
-    <string name="today_spend">20,000원</string>
-    <string name="tomorrow_spend">10,000원</string>
-    <string name="nextWeek_spend">12만원</string>
-
     <!--item_spend_list-->
-    <string name="img_spend_list_icn">img_spend_list_icn</string>
     <string name="tv_spend_list_category">식비</string>
     <string name="tv_spend_list_content">점심에 쌀국수 먹음!</string>
     <string name="tv_spend_list_money">10,000원</string>
-    <string name="img_progressBar_circle">img_progressBar_circle</string>
 
 
+    <!--login_activity-->
     <string name="bnb_home">HOME</string>
     <string name="bnb_history">HISTORY</string>
     <string name="bnb_mypage">MY PAGE</string>
@@ -35,10 +22,14 @@
     <string name="login_info">돈을 모으려면 안 써야한다!
 한푼 두푼 절약 대작전!</string>
     <string name="okay">확인</string>
+
+    <!--result_activity-->
     <string name="save_rate">저축 달성률</string>
     <string name="result_share">결과 공유하기</string>
     <string name="week">1주차</string>
     <string name="ment">나 쫌 하네?</string>
+
+    <!--goal_activity-->
     <string name="goal_money">목표금액</string>
     <string name="step1">STEP 1</string>
     <string name="goal_info">저축 목표 설정하기</string>
@@ -51,4 +42,16 @@
     <string name="goal_memo">한 줄 메모</string>
     <string name="next">다음</string>
     <string name="goal_memo_hint">한 줄 메모를 입력하세요</string>
+
+    <!--history_fragment-->
+    <string name="history">HISTORY</string>
+    <string name="week_money">이주의 저축 가능 금액</string>
+    <string name="won">만원</string>
+
+    <!--dateresult_activity-->
+    <string name="dateresult_title">소비기록</string>
+    <string name="month_unit">월 </string>
+    <string name="date_unit">일</string>
+    <string name="money_unit">원</string>
+    <string name="saved_money">저축 금액</string>
 </resources>
