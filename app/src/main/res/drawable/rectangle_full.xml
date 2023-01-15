@@ -7,4 +7,7 @@
         android:top="5px"
         android:right="45px"
         android:bottom="5px" />
+    <corners
+        android:bottomLeftRadius="12dp"
+        android:bottomRightRadius="12dp" />
 </shape>
