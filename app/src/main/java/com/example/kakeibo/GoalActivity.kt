@@ -1,4 +1,4 @@
-package com.example.umc__
+package com.example.kakeibo
 
 
 import androidx.appcompat.app.AppCompatActivity

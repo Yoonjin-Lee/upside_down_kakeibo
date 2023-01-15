@@ -51,4 +51,13 @@
     <string name="goal_memo">한 줄 메모</string>
     <string name="next">다음</string>
     <string name="goal_memo_hint">한 줄 메모를 입력하세요</string>
+
+    <!--income-->
+    <string name="step2">STEP 2</string>
+    <string name="income">수입•지출 정리하기</string>
+    <string name="page">2/2</string>
+    <string name="month_income">월 수입</string>
+    <string name="month_consumption">월 필수 소비액</string>
+    <string name="add">내역 추가</string>
+    <string name="start">거꾸로 가계부 시작!</string>
 </resources>
