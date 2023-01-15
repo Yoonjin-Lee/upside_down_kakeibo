@@ -1,0 +1,279 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#000000">
+
+    <View
+        android:id="@+id/view_add_history"
+        android:layout_width="match_parent"
+        android:layout_height="669.8dp"
+        android:background="@drawable/round_top_left_top_right_corner_20dp"
+        android:backgroundTint="#ffffff"
+        app:layout_constraintBottom_toTopOf="@+id/view" />
+
+    <!--취소 버튼-->
+    <Button
+        android:id="@+id/btn_add_history_cancel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="27.5dp"
+        android:layout_marginEnd="110dp"
+        android:background="transparent"
+        android:minWidth="0dp"
+        android:minHeight="0dp"
+        android:text="취소"
+        android:textColor="#2fdb7a"
+        android:textSize="14sp"
+        app:layout_constraintEnd_toStartOf="@id/tv_add_history"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/view_add_history" />
+
+    <TextView
+        android:id="@+id/tv_add_history"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="25.5dp"
+        android:letterSpacing="0.03"
+        android:text="내역 추가"
+        android:textColor="#191919"
+        android:textSize="16sp"
+        android:textStyle="normal"
+        app:layout_constraintEnd_toStartOf="@id/btn_add_history_done"
+        app:layout_constraintStart_toEndOf="@id/btn_add_history_cancel"
+        app:layout_constraintTop_toTopOf="@+id/view_add_history" />
+
+    <!--완료 버튼-->
+    <Button
+        android:id="@+id/btn_add_history_done"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="110dp"
+        android:layout_marginTop="27.5dp"
+        android:background="transparent"
+        android:minWidth="0dp"
+        android:minHeight="0dp"
+        android:text="완료"
+        android:textColor="#2fdb7a"
+        android:textSize="14sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/tv_add_history"
+        app:layout_constraintTop_toTopOf="@+id/view_add_history" />
+
+    <!--'아이콘' 부분-->
+    <TextView
+        android:id="@+id/tv_add_history_icon"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="38.6dp"
+        android:text="아이콘"
+        android:textColor="#191919"
+        android:textSize="14sp"
+        app:layout_constraintStart_toStartOf="@id/btn_add_history_cancel"
+        app:layout_constraintTop_toBottomOf="@id/btn_add_history_cancel" />
+
+    <View
+        android:id="@+id/view_add_history_icon_box"
+        android:layout_width="match_parent"
+        android:layout_height="138dp"
+        android:background="@drawable/round_border"
+        app:layout_constraintStart_toStartOf="@id/tv_add_history_icon"
+        app:layout_constraintTop_toBottomOf="@id/tv_add_history_icon" />
+
+    <ImageButton
+        android:id="@+id/ic_unselected_living"
+        android:layout_width="35dp"
+        android:layout_height="35dp"
+        android:layout_marginTop="15dp"
+        android:src="@drawable/ic_unselected_living"
+        app:layout_constraintBottom_toTopOf="@id/ic_unselected_health"
+        app:layout_constraintEnd_toStartOf="@id/ic_unselected_food"
+        app:layout_constraintStart_toStartOf="@id/view_add_history_icon_box"
+        app:layout_constraintTop_toTopOf="@id/view_add_history_icon_box" />
+
+    <ImageButton
+        android:id="@+id/ic_unselected_food"
+        android:layout_width="35dp"
+        android:layout_height="35dp"
+        android:src="@drawable/ic_unselected_food"
+        app:layout_constraintBottom_toBottomOf="@id/ic_unselected_living"
+        app:layout_constraintEnd_toStartOf="@id/ic_unselected_cafe"
+        app:layout_constraintStart_toEndOf="@id/ic_unselected_living"
+        app:layout_constraintTop_toTopOf="@id/ic_unselected_living" />
+
+    <ImageButton
+        android:id="@+id/ic_unselected_cafe"
+        android:layout_width="35dp"
+        android:layout_height="35dp"
+        android:src="@drawable/ic_unselected_cafe"
+        app:layout_constraintBottom_toBottomOf="@id/ic_unselected_living"
+        app:layout_constraintEnd_toStartOf="@id/ic_unselected_transportation"
+        app:layout_constraintStart_toEndOf="@id/ic_unselected_food"
+        app:layout_constraintTop_toTopOf="@id/ic_unselected_living" />
+
+    <ImageButton
+        android:id="@+id/ic_unselected_transportation"
+        android:layout_width="35dp"
+        android:layout_height="35dp"
+        android:src="@drawable/ic_unselected_transportation"
+        app:layout_constraintBottom_toBottomOf="@id/ic_unselected_living"
+        app:layout_constraintEnd_toStartOf="@id/ic_unselected_fashion"
+        app:layout_constraintStart_toEndOf="@id/ic_unselected_cafe"
+        app:layout_constraintTop_toTopOf="@id/ic_unselected_living" />
+
+    <ImageButton
+        android:id="@+id/ic_unselected_fashion"
+        android:layout_width="35dp"
+        android:layout_height="35dp"
+        android:src="@drawable/ic_unselected_fashion"
+        app:layout_constraintBottom_toBottomOf="@id/ic_unselected_living"
+        app:layout_constraintEnd_toStartOf="@id/ic_unselected_communication"
+        app:layout_constraintStart_toEndOf="@id/ic_unselected_transportation"
+        app:layout_constraintTop_toTopOf="@id/ic_unselected_living" />
+
+    <ImageButton
+        android:id="@+id/ic_unselected_communication"
+        android:layout_width="35dp"
+        android:layout_height="35dp"
+        android:src="@drawable/ic_unselected_communication"
+        app:layout_constraintBottom_toBottomOf="@id/ic_unselected_living"
+        app:layout_constraintEnd_toEndOf="@id/view_add_history_icon_box"
+        app:layout_constraintStart_toEndOf="@id/ic_unselected_fashion"
+        app:layout_constraintTop_toTopOf="@id/ic_unselected_living" />
+
+    <ImageButton
+        android:id="@+id/ic_unselected_health"
+        android:layout_width="35dp"
+        android:layout_height="35dp"
+        android:layout_marginBottom="15dp"
+        android:src="@drawable/ic_unselected_health"
+        app:layout_constraintBottom_toBottomOf="@id/view_add_history_icon_box"
+        app:layout_constraintEnd_toStartOf="@id/ic_unselected_learn"
+        app:layout_constraintStart_toStartOf="@id/view_add_history_icon_box"
+        app:layout_constraintTop_toBottomOf="@id/ic_unselected_living" />
+
+    <ImageButton
+        android:id="@+id/ic_unselected_learn"
+        android:layout_width="35dp"
+        android:layout_height="35dp"
+        android:src="@drawable/ic_unselected_learn"
+        app:layout_constraintBottom_toBottomOf="@id/ic_unselected_health"
+        app:layout_constraintEnd_toStartOf="@id/ic_unselected_culture"
+        app:layout_constraintStart_toEndOf="@id/ic_unselected_health"
+        app:layout_constraintTop_toTopOf="@id/ic_unselected_health" />
+
+    <ImageButton
+        android:id="@+id/ic_unselected_culture"
+        android:layout_width="35dp"
+        android:layout_height="35dp"
+        android:src="@drawable/ic_unselected_culture"
+        app:layout_constraintBottom_toBottomOf="@id/ic_unselected_health"
+        app:layout_constraintEnd_toStartOf="@id/ic_unselected_beauty"
+        app:layout_constraintStart_toEndOf="@id/ic_unselected_learn"
+        app:layout_constraintTop_toTopOf="@id/ic_unselected_health" />
+
+    <ImageButton
+        android:id="@+id/ic_unselected_beauty"
+        android:layout_width="35dp"
+        android:layout_height="35dp"
+        android:src="@drawable/ic_unselected_beauty"
+        app:layout_constraintBottom_toBottomOf="@id/ic_unselected_health"
+        app:layout_constraintEnd_toStartOf="@id/ic_unselected_pet"
+        app:layout_constraintStart_toEndOf="@id/ic_unselected_culture"
+        app:layout_constraintTop_toTopOf="@id/ic_unselected_health" />
+
+    <ImageButton
+        android:id="@+id/ic_unselected_pet"
+        android:layout_width="35dp"
+        android:layout_height="35dp"
+        android:src="@drawable/ic_unselected_pet"
+        app:layout_constraintBottom_toBottomOf="@id/ic_unselected_health"
+        app:layout_constraintEnd_toStartOf="@id/ic_unselected_gift"
+        app:layout_constraintStart_toEndOf="@id/ic_unselected_beauty"
+        app:layout_constraintTop_toTopOf="@id/ic_unselected_health" />
+
+    <ImageButton
+        android:id="@+id/ic_unselected_gift"
+        android:layout_width="35dp"
+        android:layout_height="35dp"
+        android:src="@drawable/ic_unselected_gift"
+        app:layout_constraintBottom_toBottomOf="@id/ic_unselected_health"
+        app:layout_constraintEnd_toEndOf="@id/view_add_history_icon_box"
+        app:layout_constraintStart_toEndOf="@id/ic_unselected_pet"
+        app:layout_constraintTop_toTopOf="@id/ic_unselected_health" />
+
+    <!--'내용' 부분-->
+    <TextView
+        android:id="@+id/tv_add_history_content"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="내용"
+        android:textColor="#191919"
+        android:textSize="14sp"
+        app:layout_constraintStart_toStartOf="@id/tv_add_history_icon"
+        app:layout_constraintTop_toBottomOf="@id/view_add_history_icon_box" />
+
+    <EditText
+        android:id="@+id/tv_add_history_content_box"
+        android:layout_width="match_parent"
+        android:layout_height="74dp"
+        android:background="@drawable/round_border"
+        android:hint="내용을 입력하세요"
+        android:paddingStart="30.6dp"
+        android:textColorHint="#a0a0a0"
+        android:textSize="16sp"
+        app:layout_constraintStart_toStartOf="@id/tv_add_history_content"
+        app:layout_constraintTop_toBottomOf="@id/tv_add_history_content"
+        tools:ignore="RtlSymmetry" />
+
+    <!--'금액' 부분-->
+    <TextView
+        android:id="@+id/tv_add_history_money"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="금액"
+        android:textColor="#191919"
+        android:textSize="14sp"
+        app:layout_constraintStart_toStartOf="@id/tv_add_history_icon"
+        app:layout_constraintTop_toBottomOf="@id/tv_add_history_content_box" />
+
+    <EditText
+        android:id="@+id/tv_add_history_money_box"
+        android:layout_width="match_parent"
+        android:layout_height="74dp"
+        android:background="@drawable/round_border"
+        android:hint="금액을 입력하세요"
+        android:paddingStart="30.6dp"
+        android:textColorHint="#a0a0a0"
+        android:textSize="16sp"
+        app:layout_constraintStart_toStartOf="@id/tv_add_history_money"
+        app:layout_constraintTop_toBottomOf="@id/tv_add_history_money"
+        tools:ignore="RtlSymmetry" />
+
+    <Button
+        android:id="@+id/btn_add_history_big_done"
+        android:layout_width="match_parent"
+        android:layout_height="32dp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
+        android:layout_marginBottom="24dp"
+        android:background="@drawable/rectangle_green"
+        android:text="완료"
+        android:textColor="#2fdb7a"
+        android:textSize="14sp"
+        app:layout_constraintBottom_toBottomOf="@+id/view_add_history"
+        app:layout_constraintStart_toStartOf="@id/tv_add_history_money_box" />
+
+    <!--하단 바 부분-->
+    <View
+        android:id="@+id/view"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:background="#000000"
+        app:layout_constraintBottom_toBottomOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

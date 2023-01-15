@@ -8,24 +8,10 @@
     <string name="질문">내일 사용할 돈을 미리 땡겨올까요?</string>
     <string name="img_dialog_error">img_dialog_error</string>
 
-    <!--fragment_home-->
-    <string name="img_btn_home_add">img_btn_home_add</string>
-    <string name="today">1월 1일</string>
-    <string name="tomorrow">1월 2일</string>
-    <string name="nextWeek">1월 2주차</string>
-    <string name="info_today_spend">오늘 소비 가능 금액</string>
-    <string name="info_tomorrow_spend">내일 소비 가능 금액</string>
-    <string name="info_nextWeek_spend">다음주 소비 가능 금액</string>
-    <string name="today_spend">20,000원</string>
-    <string name="tomorrow_spend">10,000원</string>
-    <string name="nextWeek_spend">12만원</string>
-
     <!--item_spend_list-->
-    <string name="img_spend_list_icn">img_spend_list_icn</string>
     <string name="tv_spend_list_category">식비</string>
     <string name="tv_spend_list_content">점심에 쌀국수 먹음!</string>
     <string name="tv_spend_list_money">10,000원</string>
-    <string name="img_progressBar_circle">img_progressBar_circle</string>
 
 
     <!--login_activity-->

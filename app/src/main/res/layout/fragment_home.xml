@@ -23,171 +23,168 @@
     <!--오늘 소비 가능 금액-->
     <View
         android:id="@+id/view_today"
-        android:layout_width="159.2dp"
-        android:layout_height="96.6dp"
+        android:layout_width="160dp"
+        android:layout_height="35dp"
         android:background="@drawable/round_corners"
+        android:backgroundTint="#ffffff"
         android:elevation="8dp"
-        app:layout_constraintBottom_toTopOf="@+id/view_home3"
-        app:layout_constraintEnd_toStartOf="@id/view_tomorrow"
+        app:layout_constraintBottom_toTopOf="@+id/view_today_available"
+        app:layout_constraintEnd_toStartOf="@id/view_saving"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/view_home1" />
 
     <TextView
-        android:id="@+id/text_today"
+        android:id="@+id/tv_today"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="11.4dp"
-        android:text="@string/today"
+        android:text="1월 1일"
         android:textColor="#191919"
         android:textSize="16sp"
         android:translationZ="8dp"
-        app:layout_constraintBottom_toTopOf="@id/line_today"
+        app:layout_constraintBottom_toBottomOf="@id/view_today"
         app:layout_constraintStart_toStartOf="@+id/view_today"
         app:layout_constraintTop_toTopOf="@id/view_today" />
 
-    <View
-        android:id="@+id/line_today"
-        android:layout_width="133.5dp"
-        android:layout_height="1dp"
-        android:background="#ededed"
-        android:translationZ="8dp"
-        app:layout_constraintBottom_toTopOf="@id/info_today_spend"
-        app:layout_constraintEnd_toEndOf="@id/view_today"
-        app:layout_constraintStart_toStartOf="@id/view_today"
-        app:layout_constraintTop_toBottomOf="@id/text_today" />
-
-    <TextView
-        android:id="@+id/info_today_spend"
+    <ImageView
+        android:id="@+id/ic_today"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="11.4dp"
-        android:text="@string/info_today_spend"
-        android:textColor="#6d6d6d"
-        android:textSize="11sp"
-        android:translationZ="8dp"
-        app:layout_constraintBottom_toTopOf="@id/today_spend"
-        app:layout_constraintStart_toStartOf="@id/view_today"
-        app:layout_constraintTop_toBottomOf="@id/line_today" />
-
-    <TextView
-        android:id="@+id/today_spend"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="11.7dp"
-        android:text="@string/today_spend"
-        android:textColor="#2fdb7a"
-        android:textSize="19sp"
+        android:layout_marginEnd="8.7dp"
+        android:src="@drawable/ic_today"
         android:translationZ="8dp"
         app:layout_constraintBottom_toBottomOf="@id/view_today"
         app:layout_constraintEnd_toEndOf="@id/view_today"
-        app:layout_constraintTop_toBottomOf="@id/info_today_spend" />
+        app:layout_constraintTop_toTopOf="@id/view_today" />
 
-    <!--내일 소비 가능 금액-->
     <View
-        android:id="@+id/view_tomorrow"
-        android:layout_width="159.2dp"
-        android:layout_height="44.2dp"
-        android:background="@drawable/round_corners"
-        android:elevation="8dp"
-        app:layout_constraintBottom_toTopOf="@id/view_nextWeek"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/view_today"
-        app:layout_constraintTop_toTopOf="@id/view_home2" />
-
-    <TextView
-        android:id="@+id/text_tomorrow"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="10.5dp"
-        android:text="@string/tomorrow"
-        android:textColor="#353535"
-        android:textSize="11sp"
-        android:translationZ="8dp"
-        app:layout_constraintBottom_toTopOf="@+id/info_tomorrow_spend"
-        app:layout_constraintStart_toStartOf="@+id/view_tomorrow"
-        app:layout_constraintTop_toTopOf="@+id/view_tomorrow" />
-
-    <TextView
-        android:id="@+id/info_tomorrow_spend"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="10.5dp"
-        android:text="@string/info_tomorrow_spend"
-        android:textColor="#6d6d6d"
-        android:textSize="8sp"
-        android:translationZ="8dp"
-        app:layout_constraintBottom_toBottomOf="@id/view_tomorrow"
-        app:layout_constraintStart_toStartOf="@id/view_tomorrow"
-        app:layout_constraintTop_toBottomOf="@id/text_tomorrow" />
-
-    <TextView
-        android:id="@+id/tomorrow_spend"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="9.6dp"
-        android:text="@string/tomorrow_spend"
-        android:textColor="#353535"
-        android:textSize="13sp"
-        android:translationZ="8dp"
-        app:layout_constraintBottom_toBottomOf="@id/info_tomorrow_spend"
-        app:layout_constraintEnd_toEndOf="@id/view_tomorrow" />
-
-    <!--다음주 소비 가능 금액-->
-    <View
-        android:id="@+id/view_nextWeek"
+        android:id="@+id/view_today_available"
         android:layout_width="160dp"
-        android:layout_height="44.2dp"
+        android:layout_height="54dp"
         android:background="@drawable/round_corners"
-        android:elevation="8dp"
+        android:backgroundTint="#ffffff"
+        android:translationZ="8dp"
         app:layout_constraintBottom_toTopOf="@id/view_home3"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/view_today"
-        app:layout_constraintTop_toBottomOf="@id/view_tomorrow" />
+        app:layout_constraintEnd_toEndOf="@id/view_today"
+        app:layout_constraintStart_toStartOf="@id/view_today"
+        app:layout_constraintTop_toBottomOf="@id/view_today" />
 
     <TextView
-        android:id="@+id/text_nextWeek"
+        android:id="@+id/tv_string_today_available"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="오늘 소비 가능 금액"
+        android:textColor="#6d6d6d"
+        android:textSize="11sp"
+        android:translationZ="8dp"
+        app:layout_constraintBottom_toTopOf="@id/tv_int_today_available"
+        app:layout_constraintStart_toStartOf="@id/tv_today"
+        app:layout_constraintTop_toTopOf="@id/view_today_available" />
+
+    <TextView
+        android:id="@+id/tv_int_today_available"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="20,000원"
+        android:textColor="#2fdb7a"
+        android:textSize="19sp"
+        android:translationZ="8dp"
+        app:layout_constraintBottom_toBottomOf="@id/view_today_available"
+        app:layout_constraintEnd_toEndOf="@id/ic_today"
+        app:layout_constraintTop_toBottomOf="@id/tv_string_today_available" />
+
+    <!--저축 가능 금액-->
+    <View
+        android:id="@+id/view_saving"
+        android:layout_width="159.2dp"
+        android:layout_height="96.6dp"
+        android:background="@drawable/round_corners"
+        android:backgroundTint="#ffffff"
+        android:elevation="8dp"
+        app:layout_constraintBottom_toBottomOf="@id/view_today_available"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/view_today"
+        app:layout_constraintTop_toTopOf="@id/view_today" />
+
+    <TextView
+        android:id="@+id/tv_string_saving"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="10.5dp"
-        android:layout_marginTop="6.1dp"
-        android:text="@string/nextWeek"
+        android:text="저축 가능 금액"
         android:textColor="#353535"
         android:textSize="11sp"
         android:translationZ="8dp"
-        app:layout_constraintStart_toStartOf="@+id/view_nextWeek"
-        app:layout_constraintTop_toTopOf="@+id/view_nextWeek" />
+        app:layout_constraintBottom_toTopOf="@+id/line_saving"
+        app:layout_constraintStart_toStartOf="@+id/view_saving"
+        app:layout_constraintTop_toTopOf="@+id/view_saving" />
 
     <TextView
-        android:id="@+id/info_nextWeek_spend"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="10.5dp"
-        android:text="@string/info_nextWeek_spend"
-        android:textColor="#6d6d6d"
-        android:textSize="8sp"
-        android:translationZ="8dp"
-        app:layout_constraintBottom_toBottomOf="@id/view_nextWeek"
-        app:layout_constraintStart_toStartOf="@id/view_nextWeek"
-        app:layout_constraintTop_toBottomOf="@id/text_nextWeek" />
-
-    <TextView
-        android:id="@+id/nextWeek_spend"
+        android:id="@+id/tv_int_saving"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="9.6dp"
-        android:text="@string/nextWeek_spend"
+        android:text="10,000원"
         android:textColor="#353535"
         android:textSize="13sp"
         android:translationZ="8dp"
-        app:layout_constraintBottom_toBottomOf="@id/info_nextWeek_spend"
-        app:layout_constraintEnd_toEndOf="@id/view_nextWeek" />
+        app:layout_constraintBottom_toBottomOf="@id/tv_string_saving"
+        app:layout_constraintEnd_toEndOf="@id/view_saving"
+        app:layout_constraintTop_toTopOf="@id/tv_string_saving" />
 
-    <!--소비 내역 부분-->
+    <View
+        android:id="@+id/line_saving"
+        android:layout_width="145.8dp"
+        android:layout_height="1dp"
+        android:background="#ededed"
+        android:translationZ="8dp"
+        app:layout_constraintBottom_toTopOf="@id/tv_saving_compare"
+        app:layout_constraintEnd_toEndOf="@id/tv_int_saving"
+        app:layout_constraintStart_toStartOf="@id/tv_string_saving"
+        app:layout_constraintTop_toBottomOf="@id/tv_string_saving" />
+
+    <TextView
+        android:id="@+id/tv_saving_compare"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="목표 금액보다"
+        android:textColor="#6d6d6d"
+        android:textSize="10sp"
+        android:translationZ="8dp"
+        app:layout_constraintBottom_toBottomOf="@id/view_saving"
+        app:layout_constraintStart_toStartOf="@id/tv_string_saving"
+        app:layout_constraintTop_toBottomOf="@id/line_saving" />
+
+    <TextView
+        android:id="@+id/tv_comapare_status"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="충분"
+        android:textColor="#2fdb7a"
+        android:textSize="14sp"
+        android:translationZ="8dp"
+        app:layout_constraintBottom_toBottomOf="@id/view_saving"
+        app:layout_constraintEnd_toStartOf="@id/ic_compare_status"
+        app:layout_constraintStart_toEndOf="@id/tv_string_saving"
+        app:layout_constraintTop_toBottomOf="@id/line_saving" />
+
+    <ImageView
+        android:id="@+id/ic_compare_status"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_satisfied"
+        android:translationZ="8dp"
+        app:layout_constraintBottom_toBottomOf="@id/view_saving"
+        app:layout_constraintEnd_toEndOf="@id/line_saving"
+        app:layout_constraintStart_toEndOf="@id/tv_comapare_status"
+        app:layout_constraintTop_toBottomOf="@id/line_saving" />
+
     <View
         android:id="@+id/view_home3"
         android:layout_width="match_parent"
         android:layout_height="492.7dp"
-        android:background="@drawable/round_top_left_top_right_corner"
+        android:background="@drawable/round_top_left_top_right_corner_12dp"
+        android:backgroundTint="#ffffff"
         android:elevation="8dp"
         app:layout_constraintBottom_toTopOf="@+id/tapBar_home4" />
 
@@ -196,6 +193,7 @@
         android:layout_width="271.2dp"
         android:layout_height="444dp"
         android:background="@drawable/round_corners"
+        android:backgroundTint="#ffffff"
         android:elevation="8dp"
         android:padding="14.1dp"
         app:layout_constraintBottom_toBottomOf="@id/view_home3"
@@ -209,6 +207,7 @@
         android:layout_width="48dp"
         android:layout_height="444dp"
         android:background="@drawable/round_corners"
+        android:backgroundTint="#ffffff"
         android:elevation="8dp"
         app:layout_constraintBottom_toBottomOf="@id/view_home3"
         app:layout_constraintEnd_toStartOf="@+id/recycler_spend_list"
@@ -234,15 +233,12 @@
 
     <!--marginBottom으로 높이 임의 설정해둠-->
     <ImageView
-        android:contentDescription=""
-        android:id="@+id/img_progressBar_circle"
+        android:id="@+id/ic_progressBar_circle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:background="@drawable/circle"
-        android:rotation="270"
-        android:src="@drawable/ic_baseline_circle_24"
-        android:translationZ="16dp"
         android:layout_marginBottom="330dp"
+        android:background="@drawable/ic_progressbar"
+        android:translationZ="16dp"
         app:layout_constraintBottom_toBottomOf="@+id/view_bar_today"
         app:layout_constraintEnd_toEndOf="@id/view_bar_today"
         app:layout_constraintStart_toStartOf="@+id/view_bar_today" />
@@ -268,9 +264,7 @@
         android:layout_marginEnd="16sp"
         android:layout_marginBottom="14.2sp"
         android:background="@drawable/circle"
-        android:contentDescription="@string/img_btn_home_add"
         android:elevation="8dp"
-        android:padding="0sp"
         android:src="@drawable/ic_round_add_circle_24"
         android:visibility="visible"
         app:layout_constraintBottom_toTopOf="@+id/tapBar_home4"
