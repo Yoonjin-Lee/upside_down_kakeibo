@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="10dp">
+
+
+        <TextView
+            android:id="@+id/step2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingLeft="16dp"
+            android:text="@string/step2"
+            android:textColor="#2fdb7a"
+            android:textSize="16sp"
+            android:textStyle="normal"
+            tools:ignore="MissingConstraints" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/incomePage"
+            app:layout_constraintTop_toBottomOf="@id/step2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            tools:ignore="MissingConstraints">
+
+            <TextView
+                android:id="@+id/income"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingLeft="16dp"
+                android:text="@string/income"
+                android:textColor="#191919"
+                android:textSize="22sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/page"
+                app:layout_constraintLeft_toRightOf="@id/income"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="200dp"
+                android:text="@string/page"
+                android:textColor="#6d6d6d"
+                android:textSize="12sp"
+                android:textStyle="normal" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+        <TextView
+            android:id="@+id/goal_money"
+            app:layout_constraintTop_toBottomOf="@id/incomePage"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingLeft="16dp"
+            android:layout_marginTop="15dp"
+            android:textColor="#191919"
+            android:textSize="14sp"
+            android:textStyle="normal"
+            android:text = "@string/month_income"
+            tools:ignore="MissingConstraints" />
+
+
+        <EditText
+            android:id="@+id/edMuch"
+            app:layout_constraintTop_toBottomOf="@id/goal_money"
+            android:inputType="numberDecimal"
+            android:layout_width="402dp"
+            android:layout_height="89dp"
+            android:layout_margin="5dp"
+            android:background="@drawable/round_border"
+            android:hint="금액을 입력하세요"
+            android:paddingStart="30dp"
+            android:paddingEnd="10dp"
+            android:textColor="#000000"
+            tools:ignore="MissingConstraints" />
+
+
+        <TextView
+            android:id="@+id/goal_time"
+            app:layout_constraintTop_toBottomOf="@id/edMuch"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingLeft="16dp"
+            android:layout_marginTop="25dp"
+            android:textColor="#191919"
+            android:textSize="14sp"
+            android:textStyle="normal"
+            android:text="@string/month_consumption"
+            tools:ignore="MissingConstraints" />
+
+
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id = "@+id/incomeBox2"
+            app:layout_constraintTop_toBottomOf="@id/goal_time"
+            android:layout_width="402dp"
+            android:layout_height="368dp"
+            android:layout_gravity="center"
+            android:background="@drawable/round_border"
+            tools:ignore="MissingConstraints">
+
+            <android.widget.Button
+                android:id="@+id/add_btn"
+                app:layout_constraintBottom_toBottomOf="@id/incomeBox2"
+                android:layout_width="297.7dp"
+                android:layout_height="39dp"
+                android:layout_marginBottom="15dp"
+                app:layout_constraintLeft_toLeftOf="@id/incomeBox2"
+                app:layout_constraintRight_toRightOf="@id/incomeBox2"
+                android:layout_gravity="center"
+                android:background="@drawable/round_btn"
+                android:text="@string/add"
+                android:textColor="#2fdb7a"
+                android:textSize="17sp"
+                android:textStyle="bold"
+                tools:ignore="MissingConstraints" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+        <Button
+            android:id="@+id/startBtn"
+            app:layout_constraintTop_toBottomOf="@id/incomeBox2"
+            android:layout_width="match_parent"
+            android:layout_height="77dp"
+            android:layout_gravity="center"
+            android:backgroundTint="#2fdb7a"
+            android:textSize="23sp"
+            android:textStyle="bold"
+            android:text="@string/start"/>
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
