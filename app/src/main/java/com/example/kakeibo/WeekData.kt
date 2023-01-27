@@ -1,5 +1,6 @@
 package com.example.kakeibo
 
+//History Fragment에서 사용하는 RV의 데이터 타입
 data class WeekData (
     val week: String,
     val mon: String,
