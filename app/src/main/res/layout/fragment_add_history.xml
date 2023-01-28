@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#000000">
+    android:background="@color/transparent">
 
     <View
         android:id="@+id/view_add_history"
@@ -12,7 +12,7 @@
         android:layout_height="669.8dp"
         android:background="@drawable/round_top_left_top_right_corner_20dp"
         android:backgroundTint="#ffffff"
-        app:layout_constraintBottom_toTopOf="@+id/view" />
+        app:layout_constraintBottom_toBottomOf="parent" />
 
     <!--취소 버튼-->
     <Button
@@ -267,13 +267,5 @@
         android:textSize="14sp"
         app:layout_constraintBottom_toBottomOf="@+id/view_add_history"
         app:layout_constraintStart_toStartOf="@id/tv_add_history_money_box" />
-
-    <!--하단 바 부분-->
-    <View
-        android:id="@+id/view"
-        android:layout_width="match_parent"
-        android:layout_height="48dp"
-        android:background="#000000"
-        app:layout_constraintBottom_toBottomOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

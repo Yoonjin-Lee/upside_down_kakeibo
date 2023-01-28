@@ -3,14 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#000000">
-
-    <View
-        android:id="@+id/view_home2"
-        android:layout_width="match_parent"
-        android:layout_height="400dp"
-        android:background="#2fdb7a"
-        app:layout_constraintTop_toTopOf="parent" />
+    android:background="#2fdb7a">
 
     <!--오늘 소비 가능 금액-->
     <View
@@ -56,7 +49,7 @@
         android:background="@drawable/round_corners"
         android:backgroundTint="#ffffff"
         android:translationZ="8dp"
-        app:layout_constraintBottom_toTopOf="@id/view_home3"
+        app:layout_constraintBottom_toTopOf="@id/view_home"
         app:layout_constraintEnd_toEndOf="@id/view_today"
         app:layout_constraintStart_toStartOf="@id/view_today"
         app:layout_constraintTop_toBottomOf="@id/view_today" />
@@ -171,10 +164,11 @@
         app:layout_constraintStart_toEndOf="@id/tv_comapare_status"
         app:layout_constraintTop_toBottomOf="@id/line_saving" />
 
+    <!--흰색 창 부분-->
     <View
-        android:id="@+id/view_home3"
+        android:id="@+id/view_home"
         android:layout_width="match_parent"
-        android:layout_height="600dp"
+        android:layout_height="450dp"
         android:background="@drawable/round_top_left_top_right_corner_12dp"
         android:backgroundTint="#ffffff"
         android:elevation="8dp"
@@ -188,10 +182,10 @@
         android:backgroundTint="#ffffff"
         android:elevation="8dp"
         android:padding="14.1dp"
-        app:layout_constraintBottom_toBottomOf="@id/view_home3"
+        app:layout_constraintBottom_toBottomOf="@id/view_home"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@id/view_bar_today"
-        app:layout_constraintTop_toTopOf="@id/view_home3" />
+        app:layout_constraintTop_toTopOf="@id/view_home" />
 
     <!--bar 부분-->
     <View
@@ -201,10 +195,10 @@
         android:background="@drawable/round_corners"
         android:backgroundTint="#ffffff"
         android:elevation="8dp"
-        app:layout_constraintBottom_toBottomOf="@id/view_home3"
+        app:layout_constraintBottom_toBottomOf="@id/view_home"
         app:layout_constraintEnd_toStartOf="@+id/recycler_spend_list"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@id/view_home3" />
+        app:layout_constraintTop_toTopOf="@id/view_home" />
 
     <!--android:progress로 높이 임의 설정해둠-->
     <ProgressBar
@@ -246,6 +240,6 @@
         android:src="@drawable/ic_round_add_circle_24"
         android:visibility="visible"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="@+id/view_home3" />
+        app:layout_constraintEnd_toEndOf="@+id/view_home" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
