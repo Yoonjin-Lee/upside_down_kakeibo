@@ -6,19 +6,11 @@
     android:background="#000000">
 
     <View
-        android:id="@+id/view_home1"
-        android:layout_width="match_parent"
-        android:layout_height="24dp"
-        android:background="#ffffff"
-        app:layout_constraintBottom_toTopOf="@+id/view_home2"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <View
         android:id="@+id/view_home2"
         android:layout_width="match_parent"
-        android:layout_height="184.4dp"
+        android:layout_height="400dp"
         android:background="#2fdb7a"
-        app:layout_constraintTop_toBottomOf="@+id/view_home1" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <!--오늘 소비 가능 금액-->
     <View
@@ -31,7 +23,7 @@
         app:layout_constraintBottom_toTopOf="@+id/view_today_available"
         app:layout_constraintEnd_toStartOf="@id/view_saving"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/view_home1" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/tv_today"
@@ -182,11 +174,11 @@
     <View
         android:id="@+id/view_home3"
         android:layout_width="match_parent"
-        android:layout_height="492.7dp"
+        android:layout_height="600dp"
         android:background="@drawable/round_top_left_top_right_corner_12dp"
         android:backgroundTint="#ffffff"
         android:elevation="8dp"
-        app:layout_constraintBottom_toTopOf="@+id/tapBar_home4" />
+        app:layout_constraintBottom_toBottomOf="parent" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recycler_spend_list"
@@ -243,20 +235,6 @@
         app:layout_constraintEnd_toEndOf="@id/view_bar_today"
         app:layout_constraintStart_toStartOf="@+id/view_bar_today" />
 
-    <com.google.android.material.bottomnavigation.BottomNavigationView
-        android:id="@+id/tapBar_home4"
-        android:layout_width="match_parent"
-        android:layout_height="56dp"
-        android:elevation="8dp"
-        app:layout_constraintBottom_toTopOf="@+id/view_home5" />
-
-    <View
-        android:id="@+id/view_home5"
-        android:layout_width="match_parent"
-        android:layout_height="48dp"
-        android:background="#ffffff"
-        app:layout_constraintBottom_toBottomOf="parent" />
-
     <ImageButton
         android:id="@+id/btn_home_add"
         android:layout_width="wrap_content"
@@ -267,7 +245,7 @@
         android:elevation="8dp"
         android:src="@drawable/ic_round_add_circle_24"
         android:visibility="visible"
-        app:layout_constraintBottom_toTopOf="@+id/tapBar_home4"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@+id/view_home3" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
