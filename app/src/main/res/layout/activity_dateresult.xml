@@ -43,12 +43,11 @@
             android:id="@+id/month"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="1"
             android:textStyle="bold"
             android:textSize="24sp"
             android:textColor="#191919"
             android:layout_marginTop="38dp"
-            app:layout_constraintStart_toStartOf="@id/view_bar_today"
+            app:layout_constraintStart_toStartOf="@id/recycler_spend_list"
             app:layout_constraintTop_toTopOf="parent"/>
 
         <TextView
@@ -71,7 +70,6 @@
             android:textSize="24sp"
             android:textColor="#191919"
             android:layout_marginTop="38dp"
-            android:text="1"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintStart_toEndOf="@id/month_unit"/>
 
@@ -107,7 +105,6 @@
             android:textStyle="bold"
             android:textSize="24sp"
             android:textColor="#2fdb7a"
-            android:text="4000"
             app:layout_constraintTop_toTopOf="@id/month_unit"
             app:layout_constraintEnd_toStartOf="@id/money_unit"/>
 
@@ -124,60 +121,20 @@
             android:layout_marginEnd="17dp"
             android:layout_marginBottom="2dp"/>
 
-        <!--프로그래스 바 부분-->
-
-        <View
-            android:id="@+id/view_bar_today"
-            android:layout_width="48dp"
-            android:layout_height="444dp"
-            android:background="@drawable/round_corners"
-            android:elevation="8dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/recycler_spend_list"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@id/month_unit" />
-
-        <ProgressBar
-            android:id="@+id/progressBar_today"
-            style="@android:style/Widget.ProgressBar.Horizontal"
-            android:layout_width="429.2dp"
-            android:layout_height="15.7dp"
-            android:elevation="8dp"
-            android:max="100"
-            android:progress="80"
-            android:progressDrawable="@drawable/gradation_bar"
-            android:rotation="270"
-            android:translationZ="8dp"
-            app:layout_constraintBottom_toBottomOf="@id/view_bar_today"
-            app:layout_constraintEnd_toEndOf="@+id/view_bar_today"
-            app:layout_constraintStart_toStartOf="@id/view_bar_today"
-            app:layout_constraintTop_toTopOf="@+id/view_bar_today" />
-
-        <!--프로그래스 바 아이콘-->
-        <ImageView
-            android:contentDescription=""
-            android:id="@+id/img_progressBar_circle"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="@drawable/circle"
-            android:src="@drawable/icn_bar_svg"
-            android:translationZ="16dp"
-            android:layout_marginBottom="330dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="@id/view_bar_today"
-            app:layout_constraintStart_toStartOf="@+id/view_bar_today" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recycler_spend_list"
-            android:layout_width="271.2dp"
+            android:layout_width="0dp"
             android:layout_height="444dp"
             android:background="@drawable/round_corners"
             android:elevation="8dp"
             android:padding="14.1dp"
+            android:layout_margin="15dp"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@id/view_bar_today"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintTop_toTopOf="@id/month_unit"
-            app:layout_constraintBottom_toBottomOf="parent"/>
+            app:layout_constraintVertical_bias="0.494" />
 
         <Button
             android:id="@+id/button"
