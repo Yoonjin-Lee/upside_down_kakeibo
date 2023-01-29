@@ -30,7 +30,6 @@ class HomeFragment : Fragment() {
 
             dialog.show()
         }
-
         return viewBinding.root
-    }
+  }
 }

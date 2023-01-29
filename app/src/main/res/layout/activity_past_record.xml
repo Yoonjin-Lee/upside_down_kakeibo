@@ -53,6 +53,7 @@
             android:id="@+id/recycler_past_record"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:background="@drawable/round_top_left_top_right_corner_12dp"
             app:layout_constraintEnd_toEndOf="parent" />
     </LinearLayout>
 

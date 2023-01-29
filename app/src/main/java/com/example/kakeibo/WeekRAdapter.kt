@@ -1,14 +1,15 @@
 package com.example.kakeibo
 
-import android.graphics.Rect
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.kakeibo.databinding.HistoryWeekListBinding
 
 class WeekRAdapter(private val weekDataList : ArrayList<WeekData>) : RecyclerView.Adapter<WeekRAdapter.ViewHolder>() {
+    private lateinit var itemClickListener: OnItemClickListener
+    private lateinit var dateClickListener: OnDateClickListener
     inner class ViewHolder(private val viewBinding: HistoryWeekListBinding) : RecyclerView.ViewHolder(viewBinding.root) {
         fun bind(data: WeekData){
             viewBinding.week.text = data.week
@@ -20,6 +21,32 @@ class WeekRAdapter(private val weekDataList : ArrayList<WeekData>) : RecyclerVie
             viewBinding.btn6.text = data.sat
             viewBinding.btn7.text = data.sun
             viewBinding.money.text = data.money
+            //공유 버튼 리스너
+            viewBinding.shareBtn.setOnClickListener {
+                itemClickListener.onClick(it, position)
+            }
+            //날짜 버튼 리스너
+            viewBinding.btn1.setOnClickListener {
+                dateClickListener.onClick(it, position)
+            }
+            viewBinding.btn2.setOnClickListener {
+                dateClickListener.onClick(it, position)
+            }
+            viewBinding.btn3.setOnClickListener {
+                dateClickListener.onClick(it, position)
+            }
+            viewBinding.btn4.setOnClickListener {
+                dateClickListener.onClick(it, position)
+            }
+            viewBinding.btn5.setOnClickListener {
+                dateClickListener.onClick(it, position)
+            }
+            viewBinding.btn6.setOnClickListener {
+                dateClickListener.onClick(it, position)
+            }
+            viewBinding.btn7.setOnClickListener {
+                dateClickListener.onClick(it, position)
+            }
         }
     }
 
@@ -33,4 +60,22 @@ class WeekRAdapter(private val weekDataList : ArrayList<WeekData>) : RecyclerVie
     }
 
     override fun getItemCount(): Int = weekDataList.size
+
+    //공유 버튼
+    interface OnItemClickListener{
+        fun onClick(v : View, position: Int)
+    }
+
+    fun setItemClickListener(onItemClickListener: OnItemClickListener) {
+        this.itemClickListener = onItemClickListener
+    }
+
+    //날짜 버튼
+    interface OnDateClickListener{
+        fun onClick(v : View, position: Int)
+    }
+
+    fun setDateClickListener(onDateClickListener: OnDateClickListener){
+        this.dateClickListener = onDateClickListener
+    }
 }
