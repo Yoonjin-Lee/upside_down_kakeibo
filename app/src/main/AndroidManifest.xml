@@ -48,9 +48,6 @@
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
-        <activity android:name=".LoginActivity"/>
-        <activity android:name=".ResultActivity"/>
-        <activity android:name=".mypage_dialog"/>
         <activity android:name=".DateresultActivity"/>
         <activity
             android:name=".MainActivity"
