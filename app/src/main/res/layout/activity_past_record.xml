@@ -8,6 +8,7 @@
 
 
     <LinearLayout
+        android:id="@+id/past_main"
         android:layout_width="match_parent"
         android:layout_height="80dp"
         android:background="@color/main"
@@ -43,23 +44,25 @@
             android:layout_gravity="center"/>
     </LinearLayout>
 
-    <LinearLayout
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginTop="80dp"
-        android:background="@drawable/round_top_left_top_right_corner_12dp">
+        android:layout_height="0dp"
+        android:background="@drawable/round_top_left_top_right_corner_12dp"
+        android:fillViewport="true"
+        tools:ignore="MissingConstraints"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/past_main">
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recycler_past_record"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:background="@drawable/round_top_left_top_right_corner_12dp"
-            app:layout_constraintEnd_toEndOf="parent" />
-    </LinearLayout>
-
-
-
-
+            app:layout_constraintEnd_toEndOf="parent"
+            android:nestedScrollingEnabled="false"
+            android:overScrollMode="never"
+            tools:listitem="@layout/item_past_record"/>
+    </ScrollView>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
