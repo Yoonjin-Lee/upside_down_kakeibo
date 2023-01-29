@@ -1,5 +1,6 @@
 package com.example.kakeibo
 
+import android.content.Intent
 import android.graphics.Rect
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -27,6 +28,7 @@ class HistoryFragment : Fragment() {
         viewBinding.list.adapter = adapter
         viewBinding.list.layoutManager = LinearLayoutManager(context)
 
+        //테스트 데이터
         adapter.apply {
             weekDataList.add(WeekData("1주차", "6/14", "6/15", "6/16", "6/17", "6/18", "6/19", "6/20", "50"))
             weekDataList.add(WeekData("1주차", "6/14", "6/15", "6/16", "6/17", "6/18", "6/19", "6/20", "50"))
@@ -40,6 +42,22 @@ class HistoryFragment : Fragment() {
         //리스트 아이템 사이 간격
         val verticalItemDecorator = VerticalItemDecorator(16)
         viewBinding.list.addItemDecoration(verticalItemDecorator)
+
+        //shareBtn clickListener 구현
+        adapter.setItemClickListener(object : WeekRAdapter.OnItemClickListener{
+            override fun onClick(v: View, position: Int) {
+                val intent = Intent(context, ResultActivity::class.java)
+                startActivity(intent)
+            }
+        })
+
+        //날짜 버튼 ClickListener 구현
+        adapter.setDateClickListener(object : WeekRAdapter.OnDateClickListener{
+            override fun onClick(v: View, position: Int) {
+                val intent = Intent(context, DateresultActivity::class.java)
+                startActivity(intent)
+            }
+        })
 
         return viewBinding.root
     }

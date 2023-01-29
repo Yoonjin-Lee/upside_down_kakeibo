@@ -8,7 +8,6 @@
 
 
     <LinearLayout
-        android:id="@+id/past_main"
         android:layout_width="match_parent"
         android:layout_height="80dp"
         android:background="@color/main"
@@ -34,9 +33,8 @@
         android:layout_height="80dp"
         android:gravity="left"
         tools:ignore="MissingConstraints">
-
         <ImageButton
-            android:id="@+id/pastrecord_exit"
+            android:id="@+id/mypage_exit"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:src="@drawable/ic_baseline_keyboard_arrow_left_24"
@@ -44,25 +42,23 @@
             android:layout_gravity="center"/>
     </LinearLayout>
 
-    <ScrollView
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:background="@drawable/round_top_left_top_right_corner_12dp"
-        android:fillViewport="true"
-        tools:ignore="MissingConstraints"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/past_main">
+        android:layout_height="match_parent"
+        android:layout_marginTop="80dp"
+        android:background="@drawable/round_top_left_top_right_corner">
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recycler_past_record"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="@drawable/round_top_left_top_right_corner_12dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            android:nestedScrollingEnabled="false"
-            android:overScrollMode="never"
-            tools:listitem="@layout/item_past_record"/>
-    </ScrollView>
+            android:background="@drawable/round_top_left_top_right_corner"
+            app:layout_constraintEnd_toEndOf="parent" />
+    </LinearLayout>
+
+
+
+
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

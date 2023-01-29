@@ -39,17 +39,7 @@
                 android:value="" />
         </activity>
         <activity android:name=".LoginActivity" />
-        <activity android:name=".ResultActivity"
-                    android:exported="true">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-                <meta-data
-                    android:name="android.app.lib_name"
-                    android:value="" />
-        </activity>
+        <activity android:name=".ResultActivity" />
         <activity
             android:name=".mypage_dialog"
             android:exported="true"
@@ -58,6 +48,9 @@
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
+        <activity android:name=".LoginActivity"/>
+        <activity android:name=".ResultActivity"/>
+        <activity android:name=".mypage_dialog"/>
         <activity android:name=".DateresultActivity"/>
         <activity
             android:name=".MainActivity"
@@ -72,13 +65,6 @@
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
-        <activity android:name=".GoalActivity"
-            android:exported="true">
-            <meta-data
-                android:name="android.app.lib_name"
-                android:value="" />
-        </activity>
-
     </application>
 
 </manifest>
