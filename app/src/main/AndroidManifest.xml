@@ -30,6 +30,32 @@
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
+
+        <provider
+            android:name="androidx.core.content.FileProvider"
+            android:authorities="${applicationId}"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/provider" />
+        </provider>
+
+        <activity
+            android:name=".ResultActivity"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+                <data
+                    android:host="kakaolink"
+                    android:scheme="kakao75cc06b6dc6baeabccc2474d39512e5d" />
+            </intent-filter>
+        </activity>
+
+        <activity android:name=".DateresultActivity" />
+
         <activity
             android:name=".Mypage_logout"
             android:exported="true"
@@ -38,8 +64,9 @@
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
+        
         <activity android:name=".LoginActivity" />
-        <activity android:name=".ResultActivity" />
+        
         <activity
             android:name=".mypage_dialog"
             android:exported="true"
@@ -48,7 +75,7 @@
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
-        <activity android:name=".DateresultActivity"/>
+        
         <activity
             android:name=".MainActivity"
             android:exported="true">
@@ -57,7 +84,6 @@
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
