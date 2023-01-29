@@ -7,9 +7,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.kakeibo.databinding.ItemPastRecordBinding
 
 class PastDataAdapter(private var datalist: ArrayList<Past_Data>) : RecyclerView.Adapter<PastDataAdapter.DataViewHolder>()  {
-    class DataViewHolder (private var viewbinding: ItemPastRecordBinding) :
-        RecyclerView.ViewHolder(viewbinding.root) {
-
+    inner class DataViewHolder (private var viewbinding: ItemPastRecordBinding) : RecyclerView.ViewHolder(viewbinding.root) {
         fun bind(data: Past_Data) {
             viewbinding.recordProgressbar.progress = data.progressBar
             viewbinding.progressText.text = data.progressText
@@ -20,7 +18,7 @@ class PastDataAdapter(private var datalist: ArrayList<Past_Data>) : RecyclerView
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): DataViewHolder {
-        val viewbinding = ItemPastRecordBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+        val viewbinding = ItemPastRecordBinding.inflate(LayoutInflater.from(parent.context))
         return DataViewHolder(viewbinding)
     }
 

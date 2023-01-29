@@ -3,60 +3,64 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="200dp"
-    android:layout_height="200dp"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
     tools:context=".mypage_dialog"
     android:background="@drawable/round_corners"
     android:backgroundTint="@color/white">
 
     <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        android:gravity="center"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="MissingConstraints">
 
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:backgroundTint="@color/white"
-            android:src="@drawable/ic_round_error_outline_24"
             android:layout_gravity="center"
-            android:layout_marginTop="20dp">
-        </ImageView>
-
-        <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="목표 재설정하기"
-                android:textColor="#C12E2E"
-                android:textSize="20dp"
-                android:textStyle="bold"
-                android:gravity="center"
-                android:layout_marginTop="5dp">
-        </TextView>
+            android:layout_marginTop="20dp"
+            android:backgroundTint="@color/white"
+            android:src="@drawable/ic_round_error_outline_24"></ImageView>
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="처음부터 다시 할까?"
-            android:textSize="11dp"
+            android:layout_marginTop="5dp"
             android:gravity="center"
+            android:text="목표 재설정하기"
+            android:textColor="#C12E2E"
+            android:textSize="20dp"
+            android:textStyle="bold"></TextView>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:gravity="center"
+            android:text="처음부터 다시 할까?"
             android:textColor="#7A7A7A"
-            android:textStyle="bold"
-            android:layout_marginTop="5dp">
-        </TextView>
+            android:textSize="11dp"
+            android:textStyle="bold"></TextView>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
             android:layout_marginTop="10dp"
-            android:gravity="center">
+            android:gravity="center"
+            android:orientation="horizontal">
 
             <CheckBox
+                android:id="@+id/mypage_check"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:checked="true"
-                android:button="@drawable/checkbox">
+                android:button="@drawable/checkbox"
+                android:checked="true">
 
             </CheckBox>
 
@@ -64,8 +68,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="현재 저축 기록 저장하기"
-                android:textSize="8dp"
-                android:textColor="#7A7A7A">
+                android:textColor="#7A7A7A"
+                android:textSize="8dp">
 
             </TextView>
         </LinearLayout>
@@ -78,6 +82,7 @@
             android:weightSum="2">
 
             <Button
+                android:id="@+id/mypage_no"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
@@ -92,14 +97,15 @@
             </Button>
 
             <Button
+                android:id="@+id/mypage_yes"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
+                android:background="@drawable/round_bottom_right_corner"
                 android:backgroundTint="@color/main"
                 android:text="그래!"
                 android:textColor="@color/white"
-                android:textStyle="bold"
-                android:background="@drawable/round_bottom_right_corner">
+                android:textStyle="bold">
 
             </Button>
         </LinearLayout>

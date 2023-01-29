@@ -13,7 +13,7 @@ class PastRecordActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityPastRecordBinding.inflate(layoutInflater)
-        setContentView(R.layout.activity_past_record)
+        setContentView(binding.root)
 
         val datalist: ArrayList<Past_Data> = arrayListOf()
         val PastDataAdapter = PastDataAdapter(datalist)
@@ -21,11 +21,13 @@ class PastRecordActivity : AppCompatActivity() {
         binding.recyclerPastRecord.adapter = PastDataAdapter
         binding.recyclerPastRecord.layoutManager = LinearLayoutManager(this)
 
-        datalist.add(Past_Data(85, "85%", "2022.06.01 ~ 2023.02.01", "100만원", "티끌모아 태산"))
+        datalist.apply {
+            datalist.add(Past_Data(50, "50%", "2022.06.01 ~ 2023.02.01", "100만원", "티끌모아 태산"))
+            datalist.add(Past_Data(25, "25%", "2022.07.01 ~ 2023.05.01", "50만원", "아직 부족하다!"))
 
-//        binding.mypageExit.setOnClickListener{
-//            val intent = Intent(this@PastRecordActivity, MypageFragment::class.java)
-//            startActivity(intent)
-//        }
+        }
+            binding.pastrecordExit.setOnClickListener{
+                finish()
+            }
+        }
     }
-}

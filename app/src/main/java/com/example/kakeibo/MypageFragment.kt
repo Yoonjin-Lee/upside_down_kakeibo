@@ -25,7 +25,7 @@ class MypageFragment : Fragment() {
 
 
         binding.mypageExit.setOnClickListener{
-            val intent = Intent(context, HomeFragment::class.java);
+            val intent = Intent(context, Mypage_logout::class.java);
             startActivity(intent);
         }
         binding.mypageReset.setOnClickListener {
