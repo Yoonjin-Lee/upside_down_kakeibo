@@ -18,6 +18,16 @@
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
 
+        <provider
+            android:name="androidx.core.content.FileProvider"
+            android:authorities="${applicationId}"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/provider" />
+        </provider>
+
         <activity android:name=".PastRecordActivity"/>
         <activity android:name=".Mypage_logout"/>
         <activity android:name=".LoginActivity" />

@@ -17,13 +17,13 @@ import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
+import androidx.core.content.FileProvider
 import com.example.kakeibo.databinding.ActivityResultBinding
 import com.kakao.sdk.common.KakaoSdk
 import com.kakao.sdk.common.util.KakaoCustomTabsClient
 import com.kakao.sdk.common.util.Utility
 import com.kakao.sdk.share.ShareClient
 import com.kakao.sdk.share.WebSharerClient
-import com.kakao.sdk.template.model.FeedTemplate
 import com.kakao.sdk.template.model.Link
 import com.kakao.sdk.template.model.TextTemplate
 import java.io.File
@@ -57,7 +57,7 @@ class ResultActivity : AppCompatActivity() {
         //kakao sdk 초기화
         KakaoSdk.init(this, "75cc06b6dc6baeabccc2474d39512e5d")
 
-        //key hash 얻기
+        //key hash 얻기 - kakao
         var keyHash = Utility.getKeyHash(this)
         Log.d("KeyHash : ", keyHash)
 
@@ -69,9 +69,11 @@ class ResultActivity : AppCompatActivity() {
             viewBinding.baseLayout.post {
                 val captureImage = getScreenShotFromView(viewBinding.baseLayout)
 
+                val filename = "${System.currentTimeMillis()}.jpg"
+
                 //이미지 저장
                 if (captureImage!=null){
-                    saveMediaToStorage(captureImage)
+                    saveMediaToStorage(captureImage, filename)
                 }
             }
         }
@@ -79,7 +81,44 @@ class ResultActivity : AppCompatActivity() {
         //소셜 공유
         //인스타
         viewBinding.insta.setOnClickListener {
+            //인스타 스토리 공유를 위해 이미지 먼저 저장
+            val filename = "${System.currentTimeMillis()}.jpg"
 
+            viewBinding.baseLayout.post {
+                val captureImage = getScreenShotFromView(viewBinding.baseLayout)
+
+                //이미지 저장
+                if (captureImage!=null){
+                    saveMediaToStorage(captureImage, filename)
+
+                    //인스타 피드 공유
+                    val type = "image/*"
+                    val mediaPath = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES).path + '/' + filename
+                    Log.d("path : ", mediaPath)
+
+                    createInstagramIntent(type, mediaPath)
+                }
+            }
+
+            //인스타 스토리 공유 -> 애뮬레이터 실행 안 됨
+//            val intent = Intent(Intent.ACTION_SEND)
+//            intent.type = "image/*"
+//            intent.flags = Intent.FLAG_GRANT_READ_URI_PERMISSION
+//
+//            val sourceApplication = "2038752582985338"
+//            intent.putExtra("source_application", sourceApplication)
+//
+//            val url = Uri.parse("https://ibb.co/NKZKdTL")
+//
+//            try {
+//                intent.putExtra(Intent.EXTRA_STREAM, url)
+//                intent.`package` = "com.instagram.share.ADD_TO_STORY"
+//                startActivity(intent)
+//            } catch (e : ActivityNotFoundException) {
+//                Toast.makeText(this, "인스타그램이 없습니다", Toast.LENGTH_SHORT).show()
+//            } catch (e : Exception) {
+//                e.printStackTrace()
+//            }
         }
 
         //카카오톡
@@ -88,6 +127,13 @@ class ResultActivity : AppCompatActivity() {
             val defaultFeed = TextTemplate(
                 text = """
                         <거꾸로 가계부 - 저축 달성률>
+                        ${week}주차 저축 보고서
+                        
+                        ${viewBinding.progressbar.progress}%
+                        
+                        "${viewBinding.ment.text}"
+                        
+                        -구글 스토어에서 거꾸로 가계부를 검색해주세요~!-
                         """.trimIndent(),
                 link = Link(
                     webUrl = "https://developers.kakao.com",
@@ -144,8 +190,16 @@ class ResultActivity : AppCompatActivity() {
             intent.action = Intent.ACTION_SEND
             intent.type = "text/plain"
             intent.setPackage("com.twitter.android")
-            val content =
-                week + "주차의 저축 달성률은 " + viewBinding.progressbar.progress.toString() + "%입니다! " + "\n - 거꾸로 가계부"
+            val content = """
+                 <거꾸로 가계부 - 저축 달성률>
+                 ${week}주차 저축 보고서
+                        
+                 ${viewBinding.progressbar.progress}%
+                        
+                 "${viewBinding.ment.text}"
+                        
+                 -구글 스토어에서 거꾸로 가계부를 검색해주세요~!-
+            """.trimIndent()
             intent.putExtra(Intent.EXTRA_TEXT, content)
 
             try {
@@ -179,9 +233,9 @@ class ResultActivity : AppCompatActivity() {
     }
 
     //이미지를 저장하는 함수
-    private fun saveMediaToStorage(bitmap: Bitmap) {
+    private fun saveMediaToStorage(bitmap: Bitmap, filename : String) {
         // Generating a file name
-        val filename = "${System.currentTimeMillis()}.jpg"
+//        val filename = "${System.currentTimeMillis()}.jpg"
 
         // Output stream
         var fos: OutputStream? = null
@@ -219,5 +273,28 @@ class ResultActivity : AppCompatActivity() {
             bitmap.compress(Bitmap.CompressFormat.JPEG, 100, it)
             Toast.makeText(this , "Captured View and saved to Gallery" , Toast.LENGTH_SHORT).show()
         }
+    }
+
+    private fun createInstagramIntent(type: String, mediaPath: String) {
+
+        // Create the new Intent using the 'Send' action.
+        val share = Intent(Intent.ACTION_SEND)
+
+        // Set the MIME type
+        share.type = type
+
+        //intent 권한 설정
+        share.flags = Intent.FLAG_GRANT_READ_URI_PERMISSION
+
+        // Create the URI from the media
+        val media = File(mediaPath)
+//        val uri = Uri.fromFile(media)
+        val uri = FileProvider.getUriForFile(this, BuildConfig.APPLICATION_ID, media)
+
+        // Add the URI to the Intent.
+        share.putExtra(Intent.EXTRA_STREAM, uri)
+
+        // Broadcast the Intent.
+        startActivity(Intent.createChooser(share, "Share to"))
     }
 }
