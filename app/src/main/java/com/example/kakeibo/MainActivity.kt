@@ -5,7 +5,7 @@ import android.os.Bundle
 import com.example.kakeibo.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
-    private lateinit var viewBinding : ActivityMainBinding
+    private lateinit var viewBinding: ActivityMainBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         viewBinding = ActivityMainBinding.inflate(layoutInflater)
         super.onCreate(savedInstanceState)
@@ -18,7 +18,7 @@ class MainActivity : AppCompatActivity() {
 
         viewBinding.bnb.run {
             setOnItemSelectedListener {
-                when(it.itemId) {
+                when (it.itemId) {
                     R.id.home -> {
                         supportFragmentManager
                             .beginTransaction()

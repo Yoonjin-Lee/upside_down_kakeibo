@@ -6,17 +6,30 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.example.kakeibo.databinding.FragmentHomeBinding
+import com.google.android.material.bottomsheet.BottomSheetDialog
 
 class HomeFragment : Fragment() {
-    //확인하려고 임시로 만듦
-    //비율이 안 맞음 밑에 검은색으로 만든 거 빼야 할 듯?
     private lateinit var viewBinding: FragmentHomeBinding
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         viewBinding = FragmentHomeBinding.inflate(layoutInflater)
+
+        viewBinding.btnHomeAdd.setOnClickListener {
+            val dialog = BottomSheetDialog(requireContext())
+            val view = layoutInflater.inflate(R.layout.fragment_add_history_main, null)
+
+            //해당 BottomSheetDialog에 layout 설정
+            dialog.setContentView(view)
+
+            // BottomSheetDialog 외부 화면(회색) 터치 시 종료 여부 boolean(false : 종료 안 함, true : 종료함)
+            dialog.setCanceledOnTouchOutside(true)
+
+            dialog.show()
+        }
         return viewBinding.root
-    }
+  }
 }

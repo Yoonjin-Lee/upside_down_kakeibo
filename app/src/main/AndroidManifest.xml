@@ -18,6 +18,23 @@
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
 
+        <activity
+            android:name=".MainActivity"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+
+        <activity
+            android:name=".PastRecordActivity"
+
         <provider
             android:name="androidx.core.content.FileProvider"
             android:authorities="${applicationId}"
@@ -32,6 +49,7 @@
         <activity android:name=".Mypage_logout"/>
         <activity android:name=".LoginActivity" />
         <activity android:name=".ResultActivity"
+
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
@@ -41,21 +59,11 @@
                     android:scheme="kakao75cc06b6dc6baeabccc2474d39512e5d" />
             </intent-filter>
         </activity>
+
         <activity android:name=".mypage_dialog"/>
+
         <activity android:name=".DateresultActivity"/>
-        <activity
-            android:name=".MainActivity"
-            android:exported="true">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-
-            <meta-data
-                android:name="android.app.lib_name"
-                android:value="" />
-        </activity>
     </application>
 
 </manifest>
