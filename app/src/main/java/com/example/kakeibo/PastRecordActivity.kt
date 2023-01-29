@@ -23,9 +23,9 @@ class PastRecordActivity : AppCompatActivity() {
 
         datalist.add(Past_Data(85, "85%", "2022.06.01 ~ 2023.02.01", "100만원", "티끌모아 태산"))
 
-        binding.mypageExit.setOnClickListener{
-            val intent = Intent(this@PastRecordActivity, MypageFragment::class.java)
-            startActivity(intent)
-        }
+//        binding.mypageExit.setOnClickListener{
+//            val intent = Intent(this@PastRecordActivity, MypageFragment::class.java)
+//            startActivity(intent)
+//        }
     }
 }
