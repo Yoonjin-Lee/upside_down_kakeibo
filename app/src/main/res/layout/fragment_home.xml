@@ -170,7 +170,6 @@
         android:layout_width="match_parent"
         android:layout_height="450dp"
         android:background="@drawable/round_top_left_top_right_corner_12dp"
-        android:backgroundTint="#ffffff"
         android:elevation="8dp"
         app:layout_constraintBottom_toBottomOf="parent" />
 
