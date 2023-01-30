@@ -3,15 +3,12 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:background="@color/transparent">
+    android:layout_height="wrap_content">
 
     <View
         android:id="@+id/view_add_history_main"
         android:layout_width="match_parent"
-        android:layout_height="670dp"
-        android:background="@drawable/round_top_left_top_right_corner_20dp"
-        android:backgroundTint="#ffff00"
+        android:layout_height="630dp"
         app:layout_constraintBottom_toBottomOf="parent" />
 
     <!--취소 버튼-->
@@ -19,7 +16,7 @@
         android:id="@+id/btn_add_history_main_cancel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="27.5dp"
+        android:layout_marginTop="22dp"
         android:layout_marginEnd="110dp"
         android:background="@color/transparent"
         android:minWidth="0dp"
@@ -35,7 +32,7 @@
         android:id="@+id/tv_add_history_main"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="25.5dp"
+        android:layout_marginTop="20dp"
         android:letterSpacing="0.03"
         android:text="내역 추가"
         android:textColor="#191919"
@@ -51,7 +48,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="110dp"
-        android:layout_marginTop="27.5dp"
+        android:layout_marginTop="22dp"
         android:background="@color/transparent"
         android:minWidth="0dp"
         android:minHeight="0dp"
@@ -67,7 +64,7 @@
         android:id="@+id/tv_add_history_main_icon"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="38.6dp"
+        android:layout_marginTop="35dp"
         android:text="아이콘"
         android:textColor="#191919"
         android:textSize="14sp"
@@ -209,7 +206,6 @@
         android:id="@+id/tv_add_history_main_content"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
         android:text="내용"
         android:textColor="#191919"
         android:textSize="14sp"
@@ -234,7 +230,6 @@
         android:id="@+id/tv_add_history_main_money"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
         android:text="금액 입력"
         android:textColor="#191919"
         android:textSize="14sp"
@@ -259,7 +254,6 @@
         android:id="@+id/tv_add_history_main_memo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
         android:text="한 줄 메모"
         android:textColor="#191919"
         android:textSize="14sp"
