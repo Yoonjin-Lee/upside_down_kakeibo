@@ -71,7 +71,7 @@
             android:id="@+id/edMuch"
             app:layout_constraintTop_toBottomOf="@id/goal_money"
             android:inputType="numberDecimal"
-            android:layout_width="402dp"
+            android:layout_width="match_parent"
             android:layout_height="89dp"
             android:layout_margin="5dp"
             android:background="@drawable/round_border"
@@ -100,11 +100,11 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id = "@+id/incomeBox2"
             app:layout_constraintTop_toBottomOf="@id/goal_time"
-            android:layout_width="402dp"
+            android:layout_width="match_parent"
             android:layout_height="368dp"
             android:layout_gravity="center"
             android:background="@drawable/round_border"
-            tools:ignore="MissingConstraints">
+            tools:ignore="MissingClass,MissingConstraints">
 
             <android.widget.Button
                 android:id="@+id/add_btn"

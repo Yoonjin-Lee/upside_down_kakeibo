@@ -68,7 +68,7 @@
 
         <EditText
             android:id="@+id/ed_much"
-            android:layout_width="402dp"
+            android:layout_width="match_parent"
             android:layout_height="89dp"
             android:layout_margin="5dp"
             android:background="@drawable/round_border"
@@ -96,7 +96,7 @@
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/box2"
-            android:layout_width="402dp"
+            android:layout_width="match_parent"
             android:layout_height="120dp"
             android:layout_margin="5dp"
             android:background="@drawable/round_border"
@@ -181,7 +181,7 @@
 
         <EditText
             android:id="@+id/ed_memo"
-            android:layout_width="402dp"
+            android:layout_width="match_parent"
             android:layout_height="170dp"
             android:layout_margin="5dp"
             android:background="@drawable/round_border"
