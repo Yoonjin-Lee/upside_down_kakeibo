@@ -34,7 +34,7 @@ class MainActivity : AppCompatActivity() {
                     R.id.mypage -> {
                         supportFragmentManager
                             .beginTransaction()
-                            .replace(viewBinding.fragment.id, Mypage1()) //mypagefragment
+                            .replace(viewBinding.fragment.id, MypageFragment()) //mypagefragment
                             .commitAllowingStateLoss()
                     }
                 }

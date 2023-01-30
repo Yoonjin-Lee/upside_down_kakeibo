@@ -23,14 +23,14 @@ class GoalActivity : AppCompatActivity() {
 
 
         //시크바
-        val binding by lazy{ ActivityMainBinding.inflate(layoutInflater) }
+        val binding by lazy{ ActivityGoalBinding.inflate(layoutInflater) }
 
         //시크바 개월 수
         setContentView(binding.root)
         viewBinding.seekBar.setOnSeekBarChangeListener(object: SeekBar.OnSeekBarChangeListener{
             override fun onProgressChanged(seekBar: SeekBar?,progress: Int,
                                            fromUser: Boolean) {
-                viewBinding.month.text = "$progress"+"개월"
+                viewBinding.month.text = progress.toString() +"개월"
             }
 
             override fun onStartTrackingTouch(seekBar: SeekBar?) {
