@@ -53,7 +53,7 @@
             android:id="@+id/mypage_name"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="000님, 잘 하고 있어요!"
+            android:text="000"
             android:layout_marginTop="20dp"
             android:layout_marginLeft="10dp"
             android:textColor="@color/black"
@@ -62,10 +62,11 @@
         </TextView>
 
         <LinearLayout
+            android:id="@+id/mypage_main"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="15dp"
             android:layout_marginLeft="15dp"
             android:layout_marginRight="15dp"
             android:background="@drawable/rectangle_background">
@@ -76,13 +77,12 @@
                 android:layout_width="250dp"
                 android:layout_height="250dp"
                 android:layout_marginTop="10dp"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
                 android:max="100"
                 android:indeterminate="false"
                 android:layout_gravity="center"
                 android:progressTint="@color/main"
-                android:progressDrawable="@drawable/circle_progressbar_mypage"/>
+                android:progressDrawable="@drawable/circle_progressbar_mypage"
+                android:progressBackgroundTint="@color/white"/>
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -122,7 +122,7 @@
                         android:layout_height="wrap_content"
                         android:text="2022.06.01 ~ 2023.01.01"
                         android:gravity="center"
-                        android:textSize="11dp"></TextView>
+                        android:textSize="10dp"></TextView>
                 </LinearLayout>
 
                 <LinearLayout
@@ -183,6 +183,7 @@
             </LinearLayout>
 
             <Button
+                android:id="@+id/mypage_reset"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="목표 재설정"
@@ -197,6 +198,7 @@
         </LinearLayout>
 
         <Button
+            android:id="@+id/mypage_pastrecord"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="이전 저축 기록"
@@ -207,6 +209,21 @@
             android:textColor="@color/main">
         </Button>
 
+
     </LinearLayout>
+
+
+    <TextView
+        android:id="@+id/mypage_percent"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="30%"
+        android:textStyle="bold"
+        android:textSize="32sp"
+        android:layout_gravity="center"
+        android:layout_marginBottom="65dp">
+
+    </TextView>
+
 
 </FrameLayout>

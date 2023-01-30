@@ -6,7 +6,6 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.example.kakeibo.databinding.FragmentHomeBinding
-import com.google.android.material.bottomsheet.BottomSheetDialog
 
 class HomeFragment : Fragment() {
     private lateinit var viewBinding: FragmentHomeBinding
@@ -18,20 +17,12 @@ class HomeFragment : Fragment() {
     ): View {
         viewBinding = FragmentHomeBinding.inflate(layoutInflater)
 
-        viewBinding.btnHomeAdd.setOnClickListener {
-            val dialog = BottomSheetDialog(requireContext())
-            val view = layoutInflater.inflate(R.layout.fragment_add_history_main, null)
+        val bottomSheetDialogFragment = AddHistoryMainFragment()
 
-            //해당 BottomSheetDialog에 layout 설정
-            dialog.setContentView(view)
-
-            // BottomSheetDialog 외부 화면(회색) 터치 시 종료 여부 boolean(false : 종료 안 함, true : 종료함)
-            dialog.setCanceledOnTouchOutside(true)
-
-            dialog.show()
+        viewBinding.btnHomeAdd.setOnClickListener{
+            bottomSheetDialogFragment.show(parentFragmentManager, bottomSheetDialogFragment.tag)
         }
-
         
         return viewBinding.root
-  }
+    }
 }

@@ -1,5 +1,6 @@
 package com.example.kakeibo
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -8,20 +9,36 @@ import android.view.ViewGroup
 import com.example.kakeibo.databinding.FragmentMypageBinding
 
 class MypageFragment : Fragment() {
+    private lateinit var binding: FragmentMypageBinding
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        var binding = FragmentMypageBinding.inflate(layoutInflater)
+        binding = FragmentMypageBinding.inflate(layoutInflater)
 
         var mypage_name = binding.mypageName
-        mypage_name.append(" 님, 잘 하고 있어요!")
+        mypage_name.append("님, 잘 하고 있어요!")
 
-        var progressbar = binding.mypageProgressbar
-        progressbar.max = 100
-        progressbar.progress = 85
+        binding.mypageProgressbar.progress = 30
+       binding.mypagePercent.text = binding.mypageProgressbar.progress.toString() + "%"
 
-        return FragmentMypageBinding.inflate(layoutInflater).root
+
+        binding.mypageExit.setOnClickListener{
+            val intent = Intent(context, Mypage_logout::class.java);
+            startActivity(intent);
+        }
+        binding.mypageReset.setOnClickListener {
+            val intent = Intent(context, mypage_dialog::class.java);
+            startActivity(intent);
+        }
+        binding.mypagePastrecord.setOnClickListener {
+            val intent = Intent(context, PastRecordActivity::class.java);
+            startActivity(intent);
+        }
+
+
+        return binding.root
     }
+
 }
