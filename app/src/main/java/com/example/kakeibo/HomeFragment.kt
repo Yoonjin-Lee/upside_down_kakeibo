@@ -22,7 +22,7 @@ class HomeFragment : Fragment() {
         viewBinding.btnHomeAdd.setOnClickListener{
             bottomSheetDialogFragment.show(parentFragmentManager, bottomSheetDialogFragment.tag)
         }
-
+        
         return viewBinding.root
     }
 }

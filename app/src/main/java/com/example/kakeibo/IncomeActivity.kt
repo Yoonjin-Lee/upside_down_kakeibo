@@ -1,9 +1,13 @@
 package com.example.kakeibo
+import android.annotation.SuppressLint
+import android.content.Context
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
-import android.widget.Toast
+import android.view.LayoutInflater
+import android.view.View
+import android.widget.*
 import androidx.core.widget.addTextChangedListener
 import com.example.kakeibo.R
 import com.example.kakeibo.databinding.ActivityIncomeBinding
@@ -17,6 +21,23 @@ class IncomeActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+
+        //slide
+        val lv = findViewById<ListView>(R.id.add_btn);0
+        lv.adapter = ArrayAdapter<String>(
+            this,
+            android.R.layout.simple_list_item_1,
+            arrayOf("SlideUp Dialog 1")
+        )
+        lv.setOnItemClickListener { _: AdapterView<*>?, _: View?, position: Int, _: Long ->
+            if (position == 0) {
+                onSlideUpDialog();
+            }
+        }
+
+        
+        
+        //btn 활성화 부분 코드 시작
         viewBinding = ActivityIncomeBinding.inflate(layoutInflater)
 
         setContentView(viewBinding.root)
@@ -52,5 +73,17 @@ class IncomeActivity : AppCompatActivity() {
             Toast.makeText(this, much, Toast.LENGTH_SHORT).show()
         }
 
+    }
+
+
+    private fun onSlideUpDialog() {
+        var contentView: View = (getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater).inflate(R.layout.fragment_add_history_main, null)
+        val slideupPopup = SlideUpDialog.Builder(this)
+            .setContentView(contentView)
+            .create()
+        slideupPopup.show()
+        contentView.findViewById<Button>(R.id.btn_add_history_main_done).setOnClickListener {
+            slideupPopup.dismissAnim()
+        }
     }
 }
