@@ -60,7 +60,7 @@
         app:layout_constraintBottom_toTopOf="@id/naver_login"
         android:paddingBottom="8dp"/>
 
-    <ImageButton
+        <ImageButton
         android:id="@+id/naver_login"
         android:layout_width="320dp"
         android:layout_height="45dp"

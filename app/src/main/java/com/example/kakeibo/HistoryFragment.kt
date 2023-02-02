@@ -43,87 +43,7 @@ class HistoryFragment : Fragment() {
         viewBinding.list.adapter = adapter
         viewBinding.list.layoutManager = LinearLayoutManager(context)
 
-        //API
-        fun getUnsafeOkHttpClient(): OkHttpClient.Builder {
-            val trustAllCerts = arrayOf<TrustManager>(object : X509TrustManager {
-                override fun checkClientTrusted(
-                    chain: Array<out X509Certificate>?,
-                    authType: String?
-                ) {
-
-                }
-
-                override fun checkServerTrusted(
-                    chain: Array<out X509Certificate>?,
-                    authType: String?
-                ) {
-
-                }
-
-                override fun getAcceptedIssuers(): Array<X509Certificate> {
-                    return arrayOf()
-                }
-            })
-
-            val sslContext = SSLContext.getInstance("SSL")
-            sslContext.init(null, trustAllCerts, SecureRandom())
-
-            val sslSocketFactory = sslContext.socketFactory
-
-            val builder = OkHttpClient.Builder()
-            builder.sslSocketFactory(sslSocketFactory, trustAllCerts[0] as X509TrustManager)
-            builder.hostnameVerifier { hostname, session -> true }
-
-            return builder
-        }
-
-        val gson : Gson = GsonBuilder()
-            .setLenient()
-            .create()
-
-        val retrofit = Retrofit.Builder()
-            .baseUrl("http://172.30.1.82:1108")
-//            .addConverterFactory(GsonConverterFactory.create(gson))
-            .addConverterFactory(ScalarsConverterFactory.create())
-            .client(getUnsafeOkHttpClient().build()) //우회
-            .build()
-
-        val apiService = retrofit.create(ApiService::class.java)
-
-//        apiService.getHistoryData().enqueue(object : Callback<String> {
-//            override fun onResponse(call: Call<String>, response: retrofit2.Response<String>) {
-//                if (response.isSuccessful) {
-//                    val data = response.body()
-//
-//                    if (data != null) {
-//                        Log.d("retrofit", "열차 정보 :" + data)
-//
-//                        val date_num = data.length
-//                        val week_num = date_num/7
-//                        Log.d("date_num", date_num.toString())
-//                        Log.d("week_num", week_num.toString())
-//
-//                        for (i in 1 until week_num + 1){
-//                            for (j in data){
-//                                //i = 주차
-//                                val dateData = j
-//                                Log.d("dateData", dateData.toString())
-//                                Log.d("check", "1")
-//                            }
-//                        }
-//                    }
-//                } else {
-//                    Log.w("retrofit", "실패 ${response.code()}")
-//                }
-//            }
-//
-//            override fun onFailure(call: Call<String>, t: Throwable) {
-//                Log.w("retrofit", "열차 정보 접근 실패", t)
-//                Log.w("retrofit", "열차 정보 접근 실패 response",)
-//            }
-//        })
-
-        // test
+        // api 설정
         val authService = getRetrofit().create(ApiService::class.java)
 
         authService.getHistoryData().enqueue(object : Callback<List<ServerHistoryData>> {
@@ -161,11 +81,11 @@ class HistoryFragment : Fragment() {
 
         //테스트 데이터
         adapter.apply {
+            weekDataList.add(WeekData("1주차", "6/14", "6/15", "6/16", "6/17", "6/18", "6/19", "6/20",1,0,1,1, 1, 1,1, "50"))
+            weekDataList.add(WeekData("1주차", "6/14", "6/15", "6/16", "6/17", "6/18", "6/19", "6/20",1,1,0,1, 1, 1,1, "50"))
             weekDataList.add(WeekData("1주차", "6/14", "6/15", "6/16", "6/17", "6/18", "6/19", "6/20",1,1,1,1, 1, 1,1, "50"))
             weekDataList.add(WeekData("1주차", "6/14", "6/15", "6/16", "6/17", "6/18", "6/19", "6/20",1,1,1,1, 1, 1,1, "50"))
-            weekDataList.add(WeekData("1주차", "6/14", "6/15", "6/16", "6/17", "6/18", "6/19", "6/20",1,1,1,1, 1, 1,1, "50"))
-            weekDataList.add(WeekData("1주차", "6/14", "6/15", "6/16", "6/17", "6/18", "6/19", "6/20",1,1,1,1, 1, 1,1, "50"))
-            weekDataList.add(WeekData("1주차", "6/14", "6/15", "6/16", "6/17", "6/18", "6/19", "6/20",1,1,1,1, 1, 1,1, "50"))
+            weekDataList.add(WeekData("1주차", "6/14", "6/15", "6/16", "6/17", "6/18", "6/19", "6/20",1,0,1,1, 1, 1,0, "50"))
             weekDataList.add(WeekData("1주차", "6/14", "6/15", "6/16", "6/17", "6/18", "6/19", "6/20",1,1,1,1, 1, 1,1, "50"))
             weekDataList.add(WeekData("1주차", "6/14", "6/15", "6/16", "6/17", "6/18", "6/19", "6/20",1,1,1,1, 1, 1,1, "50"))
             weekDataList.add(WeekData("1주차", "6/14", "6/15", "6/16", "6/17", "6/18", "6/19", "6/20",1,1,1,1, 1, 1,1, "50"))
