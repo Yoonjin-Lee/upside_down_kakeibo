@@ -170,18 +170,16 @@
         android:layout_width="match_parent"
         android:layout_height="450dp"
         android:background="@drawable/round_top_left_top_right_corner_12dp"
-        android:backgroundTint="#ffffff"
         android:elevation="8dp"
         app:layout_constraintBottom_toBottomOf="parent" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recycler_spend_list"
-        android:layout_width="271.2dp"
+        android:layout_width="300dp"
         android:layout_height="444dp"
-        android:background="@drawable/round_corners"
-        android:backgroundTint="#ffffff"
+        android:background="@drawable/round_border"
         android:elevation="8dp"
-        android:padding="14.1dp"
+        android:padding="20dp"
         app:layout_constraintBottom_toBottomOf="@id/view_home"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@id/view_bar_today"
@@ -190,10 +188,9 @@
     <!--bar 부분-->
     <View
         android:id="@+id/view_bar_today"
-        android:layout_width="48dp"
+        android:layout_width="80dp"
         android:layout_height="444dp"
-        android:background="@drawable/round_corners"
-        android:backgroundTint="#ffffff"
+        android:background="@drawable/round_border"
         android:elevation="8dp"
         app:layout_constraintBottom_toBottomOf="@id/view_home"
         app:layout_constraintEnd_toStartOf="@+id/recycler_spend_list"
@@ -204,7 +201,7 @@
     <ProgressBar
         android:id="@+id/progressBar_today"
         style="@android:style/Widget.ProgressBar.Horizontal"
-        android:layout_width="429.2dp"
+        android:layout_width="400dp"
         android:layout_height="15.7dp"
         android:elevation="8dp"
         android:max="100"
