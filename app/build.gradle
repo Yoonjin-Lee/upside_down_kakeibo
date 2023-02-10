@@ -56,3 +56,7 @@ android {
         implementation 'com.squareup.okhttp3:okhttp:4.9.2'
     }
 }
+
+dependencies {
+    implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
+}
