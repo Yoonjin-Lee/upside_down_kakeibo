@@ -23,7 +23,7 @@ class GoalActivity : AppCompatActivity() {
 
 
         //시크바
-        val binding by lazy{ ActivityMainBinding.inflate(layoutInflater) }
+        val binding by lazy{ ActivityGoalBinding.inflate(layoutInflater) }
 
         //시크바 개월 수
         setContentView(binding.root)
