@@ -1,9 +1,11 @@
 package com.example.kakeibo
 
-import android.content.Intent
+import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.content.ContextCompat
+import androidx.core.graphics.drawable.toDrawable
 import androidx.recyclerview.widget.RecyclerView
 import com.example.kakeibo.databinding.HistoryWeekListBinding
 
@@ -46,6 +48,57 @@ class WeekRAdapter(private val weekDataList : ArrayList<WeekData>) : RecyclerVie
             }
             viewBinding.btn7.setOnClickListener {
                 dateClickListener.onClick(it, position)
+            }
+
+            // 버튼 색 설정
+            if (data.mon_check == 0) {
+                viewBinding.btn1.setBackgroundResource(R.drawable.day_fail_button)
+                viewBinding.btn1.setTextColor(Color.rgb(181, 0, 0))
+            } else if (data.mon_check == 3){
+                viewBinding.btn1.setBackgroundResource(R.drawable.day_null_button)
+                viewBinding.btn1.setTextColor(Color.rgb(217,217,217))
+            }
+            if (data.tue_check == 0) {
+                viewBinding.btn2.setBackgroundResource(R.drawable.day_fail_button)
+                viewBinding.btn2.setTextColor(Color.rgb(181, 0, 0))
+            } else if (data.tue_check == 3){
+                viewBinding.btn2.setBackgroundResource(R.drawable.day_null_button)
+                viewBinding.btn2.setTextColor(Color.rgb(217,217,217))
+            }
+            if (data.wed_check == 0) {
+                viewBinding.btn3.setBackgroundResource(R.drawable.day_fail_button)
+                viewBinding.btn3.setTextColor(Color.rgb(181, 0, 0))
+            } else if (data.wed_check == 3){
+                viewBinding.btn3.setBackgroundResource(R.drawable.day_null_button)
+                viewBinding.btn3.setTextColor(Color.rgb(217,217,217))
+            }
+            if (data.thu_check == 0) {
+                viewBinding.btn4.setBackgroundResource(R.drawable.day_fail_button)
+                viewBinding.btn4.setTextColor(Color.rgb(181, 0, 0))
+            } else if (data.thu_check == 3){
+                viewBinding.btn4.setBackgroundResource(R.drawable.day_null_button)
+                viewBinding.btn4.setTextColor(Color.rgb(217,217,217))
+            }
+            if (data.fri_check == 0) {
+                viewBinding.btn5.setBackgroundResource(R.drawable.day_fail_button)
+                viewBinding.btn5.setTextColor(Color.rgb(181, 0, 0))
+            } else if (data.fri_check == 3){
+                viewBinding.btn5.setBackgroundResource(R.drawable.day_null_button)
+                viewBinding.btn5.setTextColor(Color.rgb(217,217,217))
+            }
+            if (data.sat_check == 0) {
+                viewBinding.btn6.setBackgroundResource(R.drawable.day_fail_button)
+                viewBinding.btn6.setTextColor(Color.rgb(181, 0, 0))
+            } else if (data.sat_check == 3){
+                viewBinding.btn6.setBackgroundResource(R.drawable.day_null_button)
+                viewBinding.btn6.setTextColor(Color.rgb(217,217,217))
+            }
+            if (data.sun_check == 0) {
+                viewBinding.btn7.setBackgroundResource(R.drawable.day_fail_button)
+                viewBinding.btn7.setTextColor(Color.rgb(181, 0, 0))
+            } else if (data.sun_check == 3){
+                viewBinding.btn7.setBackgroundResource(R.drawable.day_null_button)
+                viewBinding.btn7.setTextColor(Color.rgb(217,217,217))
             }
         }
     }
