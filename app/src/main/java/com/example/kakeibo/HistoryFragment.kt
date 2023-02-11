@@ -43,86 +43,6 @@ class HistoryFragment : Fragment() {
         viewBinding.list.adapter = adapter
         viewBinding.list.layoutManager = LinearLayoutManager(context)
 
-        //API
-        fun getUnsafeOkHttpClient(): OkHttpClient.Builder {
-            val trustAllCerts = arrayOf<TrustManager>(object : X509TrustManager {
-                override fun checkClientTrusted(
-                    chain: Array<out X509Certificate>?,
-                    authType: String?
-                ) {
-
-                }
-
-                override fun checkServerTrusted(
-                    chain: Array<out X509Certificate>?,
-                    authType: String?
-                ) {
-
-                }
-
-                override fun getAcceptedIssuers(): Array<X509Certificate> {
-                    return arrayOf()
-                }
-            })
-
-            val sslContext = SSLContext.getInstance("SSL")
-            sslContext.init(null, trustAllCerts, SecureRandom())
-
-            val sslSocketFactory = sslContext.socketFactory
-
-            val builder = OkHttpClient.Builder()
-            builder.sslSocketFactory(sslSocketFactory, trustAllCerts[0] as X509TrustManager)
-            builder.hostnameVerifier { hostname, session -> true }
-
-            return builder
-        }
-
-        val gson : Gson = GsonBuilder()
-            .setLenient()
-            .create()
-
-        val retrofit = Retrofit.Builder()
-            .baseUrl("http://172.30.1.82:1108")
-//            .addConverterFactory(GsonConverterFactory.create(gson))
-            .addConverterFactory(ScalarsConverterFactory.create())
-            .client(getUnsafeOkHttpClient().build()) //우회
-            .build()
-
-        val apiService = retrofit.create(ApiService::class.java)
-
-//        apiService.getHistoryData().enqueue(object : Callback<String> {
-//            override fun onResponse(call: Call<String>, response: retrofit2.Response<String>) {
-//                if (response.isSuccessful) {
-//                    val data = response.body()
-//
-//                    if (data != null) {
-//                        Log.d("retrofit", "열차 정보 :" + data)
-//
-//                        val date_num = data.length
-//                        val week_num = date_num/7
-//                        Log.d("date_num", date_num.toString())
-//                        Log.d("week_num", week_num.toString())
-//
-//                        for (i in 1 until week_num + 1){
-//                            for (j in data){
-//                                //i = 주차
-//                                val dateData = j
-//                                Log.d("dateData", dateData.toString())
-//                                Log.d("check", "1")
-//                            }
-//                        }
-//                    }
-//                } else {
-//                    Log.w("retrofit", "실패 ${response.code()}")
-//                }
-//            }
-//
-//            override fun onFailure(call: Call<String>, t: Throwable) {
-//                Log.w("retrofit", "열차 정보 접근 실패", t)
-//                Log.w("retrofit", "열차 정보 접근 실패 response",)
-//            }
-//        })
-
         // test
         val authService = getRetrofit().create(ApiService::class.java)
 
@@ -134,18 +54,51 @@ class HistoryFragment : Fragment() {
                     if (data != null) {
                         Log.d("test_retrofit", "열차 정보 :" + data)
 
-                        val date_num = data.size
-                        val week_num = date_num/7
+                        val date_num = data.size //총 몇일인지
+                        val week_num = date_num/7 //몇 주인지
                         Log.d("date_num", date_num.toString())
                         Log.d("week_num", week_num.toString())
 
-                        for (i in 1 until week_num + 1){
-                            for (j in data){
-                                //i = 주차
-                                val dateData = j
-                                Log.d("dateData", dateData.toString())
-                                Log.d("check", "1")
+                        //1. 주 동안
+                        //2. 7번
+                        //3. date_num이 되면 멈추도록
+
+                        for (i in 0 until week_num){
+                            val tempList = arrayListOf<String>()
+                            //주차 넣기
+                            tempList.add((i+1).toString())
+
+                            for (j in 1..7){
+                                val index = 10*i + j
+                                if ((10*i)+j < week_num){ //date_num 전까지는 안의 데이터를 입력
+                                    if (j != 7){
+                                        tempList.add(data[index].date)
+                                        tempList.add(data[index].success.toString())
+                                    } else {
+                                        tempList.add(data[index].date)
+                                        tempList.add(data[index].success.toString())
+                                        //일요일의 저축 가능 금액
+                                        tempList.add(data[index].money.toString())
+                                    }
+                                } else if ((10*i) + j == week_num) {
+                                    //마지막 날의 저축 가능 금액을 그 주의 저축 가능 금액으로 설정
+                                    tempList.add(data[index].date)
+                                    tempList.add(data[index].success.toString())
+                                    //마지막 날의 저축 가능 금액
+                                    tempList[15] = data[index].money.toString()
+                                } else {
+                                    // 그 주의 다른 날은 null로 입력.
+                                    tempList.add("") //날짜
+                                    tempList.add("3") //버튼 색
+                                }
                             }
+
+                            weekDataList.add(
+                                WeekData(tempList[0], tempList[1], tempList[2].toInt(), tempList[3], tempList[4].toInt(),
+                            tempList[5], tempList[6].toInt(), tempList[7], tempList[8].toInt(), tempList[9], tempList[10].toInt(),
+                            tempList[11], tempList[12].toInt(), tempList[13], tempList[14].toInt(), tempList[15])
+                            )
+
                         }
                     }
                 } else {
@@ -160,16 +113,16 @@ class HistoryFragment : Fragment() {
         })
 
         //테스트 데이터
-        adapter.apply {
-            weekDataList.add(WeekData("1주차", "6/14", "6/15", "6/16", "6/17", "6/18", "6/19", "6/20",1,1,1,1, 1, 1,1, "50"))
-            weekDataList.add(WeekData("1주차", "6/14", "6/15", "6/16", "6/17", "6/18", "6/19", "6/20",1,1,1,1, 1, 1,1, "50"))
-            weekDataList.add(WeekData("1주차", "6/14", "6/15", "6/16", "6/17", "6/18", "6/19", "6/20",1,1,1,1, 1, 1,1, "50"))
-            weekDataList.add(WeekData("1주차", "6/14", "6/15", "6/16", "6/17", "6/18", "6/19", "6/20",1,1,1,1, 1, 1,1, "50"))
-            weekDataList.add(WeekData("1주차", "6/14", "6/15", "6/16", "6/17", "6/18", "6/19", "6/20",1,1,1,1, 1, 1,1, "50"))
-            weekDataList.add(WeekData("1주차", "6/14", "6/15", "6/16", "6/17", "6/18", "6/19", "6/20",1,1,1,1, 1, 1,1, "50"))
-            weekDataList.add(WeekData("1주차", "6/14", "6/15", "6/16", "6/17", "6/18", "6/19", "6/20",1,1,1,1, 1, 1,1, "50"))
-            weekDataList.add(WeekData("1주차", "6/14", "6/15", "6/16", "6/17", "6/18", "6/19", "6/20",1,1,1,1, 1, 1,1, "50"))
-        }
+//        adapter.apply {
+//            weekDataList.add(WeekData("1주차", "6/14", "6/15", "6/16", "6/17", "6/18", "6/19", "6/20",1,0,1,1, 1, 1,1, "50"))
+//            weekDataList.add(WeekData("1주차", "6/14", "6/15", "6/16", "6/17", "6/18", "6/19", "6/20",1,1,0,1, 1, 1,1, "50"))
+//            weekDataList.add(WeekData("1주차", "6/14", "6/15", "6/16", "6/17", "6/18", "6/19", "6/20",1,1,1,1, 1, 1,1, "50"))
+//            weekDataList.add(WeekData("1주차", "6/14", "6/15", "6/16", "6/17", "6/18", "6/19", "6/20",1,1,1,1, 1, 1,1, "50"))
+//            weekDataList.add(WeekData("1주차", "6/14", "6/15", "6/16", "6/17", "6/18", "6/19", "6/20",1,0,1,1, 1, 1,0, "50"))
+//            weekDataList.add(WeekData("1주차", "6/14", "6/15", "6/16", "6/17", "6/18", "6/19", "6/20",1,1,1,1, 1, 1,1, "50"))
+//            weekDataList.add(WeekData("1주차", "6/14", "6/15", "6/16", "6/17", "6/18", "6/19", "6/20",1,1,1,1, 1, 1,1, "50"))
+//            weekDataList.add(WeekData("1주차", "6/14", "6/15", "6/16", "6/17", "6/18", "6/19", "6/20",1,1,1,1, 1, 1,1, "50"))
+//        }
 
         //리스트 아이템 사이 간격
         val verticalItemDecorator = VerticalItemDecorator(16)
