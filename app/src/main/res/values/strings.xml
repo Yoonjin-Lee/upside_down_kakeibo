@@ -65,4 +65,9 @@
     <string name="money_unit">원</string>
     <string name="saved_money">저축 금액</string>
 
+    <string name="social_login_info_naver_client_id">bvEtHMcc0BhsXZqFdCbo</string>
+    <string name="social_login_info_naver_client_secret">OyCdEWBPRI</string>
+    <string name="social_login_info_naver_client_name">네이버아이디 로그인</string>
+
+
 </resources>
