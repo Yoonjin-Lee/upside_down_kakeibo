@@ -1,4 +1,5 @@
 package com.example.kakeibo
+
 import android.annotation.SuppressLint
 import android.content.Intent
 import android.database.Cursor
@@ -11,6 +12,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.kakeibo.R
+
 
 class IncomeActivity : AppCompatActivity() {
 
@@ -27,27 +29,12 @@ class IncomeActivity : AppCompatActivity() {
 
     var searchText: String = ""
 
-    @SuppressLint("MissingInflatedId")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        setContentView(R.layout.activity_income)
 
         databaseCreate() // 데이터베이스 생성 함수
         createTable() // 테이블 생성 함수
-        /*
-
-        val toolbar:androidx.appcompat.widget.Toolbar = findViewById(R.id.toolbar)
-        // 툴바 설정
-        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.LOLLIPOP) {
-            // 버전이 롤리팝 이상일 경우
-            toolbar.setTitle(R.string.app_name)
-            setSupportActionBar(findViewById(R.id.toolbar))
-        } else {
-            // 버전이 롤리팝 미만일 경우
-            setSupportActionBar(findViewById(R.id.toolbar))
-        }
-        */
-
 
         noteRecycler = findViewById(R.id.recyclerView_main)
         // 리사이클러 뷰 설정
@@ -139,10 +126,23 @@ class IncomeActivity : AppCompatActivity() {
         database = dbHelper.writableDatabase
     }
 
+
     @SuppressLint("Recycle")
     fun searchQuery(query: String?) {
         val sql = "select * from noteData " +
                 "where content Like " + "'%" + query + "%'" + "or title Like " + "'%" + query + "%'" + "order by time DESC"
+        /*
+        "select * from noteData where content Like '%query%' or title Like '%query%' order by time DESC"
+        select 컬럼 from 테이블 | *는 모든 컬럼을 의미함
+        where 조건
+        content 컬럼내에서 Like(포함하는것) | title 컬럼도 동일함
+        입력값이 사과일때
+        %query면 썩은사과, 파인사과 등
+        query%면 사과가격, 사과하세요 등
+        %query%면 황금사과가격, 빨리사과하세요 등
+        order by 정렬 | time 컬럼을 기준으로 DESC 내림차순
+        order by를 사용하지 않거나 order by time ASC로 하면 오름차순
+         */
 
         val cursor = database.rawQuery(
             "select * from noteData " +
@@ -207,4 +207,3 @@ class IncomeActivity : AppCompatActivity() {
         return super.onOptionsItemSelected(item)
     }
 }
-

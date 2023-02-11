@@ -27,18 +27,18 @@ class IncomeNotepadActivity : AppCompatActivity() {
     @SuppressLint("SimpleDateFormat")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_income_new_notepad)
+        setContentView(R.layout.fragment_add_history_main)
 
         dbHelper = IncomeDatabaseHelper(this)
         database = dbHelper.writableDatabase
         tableName = "noteData"
 
-        btnSave = findViewById(R.id.btn_add_history_done)
-        btnSave = findViewById(R.id.btn_add_history_big_done)
-        btnCancel = findViewById(R.id.btn_add_history_cancel)
+        btnSave = findViewById(R.id.btn_add_history_main_big_done)
+        btnSave = findViewById(R.id.btn_add_history_main_done)
+        btnCancel = findViewById(R.id.btn_add_history_main_cancel)
 
-        etvTitle = findViewById(R.id.tv_add_history_content_box)
-        etvContent = findViewById(R.id.tv_add_history_money_box)
+        etvTitle = findViewById(R.id.tv_add_history_main_content_box)
+        etvContent = findViewById(R.id.tv_add_history_main_money_box)
         btnSave.setOnClickListener {
             if (etvTitle.text.isEmpty() && etvContent.text.isEmpty()) {
                 Toast.makeText(this, "작성한 내용이 없습니다.", Toast.LENGTH_SHORT).show()

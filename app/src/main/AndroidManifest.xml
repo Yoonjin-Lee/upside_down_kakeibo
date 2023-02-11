@@ -21,25 +21,20 @@
         <activity android:name=".IncomeNotepadActivity" />
         <activity android:name=".IncomeActivity"
             android:exported="true">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
 
-        <activity
-            android:name=".MainActivity"
-            android:exported="true">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
+        <!--        <activity-->
+        <!--            android:name=".MainActivity"-->
+        <!--            android:exported="true">-->
+        <!--            <intent-filter>-->
+        <!--                <action android:name="android.intent.action.MAIN" />-->
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-            <meta-data
-                android:name="android.app.lib_name"
-                android:value="" />
-        </activity>
+        <!--                <category android:name="android.intent.category.LAUNCHER" />-->
+        <!--            </intent-filter>-->
+        <!--            <meta-data-->
+        <!--                android:name="android.app.lib_name"-->
+        <!--                android:value="" />-->
+        <!--        </activity>-->
 
         <activity
             android:name=".PastRecordActivity"
@@ -96,11 +91,7 @@
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
-        
 
-        <activity android:name=".LoginActivity" />
-        <activity android:name=".GoalActivity" />
-        
 
         <activity
             android:name=".mypage_dialog"
@@ -110,7 +101,7 @@
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
-        
+
         <activity
             android:name=".MainActivity"
             android:exported="true">
@@ -127,7 +118,7 @@
                 <category android:name="android.intent.category.DEFAULT" />
                 <category android:name="android.intent.category.BROWSABLE" />
 
-                <!-- Redirect URI: "kakao${NATIVE_APP_KEY}://oauth" -->
+
                 <data android:host="oauth"
                     android:scheme="kakao75cc06b6dc6baeabccc2474d39512e5d" />
             </intent-filter>
