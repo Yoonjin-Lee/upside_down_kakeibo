@@ -7,9 +7,9 @@ import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
+import retrofit2.converter.scalars.ScalarsConverterFactory
 import java.net.CookieManager
 import java.util.concurrent.TimeUnit
-
 
 //const val BASE_URL = "http://172.30.1.82:1108"
 const val BASE_URL = "http://ekh-be2.shop"

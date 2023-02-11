@@ -43,7 +43,7 @@ class HistoryFragment : Fragment() {
         viewBinding.list.adapter = adapter
         viewBinding.list.layoutManager = LinearLayoutManager(context)
 
-        // test
+        // api 설정
         val authService = getRetrofit().create(ApiService::class.java)
 
         authService.getHistoryData().enqueue(object : Callback<List<ServerHistoryData>> {
@@ -98,7 +98,6 @@ class HistoryFragment : Fragment() {
                             tempList[5], tempList[6].toInt(), tempList[7], tempList[8].toInt(), tempList[9], tempList[10].toInt(),
                             tempList[11], tempList[12].toInt(), tempList[13], tempList[14].toInt(), tempList[15])
                             )
-
                         }
                     }
                 } else {
