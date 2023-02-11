@@ -1,5 +1,6 @@
 package com.example.kakeibo
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -25,6 +26,8 @@ class AddHistoryMainFragment : BottomSheetDialogFragment() {
     var icBeauty = false
     var icPet = false
     var icGift = false
+
+    var recyclerSum = 0
 
     //dialog 높이 지정
     override fun onStart() {
@@ -162,6 +165,12 @@ class AddHistoryMainFragment : BottomSheetDialogFragment() {
             ((activity as MainActivity).supportFragmentManager
                 .findFragmentById(R.id.fragment) as HomeFragment).initAddData()
 
+            //프로그레스 바 높이 설정
+            ((activity as MainActivity).supportFragmentManager
+                .findFragmentById(R.id.fragment) as HomeFragment).setProgressBarHeight(
+                progressBarHeight(viewBinding.tvAddHistoryMainMoneyBox.text.toString())
+            )
+
             dismiss()
 
             //EditText 부분 init
@@ -191,6 +200,12 @@ class AddHistoryMainFragment : BottomSheetDialogFragment() {
             ((activity as MainActivity).supportFragmentManager
                 .findFragmentById(R.id.fragment) as HomeFragment).initAddData()
 
+            //프로그레스 바 높이 설정
+            ((activity as MainActivity).supportFragmentManager
+                .findFragmentById(R.id.fragment) as HomeFragment).setProgressBarHeight(
+                progressBarHeight(viewBinding.tvAddHistoryMainMoneyBox.text.toString())
+            )
+
             dismiss()
 
             //EditText 부분 init
@@ -201,6 +216,7 @@ class AddHistoryMainFragment : BottomSheetDialogFragment() {
         return viewBinding.root
     }
 
+    //아이콘들이 radioButton(단일선택)처럼 작동하게 하는 함수
     fun radioButton(
         iconId: ImageButton,
         checkNum: Boolean,
@@ -216,6 +232,7 @@ class AddHistoryMainFragment : BottomSheetDialogFragment() {
         }
     }
 
+    //모든 아이콘의 이미지를 unselected, Boolean 변수를 false로 init하는 함수
     fun initRadioBox() {
         viewBinding.icUnselectedLiving.setImageResource(R.drawable.ic_unselected_living)
         viewBinding.icUnselectedFood.setImageResource(R.drawable.ic_unselected_food)
@@ -245,6 +262,7 @@ class AddHistoryMainFragment : BottomSheetDialogFragment() {
         icGift = false
     }
 
+    //Boolean값이 true인 아이콘(사용자가 최종으로 선택한 아이콘)의 halfselected 이미지를 return하는 함수
     fun resultRadio(): Int {
         if (icLiving)
             return R.drawable.ic_halfselected_living
@@ -272,5 +290,30 @@ class AddHistoryMainFragment : BottomSheetDialogFragment() {
             return R.drawable.ic_halfselected_gift
 
         return 0
+    }
+
+    //프로그레스바 높이 return하는 함수
+    @SuppressLint("ResourceType")
+    fun progressBarHeight(recyclerNowInput: String): Int {
+        val recyclerNow: Int = recyclerNowInput.toInt() //리사이클러뷰로 입력된 금액 하나
+
+        //HomeFragment의 오늘 소비 가능 금액
+        val todaySpend = ((activity as MainActivity).supportFragmentManager
+            .findFragmentById(R.id.fragment) as HomeFragment).returnTodayInt()
+
+//        //고정된 오늘 소비 가능 금액
+//        val fixedTodaySpend = ((activity as MainActivity).supportFragmentManager
+//            .findFragmentById(R.id.fragment) as HomeFragment).todayAvailable
+
+        recyclerSum += recyclerNow //리사이클러뷰로 입력된 총 금액
+
+//        Toast.makeText(context, "입력된 금액 하나 = $recyclerNow", Toast.LENGTH_SHORT).show()
+//        Toast.makeText(context, "오늘 소비 가능 = $todaySpend", Toast.LENGTH_SHORT).show()
+//        Toast.makeText(context, "리클 총금액 = $recyclerSum", Toast.LENGTH_SHORT).show()
+//        val result = (recyclerSum * 100) / todaySpend
+//        Toast.makeText(context, "높이 = $result", Toast.LENGTH_SHORT).show()
+
+        //프로그레스바 높이 = 리사이클러뷰로 입력된 총 금액 / 오늘 소비 가능 금액 * 100
+        return (recyclerSum * 100) / todaySpend
     }
 }
