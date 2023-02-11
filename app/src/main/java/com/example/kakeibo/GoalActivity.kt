@@ -30,7 +30,7 @@ class GoalActivity : AppCompatActivity() {
         viewBinding.seekBar.setOnSeekBarChangeListener(object: SeekBar.OnSeekBarChangeListener{
             override fun onProgressChanged(seekBar: SeekBar?,progress: Int,
                                            fromUser: Boolean) {
-                viewBinding.month.text = "$progress"+"개월"
+                viewBinding.month.text = progress.toString() +"개월"
             }
 
             override fun onStartTrackingTouch(seekBar: SeekBar?) {
