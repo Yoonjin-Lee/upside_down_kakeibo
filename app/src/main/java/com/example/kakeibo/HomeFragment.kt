@@ -18,7 +18,7 @@ class HomeFragment : Fragment() {
     private lateinit var viewBinding: FragmentHomeBinding
     private lateinit var adapter: DataItemAdapter
     var dataList: ArrayList<Data_item> = arrayListOf()
-    val todayAvailable: Int = 50000 //오늘 소비 가능 금액 세팅(초기 금액)
+    val fixedTodayAvailable: Int = 100000 //오늘 소비 가능 금액 세팅(초기 금액)
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -30,7 +30,7 @@ class HomeFragment : Fragment() {
         //init 세팅
         initRecyclerview() //리사이클러뷰 기본 세팅
         viewBinding.tvIntTodayAvailable.text =
-            todayAvailable.toString() //'오늘 소비 가능 금액' = '초기 금액'으로 세팅
+            fixedTodayAvailable.toString() //'오늘 소비 가능 금액' = '초기 금액'으로 세팅
         setProgressBarHeight(0) //프로그레스 바 높이 0으로 세팅
 
         val bottomSheetDialogFragment = AddHistoryMainFragment()
@@ -73,9 +73,14 @@ class HomeFragment : Fragment() {
         viewBinding.recyclerSpendList.adapter = adapter
     }
 
-    //'오늘 소비 가능 금액' int로 return하는 함수(DialogFragment.kt에서 사용함)
-    fun returnTodayInt(): Int {
-        return viewBinding.tvIntTodayAvailable.text.toString().toInt()
+//    //'오늘 소비 가능 금액' int로 return하는 함수(DialogFragment.kt에서 사용함)
+//    fun returnTodayInt(): Int {
+//        return viewBinding.tvIntTodayAvailable.text.toString().toInt()
+//    }
+
+    //'오늘 소비 가능 금액' 갱신해주는 함수
+    fun setTodayAvailable(changedTodayAvailable: Int) {
+        viewBinding.tvIntTodayAvailable.text = changedTodayAvailable.toString()
     }
 
     //프로그레스 바 높이를 height로 설정하는 함수
@@ -89,7 +94,14 @@ class HomeFragment : Fragment() {
 //        params.setMargins(0,0,0,20+(height*3.65).toInt())
 //        circle.layoutParams = params
 
-        circle.margin(bottom = 20 + (height * 3.65).toFloat())
+        //이미지 높이
+        val circleHeight: Float = 20 + (height * 3.65).toFloat()
+        //이미지가 프로그래스바 위로 튀어나가지 않게 marginBottom의 최대값을 385로 설정함
+        if (circleHeight > 385) {
+            circle.margin(bottom = 385.toFloat())
+        } else {
+            circle.margin(bottom = circleHeight)
+        }
     }
 
     //프로그레스 이미지 높이 설정할 때 쓰인 함수들

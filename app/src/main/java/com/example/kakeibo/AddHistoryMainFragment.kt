@@ -6,7 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageButton
-import android.widget.Toast
+import androidx.fragment.app.DialogFragment.STYLE_NORMAL
 import com.example.kakeibo.databinding.FragmentAddHistoryMainBinding
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
@@ -299,7 +299,7 @@ class AddHistoryMainFragment : BottomSheetDialogFragment() {
 
         //HomeFragment의 오늘 소비 가능 금액
         val todaySpend = ((activity as MainActivity).supportFragmentManager
-            .findFragmentById(R.id.fragment) as HomeFragment).returnTodayInt()
+            .findFragmentById(R.id.fragment) as HomeFragment).fixedTodayAvailable
 
 //        //고정된 오늘 소비 가능 금액
 //        val fixedTodaySpend = ((activity as MainActivity).supportFragmentManager
@@ -312,6 +312,20 @@ class AddHistoryMainFragment : BottomSheetDialogFragment() {
 //        Toast.makeText(context, "리클 총금액 = $recyclerSum", Toast.LENGTH_SHORT).show()
 //        val result = (recyclerSum * 100) / todaySpend
 //        Toast.makeText(context, "높이 = $result", Toast.LENGTH_SHORT).show()
+
+        //'오늘 소비 가능 금액' 계산
+        if ((todaySpend - recyclerSum) > 0) {
+            ((activity as MainActivity).supportFragmentManager
+                .findFragmentById(R.id.fragment) as HomeFragment).setTodayAvailable(todaySpend - recyclerSum)
+        } else {
+            //'오늘 소비 가능 금액' 우선 0으로 만들어두기
+            ((activity as MainActivity).supportFragmentManager
+                .findFragmentById(R.id.fragment) as HomeFragment).setTodayAvailable(0)
+
+            //초과 소비 dialog 띄우기
+            val bottomSheetDialogFragment = HomeFragmentExcessDialog()
+            bottomSheetDialogFragment.show(parentFragmentManager, bottomSheetDialogFragment.tag)
+        }
 
         //프로그레스바 높이 = 리사이클러뷰로 입력된 총 금액 / 오늘 소비 가능 금액 * 100
         return (recyclerSum * 100) / todaySpend
