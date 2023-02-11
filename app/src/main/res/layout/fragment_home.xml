@@ -70,13 +70,25 @@
         android:id="@+id/tv_int_today_available"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="20,000원"
+        android:layout_marginEnd="2dp"
+        android:text="0"
         android:textColor="#2fdb7a"
         android:textSize="19sp"
         android:translationZ="8dp"
         app:layout_constraintBottom_toBottomOf="@id/view_today_available"
-        app:layout_constraintEnd_toEndOf="@id/ic_today"
+        app:layout_constraintEnd_toStartOf="@id/tv_won_today_available"
         app:layout_constraintTop_toBottomOf="@id/tv_string_today_available" />
+
+    <TextView
+        android:id="@+id/tv_won_today_available"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="원"
+        android:textColor="#2fdb7a"
+        android:textSize="19sp"
+        android:translationZ="8dp"
+        app:layout_constraintBottom_toBottomOf="@id/tv_int_today_available"
+        app:layout_constraintEnd_toEndOf="@id/ic_today" />
 
     <!--저축 가능 금액-->
     <View
@@ -108,14 +120,28 @@
         android:id="@+id/tv_int_saving"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="9.6dp"
-        android:text="10,000원"
+        android:layout_marginEnd="2dp"
+        android:text="10000"
         android:textColor="#353535"
         android:textSize="13sp"
         android:translationZ="8dp"
         app:layout_constraintBottom_toBottomOf="@id/tv_string_saving"
+        app:layout_constraintEnd_toStartOf="@id/tv_won_saving"
+        app:layout_constraintTop_toTopOf="@id/tv_string_saving" />
+
+    <TextView
+        android:id="@+id/tv_won_saving"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="9.6dp"
+        android:text="원"
+        android:textColor="#353535"
+        android:textSize="13dp"
+        android:translationZ="8dp"
+        app:layout_constraintBottom_toBottomOf="@id/tv_string_saving"
         app:layout_constraintEnd_toEndOf="@id/view_saving"
         app:layout_constraintTop_toTopOf="@id/tv_string_saving" />
+
 
     <View
         android:id="@+id/line_saving"
@@ -219,7 +245,6 @@
         android:id="@+id/ic_progressBar_circle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="330dp"
         android:background="@drawable/ic_progressbar"
         android:translationZ="16dp"
         app:layout_constraintBottom_toBottomOf="@+id/view_bar_today"

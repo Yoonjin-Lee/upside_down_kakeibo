@@ -42,12 +42,23 @@
         android:id="@+id/tv_spend_list_money"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="5dp"
-        android:text="@string/tv_spend_list_money"
+        android:layout_marginEnd="2dp"
+        android:text="10000"
         android:textColor="#db2f90"
         android:textSize="14sp"
         app:layout_constraintBottom_toBottomOf="@id/tv_spend_list_memo"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintEnd_toStartOf="@+id/tv_spend_list_money_won" />
+
+    <TextView
+        android:id="@+id/tv_spend_list_money_won"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="5dp"
+        android:text="원"
+        android:textColor="#db2f90"
+        android:textSize="14sp"
+        app:layout_constraintBottom_toBottomOf="@id/tv_spend_list_memo"
+        app:layout_constraintEnd_toEndOf="parent"/>
 
     <View
         android:id="@+id/line_spend_list"
