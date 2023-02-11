@@ -1,5 +1,4 @@
 package com.example.kakeibo
-
 import android.app.Activity
 import android.app.AlertDialog
 import android.content.Intent
@@ -12,6 +11,8 @@ import android.view.ViewGroup
 import android.widget.TextView
 import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
+import com.example.kakeibo.IncomeEditActivity
+import com.example.kakeibo.IncomeNoteList
 import java.util.*
 
 class IncomeNoteSearchAdapter(intent: Intent) : RecyclerView.Adapter<IncomeNoteSearchAdapter.ViewHolder>() {

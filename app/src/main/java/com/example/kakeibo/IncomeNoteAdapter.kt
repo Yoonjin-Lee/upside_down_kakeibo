@@ -1,4 +1,5 @@
 package com.example.kakeibo
+
 import android.app.Activity
 import android.app.AlertDialog
 import android.content.Intent
@@ -9,6 +10,9 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.example.kakeibo.IncomeEditActivity
+import com.example.kakeibo.R
+import com.example.kakeibo.IncomeNoteList
 
 class IncomeNoteAdapter(private val items: List<IncomeNoteList>) :
     RecyclerView.Adapter<IncomeNoteAdapter.ViewHolder>()  {
