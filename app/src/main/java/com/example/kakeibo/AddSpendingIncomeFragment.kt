@@ -162,27 +162,9 @@ class AddSpendingIncomeFragment : BottomSheetDialogFragment() {
                 viewBinding.tvAddHistoryMainMoneyBox.text.toString()
             ) //금액 입력
 
-//            val intent = Intent(context, IncomeActivity::class.java)
-//
-//            intent.putExtra("dataIcn", resultRadio())
-//            intent.putExtra(
-//                "dataContent",
-//                viewBinding.tvAddHistoryMainContentBox.text.toString()
-//            ) //내용
-//            intent.putExtra(
-//                "dataMoney",
-//                viewBinding.tvAddHistoryMainMoneyBox.text.toString()
-//            ) //금액 입력
-
-//            requireActivity().startActivity(intent)
-//            IncomeActivity().initAddData()
-
-
-            ((activity as MainActivity).supportFragmentManager
-                .findFragmentById(R.id.fragment) as HomeFragment).arguments = bundle
-            ((activity as MainActivity).supportFragmentManager
-                .findFragmentById(R.id.fragment) as HomeFragment).initAddData()
-
+            val intent = Intent(context, IncomeActivity::class.java)
+            intent.putExtra("bundle", bundle)
+            startActivity(intent)
             dismiss()
 
             //EditText 부분 init
@@ -203,24 +185,13 @@ class AddSpendingIncomeFragment : BottomSheetDialogFragment() {
                 viewBinding.tvAddHistoryMainMoneyBox.text.toString()
             ) //금액 입력
 
-//            val intent = Intent(context, IncomeActivity::class.java)
-//
-//            intent.putExtra("dataIcn", resultRadio())
-//            intent.putExtra(
-//                "dataContent",
-//                viewBinding.tvAddHistoryMainContentBox.text.toString()
-//            ) //내용
-//            intent.putExtra(
-//                "dataMoney",
-//                viewBinding.tvAddHistoryMainMoneyBox.text.toString()
-//            ) //금액 입력
 
-//            requireActivity().startActivity(intent)
+            val intent = Intent(context, IncomeActivity::class.java)
+            intent.putExtra("bundle", bundle)
+            startActivity(intent)
 //            IncomeActivity().initAddData()
 
-            IncomeFragment().arguments = bundle
-            (parentFragmentManager
-                .findFragmentById(R.id.fragment) as? IncomeFragment)?.initAddData()
+            dismiss()
 
             //EditText 부분 init
             viewBinding.tvAddHistoryMainContentBox.setText("") //내용

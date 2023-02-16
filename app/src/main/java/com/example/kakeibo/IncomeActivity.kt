@@ -5,6 +5,7 @@ import android.content.Intent
 import android.database.Cursor
 import android.database.sqlite.SQLiteDatabase
 import android.os.Bundle
+import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import android.widget.Button
@@ -37,28 +38,26 @@ class IncomeActivity : FragmentActivity() {
 
     // yoonjin - fragment 변경 부분
     var dataList: ArrayList<IncomeNoteList> = arrayListOf()
-    private lateinit var adapter: IncomeNewAdapter
-//    private lateinit var resultLauncher: ActivityResultLauncher<Intent>
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_income)
 
-        databaseCreate() // 데이터베이스 생성 함수
-        createTable() // 테이블 생성 함수
+//        databaseCreate() // 데이터베이스 생성 함수
+//        createTable() // 테이블 생성 함수
 
         // 리사이클러 뷰 설정
         noteRecycler = findViewById(R.id.recyclerView_main)
 
-        noteRecycler.layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
-        adapter = IncomeNewAdapter(dataList)
+        val adapter = IncomeNewAdapter(dataList)
         noteRecycler.adapter = adapter
+        noteRecycler.layoutManager = LinearLayoutManager(this)
 
-        adapter.apply {
-            dataList.add(IncomeNoteList(R.drawable.ic_halfselected_learn, "교육", "10000"))
-        }
+//        adapter.apply {
+//            dataList.add(IncomeNoteList(R.drawable.ic_halfselected_learn, "교육", "10000"))
+//        }
 
-        layoutStyle()
+//        layoutStyle()
 //        // 리사이클러 뷰 레이아웃 스타일 설정
 
         val newNotepad: android.widget.Button = findViewById(R.id.newNoteButton_main)
@@ -79,8 +78,8 @@ class IncomeActivity : FragmentActivity() {
         }
 
 
-        if (sort == "desc")
-            refreshListAsc()
+//        if (sort == "desc")
+//            refreshListAsc()
         /*
         else
            refreshListAsc()
@@ -98,92 +97,129 @@ class IncomeActivity : FragmentActivity() {
         }
     }
 
-    private fun layoutStyle() {
-        if (layoutStyle) {
-            noteRecycler.layoutManager =
-                LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
-            //StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL)
-            // 스타일이 true일 경우 StaggeredGrid로 설정
-            // -> 일반 그리드 레이아웃으로 설정하고자 하면 아래 주석을 해제
+    override fun onStart() {
+        super.onStart()
+        Log.d("LifeCycle", "start")
+        if (intent.hasExtra("bundle")) {
+            val bundle = intent.getBundleExtra("bundle")
+            val icn = bundle?.getInt("dataIcn")
+            val content = bundle?.getString("dataContent")
+            val money = bundle?.getString("dataMoney")
 
-            // GridLayoutManager(this, 2, LinearLayoutManager.VERTICAL, false)
+            dataList.add(
+                IncomeNoteList(icn!!, content!!, money!!)
+            )
+
+            noteRecycler.adapter?.notifyDataSetChanged()
+        }else{
+            Log.d("bundle", "null")
         }
-        /*
-        else {
-            noteRecycler.layoutManager =
-                LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
-            // 스타일이 false일 경우 리니어레이아웃으로 설정
-        }
-         */
     }
 
-    fun refreshListAsc() {
-        val list = ArrayList<IncomeNoteList>()
-        // 리스트 설정
+    override fun onResume() {
+        super.onResume()
+        Log.d("LifeCycle", "resume")
+    }
 
-        val cursor: Cursor = database.rawQuery(
-            "select * from noteData order by time ASC",
-            null
-        )
-        // cursor 설정 (db베이스에서 내림차순으로 불러옴)
-        // ASC 생략 가능
+    override fun onPause() {
+        super.onPause()
+        Log.d("LifeCycle", "pause")
+    }
 
-        for (i in 0 until cursor.count) {
-            // count가 100이면 0 부터 99까지
+    override fun onStop() {
+        super.onStop()
+        Log.d("LifeCycle", "stop")
+    }
 
-            cursor.moveToNext() // 커서 이동
-            val title = cursor.getString(1)
-            val content = cursor.getString(2)
-            val color = cursor.getString(4)
-//            list.add(IncomeNoteList(title, content, color))
-            // 리스트에 DB에 담긴 내용 추가
-        }
-        cursor.close()
-        // 커서를 닫음
+    override fun onRestart() {
+        super.onRestart()
+        Log.d("LifeCycle", "restart")
+    }
 
-        noteRecycler.adapter = IncomeNoteAdapter(list) //리사이클러뷰 어댑터 할당
+    override fun onDestroy() {
+        super.onDestroy()
+        Log.d("LifeCycle", "destroy")
     }
 
     //리사이클러뷰에 데이터 넣기
     fun initAddData() {
+        if (intent.hasExtra("bundle")) {
+            val bundle = intent.getBundleExtra("bundle")
+            val icn = bundle?.getInt("dataIcn")
+            val content = bundle?.getString("dataContent")
+            val money = bundle?.getString("dataMoney")
 
-        var icn = 0
-        var content = ""
-        var money = ""
-        if (intent.hasExtra("dataIcn")) {
-            icn = intent.getIntExtra("dataIcn", 0) //아이콘
+            dataList.add(
+                IncomeNoteList(icn!!, content!!, money!!)
+            )
+
+            noteRecycler.adapter?.notifyDataSetChanged()
         }
-        if (intent.hasExtra("dataContent")){
-            content = intent.getStringExtra("dataContent").toString() //내용
-
-        }
-        if (intent.hasExtra("dataMoney")){
-            money = intent.getStringExtra("dataMoney").toString() //금액 입력
-
-        }
-        dataList.add(
-            IncomeNoteList(icn, content, money)
-        )
-
-        noteRecycler.adapter?.notifyDataSetChanged()
     }
 
-    private fun createTable() {
-        database.execSQL(
-            "create table if not exists ${tableName}(" +
-                    "_id integer PRIMARY KEY autoincrement," +
-                    "title text," +
-                    "content text," +
-                    "time text," +
-                    "color text)"
-        )
-    }
+//    private fun layoutStyle() {
+//        if (layoutStyle) {
+//            noteRecycler.layoutManager =
+//                LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
+//            //StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL)
+//            // 스타일이 true일 경우 StaggeredGrid로 설정
+//            // -> 일반 그리드 레이아웃으로 설정하고자 하면 아래 주석을 해제
+//
+//            // GridLayoutManager(this, 2, LinearLayoutManager.VERTICAL, false)
+//        }
+//        /*
+//        else {
+//            noteRecycler.layoutManager =
+//                LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
+//            // 스타일이 false일 경우 리니어레이아웃으로 설정
+//        }
+//         */
+//    }
 
-    private fun databaseCreate() {
-        // 데이터베이스 생성 | 쓰기 가능한 상태로 설정
-        dbHelper = IncomeDatabaseHelper(this)
-        database = dbHelper.writableDatabase
-    }
+//    fun refreshListAsc() {
+//        val list = ArrayList<IncomeNoteList>()
+//        // 리스트 설정
+//
+//        val cursor: Cursor = database.rawQuery(
+//            "select * from noteData order by time ASC",
+//            null
+//        )
+//        // cursor 설정 (db베이스에서 내림차순으로 불러옴)
+//        // ASC 생략 가능
+//
+//        for (i in 0 until cursor.count) {
+//            // count가 100이면 0 부터 99까지
+//
+//            cursor.moveToNext() // 커서 이동
+//            val title = cursor.getString(1)
+//            val content = cursor.getString(2)
+//            val color = cursor.getString(4)
+////            list.add(IncomeNoteList(title, content, color))
+//            // 리스트에 DB에 담긴 내용 추가
+//        }
+//        cursor.close()
+//        // 커서를 닫음
+//
+//        noteRecycler.adapter = IncomeNoteAdapter(list) //리사이클러뷰 어댑터 할당
+//    }
+
+
+//    private fun createTable() {
+//        database.execSQL(
+//            "create table if not exists ${tableName}(" +
+//                    "_id integer PRIMARY KEY autoincrement," +
+//                    "title text," +
+//                    "content text," +
+//                    "time text," +
+//                    "color text)"
+//        )
+//    }
+//
+//    private fun databaseCreate() {
+//        // 데이터베이스 생성 | 쓰기 가능한 상태로 설정
+//        dbHelper = IncomeDatabaseHelper(this)
+//        database = dbHelper.writableDatabase
+//    }
 
 
 //    @SuppressLint("Recycle")
