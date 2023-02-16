@@ -55,37 +55,40 @@ class LoginActivity : AppCompatActivity() {
         val profileCallback = object : NidProfileCallback<NidProfileResponse> {
             override fun onSuccess(response: NidProfileResponse) {
                 val userId = response.profile?.id
-                val userEmail = response.profile?.email
-                val userNickname = response.profile?.nickname
+                val userEmail = response.profile?.email.toString()
+                val userNickname = response.profile?.nickname.toString()
                 Log.d("login", "id: ${userId} \ntoken: ${naverToken}")
                 setLayoutState(true)
 
                 Toast.makeText(this@LoginActivity, "네이버 아이디 로그인 성공!", Toast.LENGTH_SHORT).show()
 
+                //서버로 데이터 보내기
                 val authService = getRetrofit().create(ApiService::class.java)
-                authService.loginNaver(userEmail, userNickname).enqueue(object : Callback<Void> {
-                    override fun onResponse(call: Call<Void>, response: retrofit2.Response<Void>) {
+                authService.loginNaver(userEmail, userNickname).enqueue(object : Callback<String> {
+                    override fun onResponse(call: Call<String>, response: retrofit2.Response<String>) {
                         if (response.isSuccessful) {
                             val data = response.body()
-                            val intent = Intent(this@LoginActivity, MainActivity::class.java)
-                            startActivity(intent)
                             if (data != null) {
-                                Log.d("test_retrofit", "열차 정보 :" + data)
+                                Log.d("test_retrofit", "네이버 로그인 정보 :" + data)
+                                if (data == "no goal") {
+                                    // 목표 설정 없음
+                                    val intent = Intent(this@LoginActivity, GoalActivity::class.java)
+                                    startActivity(intent)
+                                } else if(data == "exist"){
+                                    //목표 설정 있음
+                                    val intent = Intent(this@LoginActivity, MainActivity::class.java)
+                                }
                             }
                         } else {
                             Log.w("retrofit", "실패 ${response.code()}")
                         }
                     }
 
-                    override fun onFailure(call: Call<Void>, t: Throwable) {
-                        Log.w("retrofit", "열차 정보 접근 실패", t)
-                        Log.w("retrofit", "열차 정보 접근 실패 response",)
+                    override fun onFailure(call: Call<String>, t: Throwable) {
+                        Log.w("retrofit", "네이버 로그인 정보 접근 실패", t)
+                        Log.w("retrofit", "네이버 로그인 정보 접근 실패 response",)
                     }
                 })
-
-                //목표 설정이 없는 경우
-//                val intent = Intent(this@LoginActivity, GoalActivity::class.java)
-//                startActivity(intent)
             }
             override fun onFailure(httpStatus: Int, message: String) {
                 val errorCode = NaverIdLoginSDK.getLastErrorCode().code
@@ -162,7 +165,7 @@ class LoginActivity : AppCompatActivity() {
 
     private fun setLayoutState(login: Boolean){
         if(login){
-            val intent = Intent(applicationContext, MainActivity::class.java)
+            val intent = Intent(applicationContext, GoalActivity::class.java)
             startActivity(intent)
         }else{
 //            viewBinding.tvNaverLogin.visibility = View.VISIBLE
@@ -183,8 +186,47 @@ class LoginActivity : AppCompatActivity() {
             } else if (token != null) {
                 Log.i(TAG, "카카오계정으로 로그인 성공 ${token.accessToken}")
 
-                val intent = Intent(this@LoginActivity, MainActivity::class.java)
-                startActivity(intent)
+                UserApiClient.instance.me { user, error ->
+                    if (error != null) {
+                        Log.e(TAG, "사용자 정보 요청 실패", error)
+                    }
+                    else if (user != null) {
+                        Log.i(TAG, "사용자 정보 요청 성공" +
+                                "\n이메일: ${user.kakaoAccount?.email}" +
+                                "\n닉네임: ${user.kakaoAccount?.profile?.nickname}")
+                    }
+                }
+
+//                //이메일, 닉네임 가져오기
+//                val userEmail = token.
+//
+//                //서버로 데이터 보내기
+//                val authService = getRetrofit().create(ApiService::class.java)
+//                authService.loginNaver(userEmail, userNickname).enqueue(object : Callback<String> {
+//                    override fun onResponse(call: Call<String>, response: retrofit2.Response<String>) {
+//                        if (response.isSuccessful) {
+//                            val data = response.body()
+//                            if (data != null) {
+//                                Log.d("test_retrofit", "카카오 로그인 정보 :" + data)
+//                                if (data == "no goal") {
+//                                    // 목표 설정 없음
+//                                    val intent = Intent(this@LoginActivity, GoalActivity::class.java)
+//                                    startActivity(intent)
+//                                } else if(data == "exist"){
+//                                    //목표 설정 있음
+//                                    val intent = Intent(this@LoginActivity, MainActivity::class.java)
+//                                }
+//                            }
+//                        } else {
+//                            Log.w("retrofit", "실패 ${response.code()}")
+//                        }
+//                    }
+//
+//                    override fun onFailure(call: Call<String>, t: Throwable) {
+//                        Log.w("retrofit", "카카오 로그인 정보 접근 실패", t)
+//                        Log.w("retrofit", "카카오 로그인 정보 접근 실패 response",)
+//                    }
+//                })
             }
         }
 
@@ -205,8 +247,47 @@ class LoginActivity : AppCompatActivity() {
                 } else if (token != null) {
                     Log.i(TAG, "카카오톡으로 로그인 성공 ${token.accessToken}")
 
-                    val intent = Intent(this@LoginActivity, MainActivity::class.java)
-                    startActivity(intent)
+                    UserApiClient.instance.me { user, error ->
+                        if (error != null) {
+                            Log.e(TAG, "사용자 정보 요청 실패", error)
+                        }
+                        else if (user != null) {
+                            Log.i(TAG, "사용자 정보 요청 성공" +
+                                    "\n이메일: ${user.kakaoAccount?.email}" +
+                                    "\n닉네임: ${user.kakaoAccount?.profile?.nickname}")
+                        }
+                    }
+
+                    //이메일, 닉네임 가져오기
+
+
+                    //서버로 데이터 보내기
+//                    val authService = getRetrofit().create(ApiService::class.java)
+//                    authService.loginNaver(userEmail, userNickname).enqueue(object : Callback<String> {
+//                        override fun onResponse(call: Call<String>, response: retrofit2.Response<String>) {
+//                            if (response.isSuccessful) {
+//                                val data = response.body()
+//                                if (data != null) {
+//                                    Log.d("test_retrofit", "카카오계정 로그인 정보 :" + data)
+//                                    if (data == "no goal") {
+//                                        // 목표 설정 없음
+//                                        val intent = Intent(this@LoginActivity, GoalActivity::class.java)
+//                                        startActivity(intent)
+//                                    } else if(data == "exist"){
+//                                        //목표 설정 있음
+//                                        val intent = Intent(this@LoginActivity, MainActivity::class.java)
+//                                    }
+//                                }
+//                            } else {
+//                                Log.w("retrofit", "실패 ${response.code()}")
+//                            }
+//                        }
+//
+//                        override fun onFailure(call: Call<String>, t: Throwable) {
+//                            Log.w("retrofit", "카카오계정 로그인 정보 접근 실패", t)
+//                            Log.w("retrofit", "카카오계정 로그인 정보 접근 실패 response",)
+//                        }
+//                    })
                 }
             }
         } else {

@@ -61,19 +61,18 @@ class IncomeNotepadActivity : AppCompatActivity() {
 
                 //Toast.makeText(this, "저장 완료", Toast.LENGTH_SHORT).show()
 
-                startActivity(Intent(this, MainActivity::class.java))
+                startActivity(Intent(this, IncomeActivity::class.java))
                 finish()
             }
         }
 
         btnCancel.setOnClickListener {
-            finish()
-            startActivity(Intent(this, MainActivity::class.java))
+            startActivity(Intent(this, IncomeActivity::class.java))
         }
     }
 
     override fun onBackPressed() {
         finish()
-        startActivity(Intent(this, MainActivity::class.java))
+        startActivity(Intent(this, IncomeActivity::class.java))
     }
 }
