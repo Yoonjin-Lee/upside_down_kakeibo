@@ -175,7 +175,7 @@ class LoginActivity : AppCompatActivity() {
         }
     }
 
-    private fun startKaKaoLogin(){
+    private fun startKaKaoLogin() {
         // 로그인 조합 예제
 
         // 카카오계정으로 로그인 공통 callback 구성
@@ -197,10 +197,9 @@ class LoginActivity : AppCompatActivity() {
                     }
                 }
 
-//                //이메일, 닉네임 가져오기
-//                val userEmail = token.
-//
-//                //서버로 데이터 보내기
+                //이메일, 닉네임 가져오기
+
+                //서버로 데이터 보내기
 //                val authService = getRetrofit().create(ApiService::class.java)
 //                authService.loginNaver(userEmail, userNickname).enqueue(object : Callback<String> {
 //                    override fun onResponse(call: Call<String>, response: retrofit2.Response<String>) {
@@ -230,7 +229,7 @@ class LoginActivity : AppCompatActivity() {
             }
         }
 
-        // 카카오톡이 설치되어 있으면 카카오톡으로 로그인, 아니면 카카오계정으로 로그인
+         // 카카오톡이 설치되어 있으면 카카오톡으로 로그인, 아니면 카카오계정으로 로그인
         if (UserApiClient.instance.isKakaoTalkLoginAvailable(this)) {
             UserApiClient.instance.loginWithKakaoTalk(this) { token, error ->
                 if (error != null) {
@@ -261,7 +260,7 @@ class LoginActivity : AppCompatActivity() {
                     //이메일, 닉네임 가져오기
 
 
-                    //서버로 데이터 보내기
+//                    //서버로 데이터 보내기
 //                    val authService = getRetrofit().create(ApiService::class.java)
 //                    authService.loginNaver(userEmail, userNickname).enqueue(object : Callback<String> {
 //                        override fun onResponse(call: Call<String>, response: retrofit2.Response<String>) {

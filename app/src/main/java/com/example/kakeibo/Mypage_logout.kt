@@ -4,6 +4,8 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.example.kakeibo.databinding.ActivityMypageLogoutBinding
+import com.kakao.sdk.common.KakaoSdk
+import com.navercorp.nid.NaverIdLoginSDK
 
 class Mypage_logout : AppCompatActivity() {
     private lateinit var binding: ActivityMypageLogoutBinding
@@ -19,6 +21,11 @@ class Mypage_logout : AppCompatActivity() {
             val intent = Intent(this, LoginActivity::class.java);
             intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
             intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+
+            //로그아웃 구현
+            NaverIdLoginSDK.logout()
+
+
             startActivity(intent);
             finish()
         }
