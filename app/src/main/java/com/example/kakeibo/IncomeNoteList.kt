@@ -1,3 +1,7 @@
 package com.example.kakeibo
 
-class IncomeNoteList (var title: String, var contents: String, var color: String) {}
+data class IncomeNoteList (
+    val itemIcn: Int, //아이콘 이미지
+    val itemContent: String, //내용
+    val itemMoney: String, //금액 입력
+    )

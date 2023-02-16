@@ -194,38 +194,39 @@ class LoginActivity : AppCompatActivity() {
                         Log.i(TAG, "사용자 정보 요청 성공" +
                                 "\n이메일: ${user.kakaoAccount?.email}" +
                                 "\n닉네임: ${user.kakaoAccount?.profile?.nickname}")
+
+                        val userEmail = user.kakaoAccount?.email
+                        val userNickname = user.kakaoAccount?.profile?.nickname
+
+                        //서버로 데이터 보내기
+                        val authService = getRetrofit().create(ApiService::class.java)
+                        authService.loginNaver(userEmail, userNickname).enqueue(object : Callback<String> {
+                            override fun onResponse(call: Call<String>, response: retrofit2.Response<String>) {
+                                if (response.isSuccessful) {
+                                    val data = response.body()
+                                    if (data != null) {
+                                        Log.d("test_retrofit", "카카오계정 로그인 정보 :" + data)
+                                        if (data == "no goal") {
+                                            // 목표 설정 없음
+                                            val intent = Intent(this@LoginActivity, GoalActivity::class.java)
+                                            startActivity(intent)
+                                        } else if(data == "exist"){
+                                            //목표 설정 있음
+                                            val intent = Intent(this@LoginActivity, MainActivity::class.java)
+                                        }
+                                    }
+                                } else {
+                                    Log.w("retrofit", "실패 ${response.code()}")
+                                }
+                            }
+
+                            override fun onFailure(call: Call<String>, t: Throwable) {
+                                Log.w("retrofit", "카카오계정 로그인 정보 접근 실패", t)
+                                Log.w("retrofit", "카카오계정 로그인 정보 접근 실패 response",)
+                            }
+                        })
                     }
                 }
-
-                //이메일, 닉네임 가져오기
-
-                //서버로 데이터 보내기
-//                val authService = getRetrofit().create(ApiService::class.java)
-//                authService.loginNaver(userEmail, userNickname).enqueue(object : Callback<String> {
-//                    override fun onResponse(call: Call<String>, response: retrofit2.Response<String>) {
-//                        if (response.isSuccessful) {
-//                            val data = response.body()
-//                            if (data != null) {
-//                                Log.d("test_retrofit", "카카오 로그인 정보 :" + data)
-//                                if (data == "no goal") {
-//                                    // 목표 설정 없음
-//                                    val intent = Intent(this@LoginActivity, GoalActivity::class.java)
-//                                    startActivity(intent)
-//                                } else if(data == "exist"){
-//                                    //목표 설정 있음
-//                                    val intent = Intent(this@LoginActivity, MainActivity::class.java)
-//                                }
-//                            }
-//                        } else {
-//                            Log.w("retrofit", "실패 ${response.code()}")
-//                        }
-//                    }
-//
-//                    override fun onFailure(call: Call<String>, t: Throwable) {
-//                        Log.w("retrofit", "카카오 로그인 정보 접근 실패", t)
-//                        Log.w("retrofit", "카카오 로그인 정보 접근 실패 response",)
-//                    }
-//                })
             }
         }
 
@@ -254,39 +255,40 @@ class LoginActivity : AppCompatActivity() {
                             Log.i(TAG, "사용자 정보 요청 성공" +
                                     "\n이메일: ${user.kakaoAccount?.email}" +
                                     "\n닉네임: ${user.kakaoAccount?.profile?.nickname}")
+
+                            // 이메일, 닉네임 가져오기
+                            val userEmail = user.kakaoAccount?.email
+                            val userNickname = user.kakaoAccount?.profile?.nickname
+
+                            //서버로 데이터 보내기
+                            val authService = getRetrofit().create(ApiService::class.java)
+                            authService.loginNaver(userEmail, userNickname).enqueue(object : Callback<String> {
+                                override fun onResponse(call: Call<String>, response: retrofit2.Response<String>) {
+                                    if (response.isSuccessful) {
+                                        val data = response.body()
+                                        if (data != null) {
+                                            Log.d("test_retrofit", "카카오톡 로그인 정보 :" + data)
+                                            if (data == "no goal") {
+                                                // 목표 설정 없음
+                                                val intent = Intent(this@LoginActivity, GoalActivity::class.java)
+                                                startActivity(intent)
+                                            } else if(data == "exist"){
+                                                //목표 설정 있음
+                                                val intent = Intent(this@LoginActivity, MainActivity::class.java)
+                                            }
+                                        }
+                                    } else {
+                                        Log.w("retrofit", "실패 ${response.code()}")
+                                    }
+                                }
+
+                                override fun onFailure(call: Call<String>, t: Throwable) {
+                                    Log.w("retrofit", "카카오톡 로그인 정보 접근 실패", t)
+                                    Log.w("retrofit", "카카오톡 로그인 정보 접근 실패 response",)
+                                }
+                            })
                         }
                     }
-
-                    //이메일, 닉네임 가져오기
-
-
-//                    //서버로 데이터 보내기
-//                    val authService = getRetrofit().create(ApiService::class.java)
-//                    authService.loginNaver(userEmail, userNickname).enqueue(object : Callback<String> {
-//                        override fun onResponse(call: Call<String>, response: retrofit2.Response<String>) {
-//                            if (response.isSuccessful) {
-//                                val data = response.body()
-//                                if (data != null) {
-//                                    Log.d("test_retrofit", "카카오계정 로그인 정보 :" + data)
-//                                    if (data == "no goal") {
-//                                        // 목표 설정 없음
-//                                        val intent = Intent(this@LoginActivity, GoalActivity::class.java)
-//                                        startActivity(intent)
-//                                    } else if(data == "exist"){
-//                                        //목표 설정 있음
-//                                        val intent = Intent(this@LoginActivity, MainActivity::class.java)
-//                                    }
-//                                }
-//                            } else {
-//                                Log.w("retrofit", "실패 ${response.code()}")
-//                            }
-//                        }
-//
-//                        override fun onFailure(call: Call<String>, t: Throwable) {
-//                            Log.w("retrofit", "카카오계정 로그인 정보 접근 실패", t)
-//                            Log.w("retrofit", "카카오계정 로그인 정보 접근 실패 response",)
-//                        }
-//                    })
                 }
             }
         } else {
