@@ -7,6 +7,7 @@ import android.database.sqlite.SQLiteDatabase
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
+import android.widget.Button
 import android.widget.SearchView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -60,6 +61,14 @@ class IncomeActivity : AppCompatActivity() {
 
         // 이 구간은 작성 및 수정에서 빠져나왔을 때
         // 정렬 값을 기억하고 설정하기 위함임
+
+        //시작 버튼
+        val startBtn = findViewById<Button>(R.id.startBtn)
+
+        startBtn.setOnClickListener {
+            val intent = Intent(this, MainActivity::class.java)
+            startActivity(intent)
+        }
     }
 
     private fun layoutStyle() {

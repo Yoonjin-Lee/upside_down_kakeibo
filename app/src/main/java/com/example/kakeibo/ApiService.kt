@@ -16,5 +16,5 @@ interface ApiService {
     @GET("/user/login")
     fun loginNaver(
         @Query("email") email : String?,
-        @Query("name") name : String?) : Call<Void>
+        @Query("name") name : String?) : Call<String>
 }
