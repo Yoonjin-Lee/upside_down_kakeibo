@@ -246,6 +246,7 @@
         android:paddingStart="30.6dp"
         android:textColorHint="#a0a0a0"
         android:textSize="16sp"
+        android:inputType="number"
         app:layout_constraintStart_toStartOf="@id/tv_add_history_main_money"
         app:layout_constraintTop_toBottomOf="@id/tv_add_history_main_money"
         tools:ignore="RtlSymmetry" />

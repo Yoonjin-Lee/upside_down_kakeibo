@@ -77,6 +77,7 @@ class LoginActivity : AppCompatActivity() {
                                 } else if(data == "exist"){
                                     //목표 설정 있음
                                     val intent = Intent(this@LoginActivity, MainActivity::class.java)
+                                    startActivity(intent)
                                 }
                             }
                         } else {
@@ -165,8 +166,8 @@ class LoginActivity : AppCompatActivity() {
 
     private fun setLayoutState(login: Boolean){
         if(login){
-            val intent = Intent(applicationContext, GoalActivity::class.java)
-            startActivity(intent)
+//            val intent = Intent(applicationContext, GoalActivity::class.java)
+//            startActivity(intent)
         }else{
 //            viewBinding.tvNaverLogin.visibility = View.VISIBLE
 //            viewBinding.tvNaverLogout.visibility = View.GONE
