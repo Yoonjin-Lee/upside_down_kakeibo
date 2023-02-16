@@ -31,18 +31,18 @@ class GoalActivity : AppCompatActivity() {
 
         //시크바 개월 수
 //        setContentView(binding.root)
-//        viewBinding.seekBar.setOnSeekBarChangeListener(object: SeekBar.OnSeekBarChangeListener{
-//            override fun onProgressChanged(seekBar: SeekBar?,progress: Int,
-//                                           fromUser: Boolean) {
-//                viewBinding.month.text = progress.toString() +"개월"
-//            }
-//
-//            override fun onStartTrackingTouch(seekBar: SeekBar?) {
-//            }
-//
-//            override fun onStopTrackingTouch(seekBar: SeekBar?) {
-//            }
-//        })
+        viewBinding.seekBar.setOnSeekBarChangeListener(object: SeekBar.OnSeekBarChangeListener{
+            override fun onProgressChanged(seekBar: SeekBar?,progress: Int,
+                                           fromUser: Boolean) {
+                viewBinding.month.text = progress.toString() +"개월"
+            }
+
+            override fun onStartTrackingTouch(seekBar: SeekBar?) {
+            }
+
+            override fun onStopTrackingTouch(seekBar: SeekBar?) {
+            }
+        })
 
 
         //버튼 활성화

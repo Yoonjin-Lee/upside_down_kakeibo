@@ -40,13 +40,13 @@ class IncomeNoteAdapter(private val items: List<IncomeNoteList>) :
             val title: TextView = view.findViewById(R.id.textView_title_recyclerView)
             val contents: TextView = view.findViewById(R.id.textView_contents_recyclerView)
 
-            title.text = item.title
-            contents.text = item.contents
+            title.text = item.itemContent
+            contents.text = item.itemMoney
 
-            when(item.color) {
-                "0" -> view.setBackgroundResource(R.drawable.rounding_content)
-                else -> view.setBackgroundResource(R.drawable.rounding_content)
-            }
+//            when(item.color) {
+//                "0" -> view.setBackgroundResource(R.drawable.rounding_content)
+//                else -> view.setBackgroundResource(R.drawable.rounding_content)
+//            }
 
             view.setOnClickListener { v ->
 
@@ -116,8 +116,8 @@ class IncomeNoteAdapter(private val items: List<IncomeNoteList>) :
                         arrayOf(cursor.getInt(0).toString())
                     )
                     cursor.close()
-                    if (sort == "desc")
-                        (v.context as IncomeActivity).refreshListAsc()
+//                    if (sort == "desc")
+//                        (v.context as IncomeActivity).refreshListAsc()
                        // (v.context as MainActivity).refreshListDesc()
                    /* else
                         (v.context as MainActivity).refreshListAsc()*/
