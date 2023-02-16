@@ -33,7 +33,7 @@
         android:id="@+id/sharescreen"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:background="@drawable/two_angle_round_layout"
+        android:background="@drawable/round_top_left_top_right_corner_12dp"
         app:layout_constraintBottom_toTopOf="@id/button"
         app:layout_constraintTop_toBottomOf="@id/title"
         android:paddingBottom="40dp">

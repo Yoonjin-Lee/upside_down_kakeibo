@@ -7,10 +7,12 @@ import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
+import retrofit2.converter.scalars.ScalarsConverterFactory
 import java.net.CookieManager
 import java.util.concurrent.TimeUnit
 
-const val BASE_URL = "http://172.30.1.82:1108"
+//const val BASE_URL = "http://ekh-be2.shop"
+const val BASE_URL = "http://172.30.1.91:4973"
 
 //fun getRetrofit(): Retrofit {
 //    val retrofit = Retrofit.Builder().baseUrl(BASE_URL)
@@ -39,6 +41,7 @@ fun getRetrofit(): Retrofit {
         instance = Retrofit.Builder()
             .baseUrl(BASE_URL)
             .addConverterFactory(GsonConverterFactory.create(gson))
+//            .addConverterFactory(ScalarsConverterFactory.create())
             .client(client)
             .build()
     }

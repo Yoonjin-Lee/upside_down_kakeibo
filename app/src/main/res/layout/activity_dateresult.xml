@@ -35,7 +35,7 @@
         android:layout_height="0dp"
         app:layout_constraintTop_toBottomOf="@id/title"
         app:layout_constraintBottom_toBottomOf="parent"
-        android:background="@drawable/two_angle_round_layout"
+        android:background="@drawable/round_top_left_top_right_corner_12dp"
         android:layout_marginTop="16dp">
 
         <!--월/일 표시 부분-->

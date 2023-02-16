@@ -35,7 +35,7 @@ class PastRecordActivity : AppCompatActivity() {
         val verticalItemDecorator = PastRecordActivity.VerticalDecorator(16)
         binding.recyclerPastRecord.addItemDecoration(verticalItemDecorator)
 
-            binding.pastrecordExit.setOnClickListener{
+            binding.mypageExit.setOnClickListener{
                 finish()
             }
 
