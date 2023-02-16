@@ -20,7 +20,7 @@ class MypageFragment : Fragment() {
         var mypage_name = binding.mypageName
         mypage_name.append("님, 잘 하고 있어요!")
 
-        binding.mypageProgressbar.progress = 30
+        binding.mypageProgressbar.progress = 90
        binding.mypagePercent.text = binding.mypageProgressbar.progress.toString() + "%"
 
 
