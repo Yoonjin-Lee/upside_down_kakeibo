@@ -1,47 +1,50 @@
 package com.example.kakeibo
 
-import android.annotation.SuppressLint
 import android.content.Intent
-import android.database.Cursor
-import android.database.sqlite.SQLiteDatabase
 import android.os.Bundle
 import android.util.Log
-import android.view.Menu
-import android.view.MenuItem
 import android.widget.Button
-import android.widget.SearchView
-import androidx.activity.result.ActivityResult
-import androidx.activity.result.ActivityResultLauncher
-import androidx.activity.result.contract.ActivityResultContracts
-import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.FragmentActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.kakeibo.R
+import com.example.kakeibo.databinding.ActivityIncomeBinding
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
+import com.jakewharton.threetenabp.AndroidThreeTen
+import org.threeten.bp.format.DateTimeFormatter
+import retrofit2.Call
+import java.util.*
 
 
 class IncomeActivity : FragmentActivity() {
 
-    private val tableName: String = "noteData"
+//    private val tableName: String = "noteData"
+//
+//    private lateinit var dbHelper: IncomeDatabaseHelper
+//    private lateinit var database: SQLiteDatabase
 
-    private lateinit var dbHelper: IncomeDatabaseHelper
-    private lateinit var database: SQLiteDatabase
-
-    var sort: String = "desc"
+//    var sort: String = "desc"
 
     lateinit var noteRecycler: RecyclerView
 
-    var layoutStyle: Boolean = true
+//    var layoutStyle: Boolean = true
 
-    var searchText: String = ""
+//    var searchText: String = ""
 
     // yoonjin - fragment 변경 부분
     var dataList: ArrayList<IncomeNoteList> = arrayListOf()
+    private lateinit var viewBinding: ActivityIncomeBinding
+//    var monthMoney = ""
+    var goalDate = ""
+
+    var money = ""
+    var period = ""
+    var memo = ""
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_income)
+        viewBinding = ActivityIncomeBinding.inflate(layoutInflater)
+        setContentView(viewBinding.root)
+        AndroidThreeTen.init(this)
 
 //        databaseCreate() // 데이터베이스 생성 함수
 //        createTable() // 테이블 생성 함수
@@ -63,7 +66,18 @@ class IncomeActivity : FragmentActivity() {
         val newNotepad: android.widget.Button = findViewById(R.id.newNoteButton_main)
         // 이미지버튼 설정
         // 추가 버튼 부분
+        val listener = object : AddSpendingIncomeFragment.OnActionCompleteListener{
+            override fun onActionComplete(item: IncomeNoteList) {
+                if (item != null){
+                    dataList.add(item)
+                }
+
+                noteRecycler.adapter?.notifyDataSetChanged()
+            }
+        }
+
         val bottomSheetDialogFragment = AddSpendingIncomeFragment()
+        bottomSheetDialogFragment.setOnActionCompleteListener(listener)
         //모서리 둥글게
         bottomSheetDialogFragment.setStyle(
             BottomSheetDialogFragment.STYLE_NORMAL,
@@ -73,8 +87,6 @@ class IncomeActivity : FragmentActivity() {
         newNotepad.setOnClickListener {
             // 이미지버튼 클릭시
             bottomSheetDialogFragment.show(supportFragmentManager, bottomSheetDialogFragment.tag)
-//            val intent = Intent(this, bottomSheetDialogFragment::class.java)
-//            resultLauncher.launch(intent)
         }
 
 
@@ -91,29 +103,85 @@ class IncomeActivity : FragmentActivity() {
         //시작 버튼
         val startBtn = findViewById<Button>(R.id.startBtn)
 
+        // 날짜 계산
+        val currentDateTime = org.threeten.bp.LocalDate.now()
+        val goalDateTime: org.threeten.bp.LocalDate
+        val formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd")
+        val currentDate = currentDateTime.format(formatter)
+        Log.d("currentDate", currentDate)
+
+        Log.d("intent", intent.getStringExtra("period").toString())
+
+        if (intent.hasExtra("money")) {
+            money = intent.getStringExtra("money").toString()
+            Log.d("money", money)
+        }
+        if (intent.hasExtra("period")) {
+            period = intent.getStringExtra("period").toString()
+            goalDateTime = org.threeten.bp.LocalDate.now().plusMonths(period!!.toLong())
+            goalDate = goalDateTime.format(formatter)
+            Log.d("goalDate", goalDate)
+        }
+        if (intent.hasExtra("memo")) {
+            memo = intent.getStringExtra("memo").toString()
+            Log.d("memo", memo)
+        }
+
+
         startBtn.setOnClickListener {
-            val intent = Intent(this, MainActivity::class.java)
-            startActivity(intent)
+            val income = viewBinding.edMuch.text.toString()
+            var essential: Int = 0
+            for (i in dataList) {
+                essential += i.itemMoney.toInt()
+            }
+            Log.d("필수액", essential.toString())
+            Log.d("요소", "income:  ${income}, money: ${money}, period: ${period}")
+            val daily =
+                (income.toInt() - essential - money.toInt()) * period.toInt() / (period.toInt() * 30)
+
+            // 서버 -> 데이터 넘기기
+            // 한 달 = 30일
+            val goal = ServerGoalData(
+                1,
+                money.toInt(),
+                currentDate,
+                goalDate,
+                memo,
+                income.toInt(),
+                essential,
+                money.toInt(),
+                daily
+            )
+
+            val authService = getRetrofit().create(ApiService::class.java)
+            authService.postGoalData(goal).enqueue(object :
+                retrofit2.Callback<Void> {
+                override fun onResponse(call: Call<Void>, response: retrofit2.Response<Void>) {
+                    if (response.isSuccessful) {
+                        val data = response.body()
+
+                        val intent = Intent(this@IncomeActivity, MainActivity::class.java)
+                        startActivity(intent)
+
+                        if (data != null) {
+                            Log.d("test_retrofit", data.toString())
+                        } else {
+                            Log.w("retrofit", "실패 ${response.code()}")
+                        }
+                    }
+                }
+
+                override fun onFailure(call: Call<Void>, t: Throwable) {
+                    Log.w("retrofit", "목표 정보 접근 실패", t)
+                    Log.w("retrofit", "목표 정보 접근 실패 response")
+                }
+            })
         }
     }
 
     override fun onStart() {
         super.onStart()
         Log.d("LifeCycle", "start")
-        if (intent.hasExtra("bundle")) {
-            val bundle = intent.getBundleExtra("bundle")
-            val icn = bundle?.getInt("dataIcn")
-            val content = bundle?.getString("dataContent")
-            val money = bundle?.getString("dataMoney")
-
-            dataList.add(
-                IncomeNoteList(icn!!, content!!, money!!)
-            )
-
-            noteRecycler.adapter?.notifyDataSetChanged()
-        }else{
-            Log.d("bundle", "null")
-        }
     }
 
     override fun onResume() {
@@ -139,22 +207,6 @@ class IncomeActivity : FragmentActivity() {
     override fun onDestroy() {
         super.onDestroy()
         Log.d("LifeCycle", "destroy")
-    }
-
-    //리사이클러뷰에 데이터 넣기
-    fun initAddData() {
-        if (intent.hasExtra("bundle")) {
-            val bundle = intent.getBundleExtra("bundle")
-            val icn = bundle?.getInt("dataIcn")
-            val content = bundle?.getString("dataContent")
-            val money = bundle?.getString("dataMoney")
-
-            dataList.add(
-                IncomeNoteList(icn!!, content!!, money!!)
-            )
-
-            noteRecycler.adapter?.notifyDataSetChanged()
-        }
     }
 
 //    private fun layoutStyle() {

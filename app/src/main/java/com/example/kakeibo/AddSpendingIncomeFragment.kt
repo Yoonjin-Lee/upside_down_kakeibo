@@ -1,21 +1,15 @@
 package com.example.kakeibo
 
-import android.app.Activity.RESULT_OK
 import android.content.Intent
 import android.os.Bundle
-import android.os.Handler
-import android.os.Looper
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageButton
-import com.example.kakeibo.databinding.FragmentAddHistoryMainBinding
+import androidx.activity.result.contract.ActivityResultContracts
 import com.example.kakeibo.databinding.FragmentAddSpendingIncomeBinding
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
-import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.launch
-import kotlinx.coroutines.runBlocking
 
 
 class AddSpendingIncomeFragment : BottomSheetDialogFragment() {
@@ -34,6 +28,17 @@ class AddSpendingIncomeFragment : BottomSheetDialogFragment() {
     var icGift = false
 
     var recyclerSum = 0
+
+    private lateinit var listener: OnActionCompleteListener
+
+    fun setOnActionCompleteListener(listener: OnActionCompleteListener) {
+        this.listener = listener
+    }
+
+    interface OnActionCompleteListener {
+        fun onActionComplete(item: IncomeNoteList)
+    }
+
 
     //dialog 높이 지정
     override fun onStart() {
@@ -162,14 +167,14 @@ class AddSpendingIncomeFragment : BottomSheetDialogFragment() {
                 viewBinding.tvAddHistoryMainMoneyBox.text.toString()
             ) //금액 입력
 
-            val intent = Intent(context, IncomeActivity::class.java)
-            intent.putExtra("bundle", bundle)
-            startActivity(intent)
-            dismiss()
+//            val intent = Intent(context, IncomeActivity::class.java)
+//            intent.putExtra("bundle", bundle)
+//            startActivity(intent)
+//            dismiss()
 
             //EditText 부분 init
-            viewBinding.tvAddHistoryMainContentBox.setText("") //내용
-            viewBinding.tvAddHistoryMainMoneyBox.setText("") //금액 입력
+//            viewBinding.tvAddHistoryMainContentBox.setText("") //내용
+//            viewBinding.tvAddHistoryMainMoneyBox.setText("") //금액 입력
         }
 
         //중앙 하단 '완료' 버튼 눌렀을 때 실행되는 부분
@@ -186,10 +191,18 @@ class AddSpendingIncomeFragment : BottomSheetDialogFragment() {
             ) //금액 입력
 
 
-            val intent = Intent(context, IncomeActivity::class.java)
-            intent.putExtra("bundle", bundle)
-            startActivity(intent)
+//            val intent = Intent(context, IncomeActivity::class.java)
+//            intent.putExtra("bundle", bundle)
+//            startActivity(intent)
 //            IncomeActivity().initAddData()
+
+            listener.onActionComplete(
+                IncomeNoteList(
+                    resultRadio(), viewBinding.tvAddHistoryMainContentBox.text.toString(),
+                    viewBinding.tvAddHistoryMainMoneyBox.text.toString()
+                )
+            )
+
 
             dismiss()
 
