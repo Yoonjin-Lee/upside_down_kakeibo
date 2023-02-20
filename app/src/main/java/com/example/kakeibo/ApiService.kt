@@ -1,7 +1,5 @@
 package com.example.kakeibo
 
-import android.media.session.MediaSession.Token
-import com.navercorp.nid.oauth.NidOAuthLogin
 import retrofit2.Call
 import retrofit2.http.Body
 import retrofit2.http.GET
@@ -22,14 +20,9 @@ interface ApiService {
 
     @POST("/goal")
     fun postGoalData(
-//        @Query("icon") icon : Int?,
-//        @Query("target_amount") target_amount : Int?,
-//        @Query ("period_start") period_start : String?,
-//        @Query ("period_end") period_end : String?,
-//        @Query ("memo") memo : String?,
-//        @Query ("monthly_income") monthly_income : Int?,
-//        @Query ("essential_amount") essential_amount : Int?,
-//        @Query ("rest_amount") rest_amount : Int?,
-//        @Query ("daily_avail_amount") daily_avail_amount : Int?) : Call<Void>
         @Body goal : ServerGoalData ) : Call<Void>
+
+    @GET("/expenditure/expenditures")
+    fun getExpenditures(
+        @Query("historyId") historyId : Int ) : Call<List<ServerExpenditureData>>
 }

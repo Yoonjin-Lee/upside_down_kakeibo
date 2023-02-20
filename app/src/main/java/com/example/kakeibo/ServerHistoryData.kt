@@ -7,5 +7,5 @@ data class ServerHistoryData(
     @SerializedName("date") var date: String,
     @SerializedName("success") var success : Int,
     @SerializedName("history_id") var historyId : Int,
-//    @SerializedName("money") var money : Int
+    @SerializedName("money") var money : Int
 )
