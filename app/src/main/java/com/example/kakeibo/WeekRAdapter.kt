@@ -29,25 +29,25 @@ class WeekRAdapter(private val weekDataList : ArrayList<WeekData>) : RecyclerVie
             }
             //날짜 버튼 리스너
             viewBinding.btn1.setOnClickListener {
-                dateClickListener.onClick(it, position)
+                dateClickListener.onClick(it, position, viewBinding.btn1.text.toString())
             }
             viewBinding.btn2.setOnClickListener {
-                dateClickListener.onClick(it, position)
+                dateClickListener.onClick(it, position, viewBinding.btn2.text.toString())
             }
             viewBinding.btn3.setOnClickListener {
-                dateClickListener.onClick(it, position)
+                dateClickListener.onClick(it, position, viewBinding.btn3.text.toString())
             }
             viewBinding.btn4.setOnClickListener {
-                dateClickListener.onClick(it, position)
+                dateClickListener.onClick(it, position, viewBinding.btn4.text.toString())
             }
             viewBinding.btn5.setOnClickListener {
-                dateClickListener.onClick(it, position)
+                dateClickListener.onClick(it, position, viewBinding.btn5.text.toString())
             }
             viewBinding.btn6.setOnClickListener {
-                dateClickListener.onClick(it, position)
+                dateClickListener.onClick(it, position, viewBinding.btn6.text.toString())
             }
             viewBinding.btn7.setOnClickListener {
-                dateClickListener.onClick(it, position)
+                dateClickListener.onClick(it, position, viewBinding.btn7.text.toString())
             }
 
             // 버튼 색 설정
@@ -125,7 +125,7 @@ class WeekRAdapter(private val weekDataList : ArrayList<WeekData>) : RecyclerVie
 
     //날짜 버튼
     interface OnDateClickListener{
-        fun onClick(v : View, position: Int)
+        fun onClick(v : View, position: Int, t : String)
     }
 
     fun setDateClickListener(onDateClickListener: OnDateClickListener){
