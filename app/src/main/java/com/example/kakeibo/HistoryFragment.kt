@@ -21,6 +21,7 @@ import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.converter.scalars.ScalarsConverterFactory
 import java.security.SecureRandom
 import java.security.cert.X509Certificate
+import java.util.Dictionary
 import javax.net.ssl.SSLContext
 import javax.net.ssl.TrustManager
 import javax.net.ssl.X509TrustManager
@@ -43,6 +44,9 @@ class HistoryFragment : Fragment() {
         viewBinding.list.adapter = adapter
         viewBinding.list.layoutManager = LinearLayoutManager(context)
 
+        // 날짜, id, 저축 가능 금액 리스트
+        var infoList = mutableMapOf<String, String>()
+
         // api 설정
         val authService = getRetrofit().create(ApiService::class.java)
 
@@ -54,51 +58,59 @@ class HistoryFragment : Fragment() {
                     if (data != null) {
                         Log.d("test_retrofit", data.toString())
 
-//                        val date_num = data.size //총 몇일인지
-//                        val week_num = date_num/7 //몇 주인지
-//                        Log.d("date_num", date_num.toString())
-//                        Log.d("week_num", week_num.toString())
-//
-//                        //1. 주 동안
-//                        //2. 7번
-//                        //3. date_num이 되면 멈추도록
-//
-//                        for (i in 0 until week_num){
-//                            val tempList = arrayListOf<String>()
-//                            //주차 넣기
-//                            tempList.add((i+1).toString())
-//
-//                            for (j in 1..7){
-//                                val index = 10*i + j
-//                                if ((10*i)+j < week_num){ //date_num 전까지는 안의 데이터를 입력
-//                                    if (j != 7){
-//                                        tempList.add(data[index].date)
-//                                        tempList.add(data[index].success.toString())
-//                                    } else {
-//                                        tempList.add(data[index].date)
-//                                        tempList.add(data[index].success.toString())
-//                                        //일요일의 저축 가능 금액
-//                                        tempList.add(data[index].money.toString())
-//                                    }
-//                                } else if ((10*i) + j == week_num) {
-//                                    //마지막 날의 저축 가능 금액을 그 주의 저축 가능 금액으로 설정
-//                                    tempList.add(data[index].date)
-//                                    tempList.add(data[index].success.toString())
-//                                    //마지막 날의 저축 가능 금액
-//                                    tempList[15] = data[index].money.toString()
-//                                } else {
-//                                    // 그 주의 다른 날은 null로 입력.
-//                                    tempList.add("") //날짜
-//                                    tempList.add("3") //버튼 색
-//                                }
-//                            }
-//
-//                            weekDataList.add(
-//                                WeekData(tempList[0], tempList[1], tempList[2].toInt(), tempList[3], tempList[4].toInt(),
-//                            tempList[5], tempList[6].toInt(), tempList[7], tempList[8].toInt(), tempList[9], tempList[10].toInt(),
-//                            tempList[11], tempList[12].toInt(), tempList[13], tempList[14].toInt(), tempList[15])
-//                            )
-//                        }
+                        val date_num = data.size //총 몇일인지
+                        val week_num = date_num/7 //몇 주인지
+                        Log.d("date_num", date_num.toString())
+                        Log.d("week_num", week_num.toString())
+
+                        //1. 주 동안
+                        //2. 7번
+                        //3. date_num이 되면 멈추도록
+
+                        for (i in 0 until week_num){
+                            val tempList = arrayListOf<String>()
+                            //주차 넣기
+                            tempList.add((i+1).toString())
+
+                            for (j in 1..7){
+                                val index = 10*i + j
+
+                                if ((10*i)+j < week_num){ //date_num 전까지는 안의 데이터를 입력
+
+                                    // 정보 따로 수집
+                                    infoList.put(data[index].date, data[index].historyId.toString() + '-' + data[index].money.toString())
+
+                                    if (j != 7){
+                                        tempList.add(data[index].date)
+                                        tempList.add(data[index].success.toString())
+                                    } else {
+                                        tempList.add(data[index].date)
+                                        tempList.add(data[index].success.toString())
+                                        //일요일의 저축 가능 금액
+                                        tempList.add(data[index].money.toString())
+                                    }
+                                } else if ((10*i) + j == week_num) {
+                                    // 정보 따로 수집
+                                    infoList.put(data[index].date, data[index].historyId.toString() + '-' + data[index].money.toString())
+
+                                    //마지막 날의 저축 가능 금액을 그 주의 저축 가능 금액으로 설정
+                                    tempList.add(data[index].date)
+                                    tempList.add(data[index].success.toString())
+                                    //마지막 날의 저축 가능 금액
+                                    tempList[15] = data[index].money.toString()
+                                } else {
+                                    // 그 주의 다른 날은 null로 입력.
+                                    tempList.add("") //날짜
+                                    tempList.add("3") //버튼 색
+                                }
+                            }
+
+                            weekDataList.add(
+                                WeekData(tempList[0], tempList[1], tempList[2].toInt(), tempList[3], tempList[4].toInt(),
+                            tempList[5], tempList[6].toInt(), tempList[7], tempList[8].toInt(), tempList[9], tempList[10].toInt(),
+                            tempList[11], tempList[12].toInt(), tempList[13], tempList[14].toInt(), tempList[15])
+                            )
+                        }
                     }
                 } else {
                     Log.w("retrofit", "실패 ${response.code()}")
@@ -139,8 +151,12 @@ class HistoryFragment : Fragment() {
 
         //날짜 버튼 ClickListener 구현
         adapter.setDateClickListener(object : WeekRAdapter.OnDateClickListener{
-            override fun onClick(v: View, position: Int) {
+            override fun onClick(v: View, position: Int, t : String) {
                 val intent = Intent(context, DateresultActivity::class.java)
+//                val info = infoList[t]!!.split('-')
+                intent.putExtra("historyId", 1)
+                intent.putExtra("date", "3/3")
+                intent.putExtra("money", "10000")
                 startActivity(intent)
             }
         })

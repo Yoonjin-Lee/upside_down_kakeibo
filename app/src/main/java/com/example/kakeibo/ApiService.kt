@@ -1,11 +1,11 @@
 package com.example.kakeibo
 
-import android.media.session.MediaSession.Token
-import com.navercorp.nid.oauth.NidOAuthLogin
 import retrofit2.Call
+import retrofit2.http.Body
 import retrofit2.http.GET
 import retrofit2.http.POST
 import retrofit2.http.Query
+import java.util.*
 
 interface ApiService {
     //history fragment 정보 받기
@@ -17,4 +17,12 @@ interface ApiService {
     fun loginNaver(
         @Query("email") email : String?,
         @Query("name") name : String?) : Call<String>
+
+    @POST("/goal")
+    fun postGoalData(
+        @Body goal : ServerGoalData ) : Call<Void>
+
+    @GET("/expenditure/expenditures")
+    fun getExpenditures(
+        @Query("historyId") historyId : Int ) : Call<List<ServerExpenditureData>>
 }

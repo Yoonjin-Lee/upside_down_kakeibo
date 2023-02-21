@@ -132,10 +132,10 @@ class LoginActivity : AppCompatActivity() {
     /**
      * 로그아웃
      * 애플리케이션에서 로그아웃할 때는 다음과 같이 NaverIdLoginSDK.logout() 메서드를 호출합니다. */
-    private fun startNaverLogout(){
+    fun startNaverLogout(){
         NaverIdLoginSDK.logout()
         setLayoutState(false)
-        Toast.makeText(this@LoginActivity, "네이버 아이디 로그아웃 성공!", Toast.LENGTH_SHORT).show()
+//        Toast.makeText(this@LoginActivity, "네이버 아이디 로그아웃 성공!", Toast.LENGTH_SHORT).show()
     }
 
     /**
@@ -143,7 +143,7 @@ class LoginActivity : AppCompatActivity() {
      * 네이버 아이디와 애플리케이션의 연동을 해제하는 기능은 다음과 같이 NidOAuthLogin().callDeleteTokenApi() 메서드로 구현합니다.
     연동을 해제하면 클라이언트에 저장된 토큰과 서버에 저장된 토큰이 모두 삭제됩니다.
      */
-    private fun startNaverDeleteToken(){
+    fun startNaverDeleteToken(){
         NidOAuthLogin().callDeleteTokenApi(this, object : OAuthLoginCallback {
             override fun onSuccess() {
                 //서버에서 토큰 삭제에 성공한 상태입니다.

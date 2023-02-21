@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
+import android.util.Log
 import android.widget.*
 import androidx.core.widget.addTextChangedListener
 import com.example.kakeibo.databinding.ActivityGoalBinding
@@ -15,7 +16,7 @@ import com.example.kakeibo.databinding.ActivityMainBinding
 class GoalActivity : AppCompatActivity() {
     lateinit var viewBinding: ActivityGoalBinding
     lateinit var memo : String
-
+    var num = ""
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -35,6 +36,7 @@ class GoalActivity : AppCompatActivity() {
             override fun onProgressChanged(seekBar: SeekBar?,progress: Int,
                                            fromUser: Boolean) {
                 viewBinding.month.text = progress.toString() +"개월"
+                num = progress.toString()
             }
 
             override fun onStartTrackingTouch(seekBar: SeekBar?) {
@@ -75,6 +77,10 @@ class GoalActivity : AppCompatActivity() {
         viewBinding.btn.setOnClickListener{
 //            Toast.makeText(this, memo, Toast.LENGTH_SHORT).show()
             val intent = Intent(this, IncomeActivity::class.java)
+            intent.putExtra("money", viewBinding.edMuch.text.toString())
+            intent.putExtra("period", num)
+            Log.d("putExtra", num)
+            intent.putExtra("memo", viewBinding.edMemo.text.toString())
             startActivity(intent)
         }
 

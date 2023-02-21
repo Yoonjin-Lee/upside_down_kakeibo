@@ -23,7 +23,8 @@ class Mypage_logout : AppCompatActivity() {
             intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
 
             //로그아웃 구현
-            NaverIdLoginSDK.logout()
+            LoginActivity().startNaverDeleteToken()
+            LoginActivity().startNaverLogout()
 
 
             startActivity(intent);
