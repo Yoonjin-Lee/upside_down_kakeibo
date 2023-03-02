@@ -21,6 +21,7 @@ import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.converter.scalars.ScalarsConverterFactory
 import java.security.SecureRandom
 import java.security.cert.X509Certificate
+import java.util.Dictionary
 import javax.net.ssl.SSLContext
 import javax.net.ssl.TrustManager
 import javax.net.ssl.X509TrustManager
@@ -43,87 +44,10 @@ class HistoryFragment : Fragment() {
         viewBinding.list.adapter = adapter
         viewBinding.list.layoutManager = LinearLayoutManager(context)
 
-        //API
-        fun getUnsafeOkHttpClient(): OkHttpClient.Builder {
-            val trustAllCerts = arrayOf<TrustManager>(object : X509TrustManager {
-                override fun checkClientTrusted(
-                    chain: Array<out X509Certificate>?,
-                    authType: String?
-                ) {
+        // 날짜, id, 저축 가능 금액 리스트
+        var infoList = mutableMapOf<String, String>()
 
-                }
-
-                override fun checkServerTrusted(
-                    chain: Array<out X509Certificate>?,
-                    authType: String?
-                ) {
-
-                }
-
-                override fun getAcceptedIssuers(): Array<X509Certificate> {
-                    return arrayOf()
-                }
-            })
-
-            val sslContext = SSLContext.getInstance("SSL")
-            sslContext.init(null, trustAllCerts, SecureRandom())
-
-            val sslSocketFactory = sslContext.socketFactory
-
-            val builder = OkHttpClient.Builder()
-            builder.sslSocketFactory(sslSocketFactory, trustAllCerts[0] as X509TrustManager)
-            builder.hostnameVerifier { hostname, session -> true }
-
-            return builder
-        }
-
-        val gson : Gson = GsonBuilder()
-            .setLenient()
-            .create()
-
-        val retrofit = Retrofit.Builder()
-            .baseUrl("http://172.30.1.82:1108")
-//            .addConverterFactory(GsonConverterFactory.create(gson))
-            .addConverterFactory(ScalarsConverterFactory.create())
-            .client(getUnsafeOkHttpClient().build()) //우회
-            .build()
-
-        val apiService = retrofit.create(ApiService::class.java)
-
-//        apiService.getHistoryData().enqueue(object : Callback<String> {
-//            override fun onResponse(call: Call<String>, response: retrofit2.Response<String>) {
-//                if (response.isSuccessful) {
-//                    val data = response.body()
-//
-//                    if (data != null) {
-//                        Log.d("retrofit", "열차 정보 :" + data)
-//
-//                        val date_num = data.length
-//                        val week_num = date_num/7
-//                        Log.d("date_num", date_num.toString())
-//                        Log.d("week_num", week_num.toString())
-//
-//                        for (i in 1 until week_num + 1){
-//                            for (j in data){
-//                                //i = 주차
-//                                val dateData = j
-//                                Log.d("dateData", dateData.toString())
-//                                Log.d("check", "1")
-//                            }
-//                        }
-//                    }
-//                } else {
-//                    Log.w("retrofit", "실패 ${response.code()}")
-//                }
-//            }
-//
-//            override fun onFailure(call: Call<String>, t: Throwable) {
-//                Log.w("retrofit", "열차 정보 접근 실패", t)
-//                Log.w("retrofit", "열차 정보 접근 실패 response",)
-//            }
-//        })
-
-        // test
+        // api 설정
         val authService = getRetrofit().create(ApiService::class.java)
 
         authService.getHistoryData().enqueue(object : Callback<List<ServerHistoryData>> {
@@ -132,20 +56,60 @@ class HistoryFragment : Fragment() {
                     val data = response.body()
 
                     if (data != null) {
-                        Log.d("test_retrofit", "열차 정보 :" + data)
+                        Log.d("test_retrofit", data.toString())
 
-                        val date_num = data.size
-                        val week_num = date_num/7
+                        val date_num = data.size //총 몇일인지
+                        val week_num = date_num/7 //몇 주인지
                         Log.d("date_num", date_num.toString())
                         Log.d("week_num", week_num.toString())
 
-                        for (i in 1 until week_num + 1){
-                            for (j in data){
-                                //i = 주차
-                                val dateData = j
-                                Log.d("dateData", dateData.toString())
-                                Log.d("check", "1")
+                        //1. 주 동안
+                        //2. 7번
+                        //3. date_num이 되면 멈추도록
+
+                        for (i in 0 until week_num){
+                            val tempList = arrayListOf<String>()
+                            //주차 넣기
+                            tempList.add((i+1).toString())
+
+                            for (j in 1..7){
+                                val index = 10*i + j
+
+                                if ((10*i)+j < week_num){ //date_num 전까지는 안의 데이터를 입력
+
+                                    // 정보 따로 수집
+                                    infoList.put(data[index].date, data[index].historyId.toString() + '-' + data[index].money.toString())
+
+                                    if (j != 7){
+                                        tempList.add(data[index].date)
+                                        tempList.add(data[index].success.toString())
+                                    } else {
+                                        tempList.add(data[index].date)
+                                        tempList.add(data[index].success.toString())
+                                        //일요일의 저축 가능 금액
+                                        tempList.add(data[index].money.toString())
+                                    }
+                                } else if ((10*i) + j == week_num) {
+                                    // 정보 따로 수집
+                                    infoList.put(data[index].date, data[index].historyId.toString() + '-' + data[index].money.toString())
+
+                                    //마지막 날의 저축 가능 금액을 그 주의 저축 가능 금액으로 설정
+                                    tempList.add(data[index].date)
+                                    tempList.add(data[index].success.toString())
+                                    //마지막 날의 저축 가능 금액
+                                    tempList[15] = data[index].money.toString()
+                                } else {
+                                    // 그 주의 다른 날은 null로 입력.
+                                    tempList.add("") //날짜
+                                    tempList.add("3") //버튼 색
+                                }
                             }
+
+                            weekDataList.add(
+                                WeekData(tempList[0], tempList[1], tempList[2].toInt(), tempList[3], tempList[4].toInt(),
+                            tempList[5], tempList[6].toInt(), tempList[7], tempList[8].toInt(), tempList[9], tempList[10].toInt(),
+                            tempList[11], tempList[12].toInt(), tempList[13], tempList[14].toInt(), tempList[15])
+                            )
                         }
                     }
                 } else {
@@ -159,16 +123,18 @@ class HistoryFragment : Fragment() {
             }
         })
 
-        //테스트 데이터
+//        테스트 데이터
         adapter.apply {
-            weekDataList.add(WeekData("1주차", "6/14", "6/15", "6/16", "6/17", "6/18", "6/19", "6/20",1,1,1,1, 1, 1,1, "50"))
-            weekDataList.add(WeekData("1주차", "6/14", "6/15", "6/16", "6/17", "6/18", "6/19", "6/20",1,1,1,1, 1, 1,1, "50"))
-            weekDataList.add(WeekData("1주차", "6/14", "6/15", "6/16", "6/17", "6/18", "6/19", "6/20",1,1,1,1, 1, 1,1, "50"))
-            weekDataList.add(WeekData("1주차", "6/14", "6/15", "6/16", "6/17", "6/18", "6/19", "6/20",1,1,1,1, 1, 1,1, "50"))
-            weekDataList.add(WeekData("1주차", "6/14", "6/15", "6/16", "6/17", "6/18", "6/19", "6/20",1,1,1,1, 1, 1,1, "50"))
-            weekDataList.add(WeekData("1주차", "6/14", "6/15", "6/16", "6/17", "6/18", "6/19", "6/20",1,1,1,1, 1, 1,1, "50"))
-            weekDataList.add(WeekData("1주차", "6/14", "6/15", "6/16", "6/17", "6/18", "6/19", "6/20",1,1,1,1, 1, 1,1, "50"))
-            weekDataList.add(WeekData("1주차", "6/14", "6/15", "6/16", "6/17", "6/18", "6/19", "6/20",1,1,1,1, 1, 1,1, "50"))
+            weekDataList.add(WeekData("1주차", "6/14",1, "6/15", 1,"6/16", 1,"6/17", 1,"6/18", 1,"6/19", 1,"6/20",1, "50"))
+            weekDataList.add(WeekData("2주차", "6/21",1, "6/22", 1,"6/23",
+                1,"6/24", 1,"6/25", 0,"6/26", 1,"6/27",
+                1, "50"))
+            weekDataList.add(WeekData("3주차", "6/28",1, "6/29", 1,"6/30",
+                1,"7/1", 1,"7/2", 1,"7/3", 0,"7/4",
+                1, "49"))
+            weekDataList.add(WeekData("4주차", "7/5",1, "7/6", 1,"7/7",
+                1,"7/8", 1,"7/9", 1,"7/10", 1,"7/11",
+                1, "49"))
         }
 
         //리스트 아이템 사이 간격
@@ -185,8 +151,12 @@ class HistoryFragment : Fragment() {
 
         //날짜 버튼 ClickListener 구현
         adapter.setDateClickListener(object : WeekRAdapter.OnDateClickListener{
-            override fun onClick(v: View, position: Int) {
+            override fun onClick(v: View, position: Int, t : String) {
                 val intent = Intent(context, DateresultActivity::class.java)
+//                val info = infoList[t]!!.split('-')
+                intent.putExtra("historyId", 1)
+                intent.putExtra("date", "3/3")
+                intent.putExtra("money", "10000")
                 startActivity(intent)
             }
         })

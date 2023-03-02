@@ -4,6 +4,7 @@
 
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.INTERNET"/>
 
     <application
         android:allowBackup="true"
@@ -16,29 +17,16 @@
         android:theme="@style/Theme.Kakeibo"
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
-
-        <activity
-            android:name=".MainActivity"
+        <activity android:name=".IncomeEditActivity"/>
+        <activity android:name=".IncomeNotepadActivity" />
+        <activity android:name=".IncomeActivity"
             android:exported="true">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-            <meta-data
-                android:name="android.app.lib_name"
-                android:value="" />
         </activity>
+
 
         <activity
             android:name=".PastRecordActivity"
             android:exported="true">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
@@ -53,6 +41,22 @@
                 android:name="android.support.FILE_PROVIDER_PATHS"
                 android:resource="@xml/provider" />
         </provider>
+
+        <activity android:name=".GoalActivity"
+            android:exported="true">
+
+        </activity>
+
+
+        <activity android:name=".LoginActivity"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
 
         <activity
             android:name=".ResultActivity"
@@ -77,10 +81,7 @@
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
-        
-        <activity android:name=".LoginActivity" />
-        <activity android:name=".GoalActivity" />
-        
+
         <activity
             android:name=".mypage_dialog"
             android:exported="true"
@@ -88,6 +89,28 @@
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
+        </activity>
+
+        <activity
+            android:name=".MainActivity"
+            android:exported="true">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+
+        <activity
+            android:name="com.kakao.sdk.auth.AuthCodeHandlerActivity"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.ingit pull origin maintent.action.VIEW" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+
+
+                <data android:host="oauth"
+                    android:scheme="kakao75cc06b6dc6baeabccc2474d39512e5d" />
+            </intent-filter>
         </activity>
     </application>
 

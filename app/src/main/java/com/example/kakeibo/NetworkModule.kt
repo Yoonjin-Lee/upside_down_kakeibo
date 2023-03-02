@@ -7,10 +7,12 @@ import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
+import retrofit2.converter.scalars.ScalarsConverterFactory
 import java.net.CookieManager
 import java.util.concurrent.TimeUnit
 
-const val BASE_URL = "http://172.30.1.82:1108"
+const val BASE_URL = "http://ekh-be2.shop"
+//const val BASE_URL = "http://172.30.1.91:4973"
 
 //fun getRetrofit(): Retrofit {
 //    val retrofit = Retrofit.Builder().baseUrl(BASE_URL)
@@ -36,8 +38,12 @@ fun getRetrofit(): Retrofit {
 //            .connectTimeout(CONNECT_TIMEOUT_SEC, TimeUnit.SECONDS)
             .build()
 
+        // 이 부분이 없어서 no json document 에러가 났던 거였음...
+        val gson = GsonBuilder().setLenient().create()
+
         instance = Retrofit.Builder()
             .baseUrl(BASE_URL)
+            .addConverterFactory(ScalarsConverterFactory.create())
             .addConverterFactory(GsonConverterFactory.create(gson))
             .client(client)
             .build()

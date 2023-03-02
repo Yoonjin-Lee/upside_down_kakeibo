@@ -251,32 +251,6 @@
         app:layout_constraintTop_toBottomOf="@id/tv_add_history_main_money"
         tools:ignore="RtlSymmetry" />
 
-    <!--'한 줄 메모' 부분-->
-    <TextView
-        android:id="@+id/tv_add_history_main_memo"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="한 줄 메모"
-        android:textColor="#191919"
-        android:textSize="14sp"
-        app:layout_constraintStart_toStartOf="@id/tv_add_history_main_icon"
-        app:layout_constraintTop_toBottomOf="@id/tv_add_history_main_money_box" />
-
-    <EditText
-        android:id="@+id/tv_add_history_main_memo_box"
-        android:layout_width="match_parent"
-        android:layout_height="98dp"
-        android:background="@drawable/round_border"
-        android:gravity="top"
-        android:hint="한 줄 메모를 입력하세요"
-        android:paddingStart="30.6dp"
-        android:paddingTop="27.5dp"
-        android:textColorHint="#a0a0a0"
-        android:textSize="11sp"
-        app:layout_constraintStart_toStartOf="@id/tv_add_history_main_money"
-        app:layout_constraintTop_toBottomOf="@id/tv_add_history_main_memo"
-        tools:ignore="RtlSymmetry" />
-
     <Button
         android:id="@+id/btn_add_history_main_big_done"
         android:layout_width="match_parent"
