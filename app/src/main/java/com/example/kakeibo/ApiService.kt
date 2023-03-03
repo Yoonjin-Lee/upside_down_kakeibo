@@ -25,4 +25,26 @@ interface ApiService {
     @GET("/expenditure/expenditures")
     fun getExpenditures(
         @Query("historyId") historyId : Int ) : Call<List<ServerExpenditureData>>
+
+
+//    //Progress Bar
+//    @GET("/goal/progressbar")
+//    fun getProgressBar():Call<Int>
+
+//    //특정 유저 오늘 사용 가능한 금액 조회
+//    @GET("/goal/daily-avail-amount")
+//    fun getDailyAvailAmount(
+//        @Query("goal_id") goal_id : Int,
+//        @Query("user_id") user_id : Int):Call<Data_DailyAvailable>
+
+    //저축 가능한 금액 불러오기
+    @GET("/goal/rest-amount")
+    fun getRestAmount(
+        @Query("goal_id") goal_id : Int):Call<Long>
+
+//    //지출 내역 추가하기
+//    @POST("/expenditure")
+//    fun createDailyExpenditure(
+//
+//    )
 }
