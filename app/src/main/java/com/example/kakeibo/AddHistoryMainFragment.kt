@@ -315,6 +315,7 @@ class AddHistoryMainFragment : BottomSheetDialogFragment() {
 
         //'오늘 소비 가능 금액' 계산
         if ((todaySpend - recyclerSum) > 0) {
+
             ((activity as MainActivity).supportFragmentManager
                 .findFragmentById(R.id.fragment) as HomeFragment).setTodayAvailable(todaySpend - recyclerSum)
         } else {
