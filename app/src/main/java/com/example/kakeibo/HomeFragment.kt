@@ -3,22 +3,25 @@ package com.example.kakeibo
 import android.annotation.SuppressLint
 import android.content.Context
 import android.os.Bundle
+import android.util.Log
 import android.util.TypedValue
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.LinearLayout
-import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.kakeibo.databinding.FragmentHomeBinding
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
 class HomeFragment : Fragment() {
     private lateinit var viewBinding: FragmentHomeBinding
     private lateinit var adapter: DataItemAdapter
     var dataList: ArrayList<Data_item> = arrayListOf()
     val fixedTodayAvailable: Int = 100000 //오늘 소비 가능 금액 세팅(초기 금액)
+    val fixedSavingAvailable : Int = 50000
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -27,11 +30,15 @@ class HomeFragment : Fragment() {
     ): View {
         viewBinding = FragmentHomeBinding.inflate(inflater, container, false)
 
-        //init 세팅
-        initRecyclerview() //리사이클러뷰 기본 세팅
-        viewBinding.tvIntTodayAvailable.text =
-            fixedTodayAvailable.toString() //'오늘 소비 가능 금액' = '초기 금액'으로 세팅
-        setProgressBarHeight(0) //프로그레스 바 높이 0으로 세팅
+        //init 세팅(기본 세팅하는 부분)
+        //'오늘 소비 가능 금액' = '초기 금액'으로 세팅
+        viewBinding.tvIntTodayAvailable.text = fixedTodayAvailable.toString()
+        //'저축 가능 금액' 세팅
+        viewBinding.tvIntSaving.text = fixedSavingAvailable.toString()
+        //프로그레스 바 높이 0으로 세팅
+        setProgressBarHeight(0)
+        //리사이클러뷰 기본 세팅
+        initRecyclerview()
 
         val bottomSheetDialogFragment = AddHistoryMainFragment()
         //모서리 둥글게
@@ -44,6 +51,32 @@ class HomeFragment : Fragment() {
         viewBinding.btnHomeAdd.setOnClickListener {
             bottomSheetDialogFragment.show(parentFragmentManager, bottomSheetDialogFragment.tag)
         }
+
+        //api 연결
+        val authService = getRetrofit().create(ApiService::class.java)
+
+        //저축 가능한 금액 불러오기
+//        val goal_id = 0
+
+        authService.getRestAmount(goal_id=1).enqueue(object : Callback<Long>{
+            override fun onResponse(call: Call<Long>, response: Response<Long>) {
+                if (response.isSuccessful) {
+                    val data = response.body()
+
+                    if (data != null) {
+//                        Log.d("test_retrofit", "저축 가능한 금액 불러오기 : ${data.toString()}")
+                        Log.d("test_retrofit_saving", "저축 가능한 금액 불러오기 : ${data.toString()}")
+                    }
+                } else {
+                    Log.w("test_retrofit_saving", "실패 ${response.code()}")
+                }
+            }
+
+            override fun onFailure(call: Call<Long>, t: Throwable) {
+                Log.w("test_retrofit_saving", "저축 가능한 금액 불러오기 실패", t)
+            }
+
+        })
 
         return viewBinding.root
     }

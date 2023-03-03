@@ -77,10 +77,10 @@ class GoalActivity : AppCompatActivity() {
         viewBinding.btn.setOnClickListener{
 //            Toast.makeText(this, memo, Toast.LENGTH_SHORT).show()
             val intent = Intent(this, IncomeActivity::class.java)
-            intent.putExtra("money", viewBinding.edMuch.text.toString())
-            intent.putExtra("period", num)
+            intent.putExtra("money", viewBinding.edMuch.text.toString()) //목표 금액
+            intent.putExtra("period", num) //목표 기간
             Log.d("putExtra", num)
-            intent.putExtra("memo", viewBinding.edMemo.text.toString())
+            intent.putExtra("memo", viewBinding.edMemo.text.toString()) //한 줄 메모
             startActivity(intent)
         }
 
