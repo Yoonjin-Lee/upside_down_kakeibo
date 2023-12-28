@@ -1,6 +1,6 @@
 ![header](https://capsule-render.vercel.app/api?type=waving&color=FAC0FF&height=250&section=header&text=거꾸로_가계부&fontSize=90&fontColor=ffffff)
 
-UMC 프로젝트 
+UMC 프로젝트  
 : 저축을 먼저하고, 사용 가능 금액 내에서 소비할 수 있게 해주는 애플리케이션
 
 개발 기간
@@ -26,7 +26,7 @@ UMC 프로젝트
 
 
 #### 프로토타입
-디자인 - 김찬빈
+디자인 - 김찬빈  
 [Figma](https://www.figma.com/file/RdtVBdsPestdPHM90K95yP/%EA%B1%B0%EA%BE%B8%EB%A1%9C-%EA%B0%80%EA%B3%84%EB%B6%80_%ED%99%94%EB%A9%B4%EC%84%A4%EA%B3%84%EC%84%9C?type=design&node-id=162%3A2&mode=design&t=C73LZmV5kedTnHa8-1)  
 
 #### 시연 영상
