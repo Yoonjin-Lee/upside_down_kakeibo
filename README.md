@@ -1,4 +1,4 @@
-![header](https://capsule-render.vercel.app/api?type=waving&color=FAC0FF&height=250&section=header&text=거꾸로_가계부&fontSize=90&fontColor=ffffff)
+![header](https://capsule-render.vercel.app/api?type=waving&color=2FDB7A;&height=250&section=header&text=거꾸로_가계부&fontSize=90&fontColor=ffffff)
 
 UMC 프로젝트  
 : 저축을 먼저하고, 사용 가능 금액 내에서 소비할 수 있게 해주는 애플리케이션
