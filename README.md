@@ -13,6 +13,9 @@ UMC 프로젝트
 ---
 ![android](https://img.shields.io/badge/Android-3DDC84?style=for-the-badge&logo=android&logoColor=white) ![kotlin](https://img.shields.io/badge/Kotlin-0095D5?&style=for-the-badge&logo=kotlin&logoColor=white)  
 
+  Android | Kotlin | ViewBinding | Github  
+  Retrofit2 | Okhttp3 라이브러리 사용
+
 프로젝트 소개
 ---
 #### 미래를 위한 준비 저축!
@@ -26,6 +29,12 @@ UMC 프로젝트
 😂 오늘 저축을 잘했으면, 친구에게 SNS로 자랑하기  
 😊 마이페이지에서 전체 달성률 확인  
 
+#### 기능
+- 저축 목표 금액 및 기간 설정 기능
+- 소비 내역 카테고리 별 저장 기능
+- SNS(카톡, 트위터, 인스타그램) 공유 기능
+- 일별 저축 금액 조절 기능
+- Kakao 로그인 및 Naver 로그인 기능
 
 #### 프로토타입
 디자인 - 김찬빈  
